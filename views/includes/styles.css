@@ -1,0 +1,68 @@
+.navbar{
+    padding: 1rem 2rem;
+    justify-content: space-between !important;
+}
+
+.portada{
+    height: 88.5vh;
+    width: 100vw;
+    background-image:url("../images/laboratorio.jpg");
+	background-position: center center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	position: relative;
+}
+.portada:before {
+	content:'';
+	position: absolute;
+    top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0, 0, 0, 0.212);
+}
+
+.portada div h1 {
+	font-size: 60px;
+	color: #fff;
+	position: relative
+}
+
+.texto-portada {
+    background-color: rgba(0, 0, 0, 0);
+    width: 65vw;
+    height: 75vh;
+    padding: 2rem;
+    border-radius: .5rem;
+    margin: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.titulo{
+    font-weight: 700;
+    font-size: 4rem;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 10px black;
+}
+
+.texto-portada p{
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+    text-shadow: 3px 3px 10px black;
+    position:relative;
+}
+
+.animacion{ 
+    transition-property: initial;
+    transition-duration: 1s;
+    transition-timing-function: linear;
+    transition-delay: .5s;
+}
+
+@keyframes surgir{
+    0%{
+        transform: scale(0.7);
+    }
+}
