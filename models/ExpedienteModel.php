@@ -21,6 +21,7 @@
         $modelExp->val_nombre($nombre);
  
         //esto no sierve :v 
+        /*
         $cui = (int)$_POST['cui'];
         $Tsangre = "A+"; //$_POST['Tsangre'];
         $Sexo = "M"; //$_POST['Sexo'];
@@ -29,7 +30,7 @@
         $Estado_civil = $_POST['Estado_civil'];
         $nit = $_POST['nit'];
         $Descripcion = $_POST['Descripcion'];        
-        //esto si sirve
+        //esto si sirve*/
         $query =" INSERT  INTO expedientes (nombre_paciente ,apellido_paciente ,cui 
         ,tipo_sangre ,sexo ,direccion 
         ,edad ,estado_civil ,decripcion  ) VALUES(' $nombre',' $apellido','$val','$Tsangre+','$Sexo','$direccion',
