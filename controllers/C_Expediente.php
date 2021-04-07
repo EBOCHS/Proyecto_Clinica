@@ -1,19 +1,20 @@
 <?php
-
-    class validar {
+   class validar {
         
           //funcion para validar el nombre del paciente
           public function val_nombre($nombre){
             $exp_nombre ="/^[a-z]+$/i";//exprecion regular que aepta solo letras a asta la z 
             $val = preg_match($exp_nombre,$nombre,$conside); //fucncion preg_mach compara la cadena con la exprecion regular
             if(!$val){
-                $_SESSION['message']='Nombre no valido';
-                $_SESSION['message_type']='danger';
-                header("Location: ../views/Expedientes/expedientes.php");
-                //return false;
-                //echo("nombre no valido");
+                if(!$val){
+                    $_SESSION['message']='Nombre no valido';
+                    $_SESSION['message_type']='danger';
+                   header("Location: ../views/Expedientes/expedientes.php");
+                }
             }
+            return $nombre;
         }
+        
         //funcion para validar el apellido del paciente
         public function val_apellido($apellido){
             $exp_nombre ="/^[a-z]+$/i";
@@ -24,6 +25,7 @@
                    header("Location: ../views/Expedientes/expedientes.php");
                     //echo("apellido no valido");
                 }
+                return $apellido;
             }
 
         public function val_Cui($cui){
@@ -41,6 +43,7 @@
                         header("Location: ../views/Expedientes/expedientes.php");
                      }
                 }
+                return $cui;
             }
             
         public function val_tipo_sangre($indice){
@@ -102,24 +105,26 @@
         
         //funcio que genera el codigo del Expediente
         public function get_Num_Expediente($num_expediente){
-            $codigo_Exp= "";
+            //$codigo_Exp= "";
             $fecha = getdate();
             $dia = $fecha["mday"];
             $mes = $fecha["wday"];
             $año = $fecha["year"];
-            
+            $año_=substr($año,2);
+
                 while($resp = mysqli_fetch_array($num_expediente)){
-                    $codigo_Exp = $resp['No_expediente'];
+                    $codigo_Exp = $resp['NO_EXP'];
                 }
                 if($codigo_Exp!=""){
                     (int)$primer_digito = substr($codigo_Exp,0,4);
                     $nuevo_primer = ($primer_digito+1);
+
                     (int)$ultimo_digito=substr($codigo_Exp,14,17);
                     $nuevo_ultimo=($ultimo_digito+1);
-                    $codigo_nuevo = $nuevo_primer."-".$dia."-".$mes."-".$año."-".$nuevo_ultimo;    
+                    $codigo_nuevo = $nuevo_primer."-".$dia."-".$mes."-".$año_."-".$nuevo_ultimo;    
                     return $codigo_nuevo;
                 }else{
-                    $codigo_nuevo="1000"."-".$dia."-".$mes."-".$año."-"."1000000";
+                    $codigo_nuevo="1000"."-".$dia."-".$mes."-".$año_."-"."1000000";
                     return  $codigo_nuevo;
                 }
                 
@@ -152,6 +157,7 @@
             if(!$val){
 
             }
+            return $sivil;
 
         }
         public function val_edad($edad){
@@ -205,6 +211,13 @@
                 return $valido;
             }
 
+        }
+        public function get_id($id){
+            $id_paciente="";
+            while($resp = mysqli_fetch_array($id)){
+                $id_paciente = $resp['ID_PACIENTE'];
+            }
+            return $id_paciente;
         }
     }
 ?>

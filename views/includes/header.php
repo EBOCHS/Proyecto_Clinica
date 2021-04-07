@@ -24,7 +24,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="../Expedientes/expedientes.php">Crear expediente <span class="sr-only">(current)</span></a>
+                    <a class="nav-item nav-link active" href="../Expedientes/expedientes.php">CREAR EXPEDIENTE <span class="sr-only">(current)</span></a>
                         
                         <a class="nav-item nav-link active" href="#">ANALISIS TECNICO <span class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link" href="#">CLASIFICACION</a>

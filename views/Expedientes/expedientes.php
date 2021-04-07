@@ -13,7 +13,10 @@
  <a href="index.php" class="navbar-brand">Crea un Expediente</a>
  <a href="../inicio/index.php" class="navbar-brand">inicio</a>
 </nav>
-<?php require ("../../config/databases.php")?>
+<?php 
+    require ("../../config/databases.php");
+   
+?>
 <div class="container p-3">
     <div class="row">
         <div class="col-md-4">
@@ -34,22 +37,24 @@
                     <input type="text" name="cui" class="form-control" placeholder="CUI Del Paciente">
                 </div>
                 <div class="form-group">
-                <select class="form-select" aria-label="Default select example" id="Tsangre" name="Tsangre">
-                    <option selected>TIPO DE SANGRE</option>
-                    <option value="1"  name="a+" >A+</option>
-                    <option value="2">A-</option>
-                    <option value="3" name="B+" >B+</option>
-                    <option value="4"  name="B-" >B-</option>
-                    <option value="5"  name="O+" >O+</option>
-                    <option value="6"  name="O-" >O-</option>
-                    <option value="7"  name="AB+" >AB+</option>
-                    <option value="8"  name="AB-" >AB-</option>
-                </select>
-                <select class="form-select" aria-label="Default select example" id="Sexo" name="Sexo">
-                    <option selected>SEXO</option>
-                    <option value="1">MASCULINO</option>
-                    <option value="2">FEMENINO</option>
-                </select>     
+                    <select class="form-control" aria-label="Default select example" id="Tsangre" name="Tsangre">
+                        <option selected>TIPO DE SANGRE</option>
+                        <option value="1"  name="a+" >A+</option>
+                        <option value="2">A-</option>
+                        <option value="3" name="B+" >B+</option>
+                        <option value="4"  name="B-" >B-</option>
+                        <option value="5"  name="O+" >O+</option>
+                        <option value="6"  name="O-" >O-</option>
+                        <option value="7"  name="AB+" >AB+</option>
+                        <option value="8"  name="AB-" >AB-</option>
+                    </select>    
+                </div>
+                <div>
+                    <select class="form-control" aria-label="Default select example" id="Sexo" name="Sexo">
+                        <option selected>SEXO</option>
+                        <option value="1">MASCULINO</option>
+                        <option value="2">FEMENINO</option>
+                    </select> 
                 </div>
                 <div class="form-group">
                     <input type="text" name="direccion" class="form-control" placeholder="Direccion" >
@@ -88,13 +93,13 @@
             <?php
                 //$obj = new conexion;
                 //$conn = $obj -> conect();
-                $query = "SELECT * FROM  expedientes";
+                $query = "SELECT EXPEDIENTES.NO_EXP, PACIENTE.NOMBRE,PACIENTE.APELLIDO FROM  PACIENTE INNER JOIN EXPEDIENTES ON PACIENTE.id_PACIENTE = EXPEDIENTES.ID_PACIENTE;                ";
                 $resltados = mysqli_query($conn,$query);
                 while($row = mysqli_fetch_array($resltados)){?>
                 <tr>
-                    <td><?php echo $row['No_expediente']?></td>
-                    <td><?php echo $row['nombre_paciente']?></td>
-                    <td><?php echo $row['apellido_paciente']?></td>
+                    <td><?php echo $row['NO_EXP']?></td>
+                    <td><?php echo $row['NOMBRE']?></td>
+                    <td><?php echo $row['APELLIDO']?></td>
                     <td><?php echo $row['cui']?></td>
                     
                     <td>
