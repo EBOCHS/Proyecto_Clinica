@@ -14,9 +14,9 @@
  <a href="../inicio/index.php" class="navbar-brand">inicio</a>
 </nav>
 <?php 
-    require ("../../config/databases.php");
-   
+  require ("../../config/databases.php");
 ?>
+
 <div class="container p-3">
     <div class="row">
         <div class="col-md-4">
@@ -57,6 +57,7 @@
                     </select> 
                 </div>
                 <div class="form-group">
+                
                     <input type="text" name="direccion" class="form-control" placeholder="Direccion" >
                 </div>
                 <div class="form-group">
