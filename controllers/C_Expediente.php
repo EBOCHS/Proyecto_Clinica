@@ -29,7 +29,7 @@
                 if(!$val){
                     return false;
                 }else{
-                     if (strlen($cui)<11||strlen($cui)>11){
+                     if (strlen($cui)<13||strlen($cui)>13){
                         return false;
                      }
                 }
