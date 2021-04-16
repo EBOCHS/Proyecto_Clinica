@@ -6,12 +6,6 @@
             $exp_nombre ="/^[a-z]+$/i";//exprecion regular que aepta solo letras a asta la z 
             $val = preg_match($exp_nombre,$nombre,$conside); //fucncion preg_mach compara la cadena con la exprecion regular
             if(!$val){
-                /*
-                if(!$val){
-                    $_SESSION['message']='Nombre no valido';
-                    $_SESSION['message_type']='danger';
-                   header("Location: ../views/Expedientes/expedientes.php");
-                }*/
                 return false;
             }
             return true;
@@ -36,9 +30,6 @@
                     return false;
                 }else{
                      if (strlen($cui)<11||strlen($cui)>11){
-                        $_SESSION['message']='CUI no valido Solo se permiten numeros de 11 cifras';
-                        $_SESSION['message_type']='danger';
-                        header("Location: ../views/Expedientes/expedientes.php");
                         return false;
                      }
                 }

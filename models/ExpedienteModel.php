@@ -1,37 +1,31 @@
 <?php
- 
-    include ("../config/databases.php");
     require ("../controllers/C_Expediente.php");
+    include ("../config/databases.php");
     $modelExp = new validar;
-  if (isset($_POST['Crear'])){  
+if (isset($_POST['Crear'])){  
     
-    //creamos paciente
+    //obtenemos los datos del formulario del expediente
     $nombre = $_POST['nombre'];
     $val_nombre=$modelExp->val_nombre($nombre);
     $apellido =  $_POST['apellido'];
     $cui = (int)$_POST['cui'];
     $val_cui=$modelExp->val_Cui($cui);
-
     $Tsangre =$_POST['Tsangre'];
     $val_tsangre = $modelExp->val_tipo_sangre($Tsangre);
-
     $Sexo = $_POST['Sexo'];
-
+    $val_sexo = $modelExp->val_sexo($Sexo);
     $direccion =$_POST['direccion'];
     $val_direccion = $modelExp ->val_direccion($direccion);
-
     $Edad = (int)$_POST['Edad'];
     $val_edad = $modelExp->val_edad($Edad);
-
     $Estado_civil = $_POST['Estado_civil'];
     $nit = $_POST['nit'];
-     $val_nit=$modelExp->val_nit($nit);
-
+    $val_nit=$modelExp->val_nit($nit);
     $Descripcion = $_POST['Descripcion'];
     $val_descripcion =$modelExp->val_Descripcion($Descripcion); 
-    
-
     $val_apellido = $modelExp->val_apellido($apellido);
+
+    //validamos que todo los datos esten correctos 
     if($val_nombre==true){
         if($val_apellido==true){
             if($val_cui==true){
@@ -43,19 +37,16 @@
                                     if($val_descripcion==true){
                                          //guardamos el paciente en la base de datos
                                         $query ="INSERT  INTO PACIENTE (NOMBRE,APELLIDO,CUI,TIPO_SANGRE,SEXO,DERECCION,EDAD,NIT,ESTADO_CIVIL) 
-                                        VALUES('$nombre','$apellido','$cui','$Tsangre','$Sexo','$Descripcion',$Edad,'$nit','$Estado_civil')";
+                                        VALUES('$nombre','$apellido','$cui','$val_tsangre','$val_sexo','$Descripcion',$Edad,'$nit','$Estado_civil')";
                                         $resultado = mysqli_query($conn,$query);
                                         if(!$resultado){
                                              die(mysqli_error($conn));
                                         }
                                         //creamos expediente
-        
                                         $consulta_expediente = "SELECT  NO_EXP from EXPEDIENTES order by NO_EXP desc limit 1";
                                         $res = mysqli_query($conn,$consulta_expediente);//obtengo el ultimo numero de expediente creado 
                                         $num_Expediente=$modelExp->get_Num_Expediente($res);
-                                        print_r ($res);
-                                        echo (" -----> expdiente nuevo: ".$num_Expediente);
-                                    
+                                
                                         $get_id_pacinet="SELECT ID_PACIENTE FROM PACIENTE order bY ID_PACIENTE desc limit 1";
                                         $result = mysqli_query($conn,$get_id_pacinet);//obtengo la id del paciente nuevo
                                         if(!$result){
@@ -70,7 +61,7 @@
                                             die(mysqli_error($conn));
                                         }
                                             
-                                        $_SESSION['message']='EXPEDIENTE CREADO';
+                                        $_SESSION['message']='EXPEDIENTE CREADO EL CODIGO DEL EXPEDIENTE ES: '.$num_Expediente;
                                         $_SESSION['message_type']='success';
                                         header("Location: ../views/Expedientes/expedientes.php");
 
@@ -125,6 +116,7 @@
     }
 
 
-    }
-
+}else if(isset($_POST['cancelar'])){
+       header("Location: ../views/inicio/index.php");
+}
 ?>

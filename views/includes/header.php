@@ -34,7 +34,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="../solicitud/solicitud.php">CREAR SOLICITUD</a>
-                                <a class="dropdown-item" href="#">EDITAR SOLICITUD</a>
+                                <a class="dropdown-item" href="#">Buscar SOLICITUD</a>
+                                <a class="dropdown-item" href="../Creacion_Muestras/Vista_Muestras.php">CREAR MUESTRA MEDICA</a>
                             </div>
                         </li>
 
