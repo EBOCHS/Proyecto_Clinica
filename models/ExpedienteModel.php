@@ -98,7 +98,7 @@ if (isset($_POST['Crear'])){
                     header("Location: ../views/Expedientes/expedientes.php");
                 }
             }else{
-                $_SESSION['message']='CUI no valido Solo se permite numeros de enteros de 11 cifrass';
+                $_SESSION['message']='CUI no valido Solo se permite numeros de enteros de 13 cifrass';
                 $_SESSION['message_type']='danger';
                 header("Location: ../views/Expedientes/expedientes.php");
             }
@@ -114,8 +114,6 @@ if (isset($_POST['Crear'])){
        header("Location: ../views/Expedientes/expedientes.php");
        
     }
-
-
 }else if(isset($_POST['cancelar'])){
        header("Location: ../views/inicio/index.php");
 }

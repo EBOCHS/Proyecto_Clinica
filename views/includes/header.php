@@ -24,13 +24,28 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
+                                <!-- Default dropleft button -->
+                                <div class="btn-group dropleft">
+                                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                    <img src="../images/user.png"
+                                        width="50"
+                                        height="50">
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <!-- Dropdown menu links -->
+                                        <h7>Usuario:</h7>
+                                        <input type="text" name="usuario" class="form-control" placeholder="Usuario" >
+                                        <h7>Contraseña:</h7>
+                                        <input type="Password" name="contraseña" class="form-control" placeholder="Contraseña" >
+                                        <input type="submit md-5" class="btn btn-success " name="Crear" value=" Sign in" >
+                                        <input type="submit md-5" class="btn btn-success " name="Crear" value="SIN Usuario" >
+                                        </div>
+                                </div>
                     <a class="nav-item nav-link active" href="../Expedientes/expedientes.php">CREAR EXPEDIENTE <span class="sr-only">(current)</span></a>
-                        
                         <a class="nav-item nav-link active" href="#">ANALISIS TECNICO <span class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link" href="#">CLASIFICACION</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                MANTENIMIENTO DE SOLICITUDES
+                               <h8> MANTENIMIENTO DE SOLICITUDES </h8>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="../solicitud/solicitud.php">CREAR SOLICITUD</a>
@@ -38,12 +53,14 @@
                                 <a class="dropdown-item" href="../Creacion_Muestras/Vista_Muestras.php">CREAR MUESTRA MEDICA</a>
                             </div>
                         </li>
-
-                        <a class="nav-item nav-link disabled" href="#">
                         </a>
                     </div>
+                    <!-- Default dropleft button -->
+                    </div>
                 </div>
+              
             </div>
+
 
         </nav>
     </div>
