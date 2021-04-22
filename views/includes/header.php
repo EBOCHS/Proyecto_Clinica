@@ -14,19 +14,45 @@
 </head>
 
 <body>
-
+<?php require ("../../config/databases.php");
+?>
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="/proyecto_clinica/views/inicio/index.php">CLINICA LA BENDICION</a>
+            
             <div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                
                     <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="../Expedientes/expedientes.php">CREAR EXPEDIENTE <span class="sr-only">(current)</span></a>
+                    <div class="btn-group dropleft">
+                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img src="../images/user.png" width="50" height="50"><?php echo( $_SESSION['usuario']) ?> 
+                        </button>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="../../models/LoginModelo.php">Iniciar sesion</a>
+                        <form action="../../models/LoginModelo.php" method="POST"; >
+                        <button type="submit" class="btn "  name ="cerrar">Cerrar Sesion</button>
+                        </form>        
+                        </div>
+                    </div>
+                    
+                    <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Crear Expediente
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Tipo de usuario</a>
+                            <form action="../../models/LoginModelo.php" method="POST"; >
+                        <button type="submit" class="btn "  name ="Interno">Interno</button>
+                        </form>  
+                                <a class="dropdown-item" href="../Expedientes/expedientes.php">externo</a>
+                            </div>
+                        </li>
+               
                         
-                        <a class="nav-item nav-link active" href="#">ANALISIS TECNICO <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link active" href="#">ANALISIS TECNICO <span class="sr-only"></span></a>
                         <a class="nav-item nav-link" href="#">CLASIFICACION</a>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

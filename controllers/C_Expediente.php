@@ -95,7 +95,7 @@
            
             
                 while($resp = mysqli_fetch_array($num_expediente)){
-                    $codigo_Exp = $resp['NO_EXP'];
+                    $codigo_Exp = $resp['NUM_EXPEDIENTE'];
                 }
                 if($codigo_Exp!=""){
                     (int)$primer_digito = substr($codigo_Exp,0,4);

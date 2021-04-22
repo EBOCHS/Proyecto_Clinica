@@ -1,4 +1,5 @@
-<?php include("../includes/header.php") ?>
+<?php include("../includes/header.php");
+?>
 <div class="">
     <div class="">
         <div class="portada p-4">

@@ -17,6 +17,7 @@
 <body >
 <nav class="navbar navbar-dark bg-dark">
  <a href="index.php" class="navbar-brand">Crea un Expediente</a>
+ <a href="index.php" class="navbar-brand"><?php echo ($_SESSION['usuario']);?></a>
  <a href="../inicio/index.php" class="navbar-brand">inicio</a>
 </nav>
 
@@ -30,6 +31,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
          <?php session_unset();}?>
+         
             <form  action="../../models/ExpedienteModel.php" method="POST" >
                 <div class="form-group">
                 <input type="text" name="nombre" placeholder="Nombre Del Paciente" class="form-control" autofocus  >
@@ -88,7 +90,10 @@
         <th>No.Expediente</th>
         <th>nombre</th>
         <th>apellido</th>
+        <th>ESTADO</th>
+        <th>CREADO POR</th>
         <th>ACCION</th>
+        
         </tr>
         </thead>
         <tbody>
@@ -96,19 +101,26 @@
             <?php
                 //$obj = new conexion;
                 //$conn = $obj -> conect();
-                $query = "SELECT EXPEDIENTES.NO_EXP, PACIENTE.NOMBRE,PACIENTE.APELLIDO FROM  PACIENTE INNER JOIN EXPEDIENTES ON PACIENTE.id_PACIENTE = EXPEDIENTES.ID_PACIENTE;                ";
+                $usuario = $_SESSION['usuario'];
+                $query = "SELECT  EX.NUM_EXPEDIENTE , PA.NOMBRE, PA.APELLIDO ,EX.ESTADO,EX.USUARIO_CREACION  FROM EXPEDIENTE EX 
+                INNER JOIN PACIENTE PA ON EX.ID_PACIENTE = PA.ID_PACIENTE WHERE EX.USUARIO_CREACION  ='$usuario'";
                 $resltados = mysqli_query($conn,$query);
                 while($row = mysqli_fetch_array($resltados)){?>
                 <tr>
-                    <td><?php echo $row['NO_EXP']?></td>
+                    <td><?php echo $row['NUM_EXPEDIENTE']?></td>
                     <td><?php echo $row['NOMBRE']?></td>
                     <td><?php echo $row['APELLIDO']?></td>
+                    <td><?php echo $row['ESTADO']?></td>
+                    <td><?php echo $row['USUARIO_CREACION']?></td>
                     <td>
                         <a href="editar.php?id=<?php echo $row['id']?> " class="btn btn-success" ><i class="fas fa-marker"></i></a>
                         <a href="eliminar.php?id=<?php echo $row['id']?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
                     </td>
                 </tr>
-                <?php }?>
+                <?php }
+                
+                
+                ?>
         </tbody>
         </table>
     </div>
