@@ -3,7 +3,7 @@
         
           //funcion para validar el nombre del paciente
           public function val_nombre($nombre){
-            $exp_nombre ="/^[a-z]+$/i";//exprecion regular que aepta solo letras a asta la z 
+            $exp_nombre ="/^[a-z ]+$/i";//exprecion regular que aepta solo letras a asta la z 
             $val = preg_match($exp_nombre,$nombre,$conside); //fucncion preg_mach compara la cadena con la exprecion regular
             if(!$val){
                 return false;
@@ -13,7 +13,7 @@
         
         //funcion para validar el apellido del paciente
         public function val_apellido($apellido){
-            $exp_nombre ="/^[a-z]+$/i";
+            $exp_nombre ="/^[a-z ]+$/i";
             $val = preg_match($exp_nombre,$apellido,$conside);
                 if(!$val){
                     return FALSE;
@@ -67,6 +67,9 @@
                     case '8':
                         return "AB-";
                         break;
+                    case '9':
+                        return "NA";
+                        break;    
                 }
         }
 
@@ -131,12 +134,14 @@
          
         }
         public function estado_sivil($sivil){
-            $exp_sivil = "/^[a-z]{20}+$/i";
-            $val = preg_match($exp_sivil,$sivil);
-            if(!$val){
-
+            switch ($sivil){
+                case '1':
+                    return "Soltero";
+                    break;
+                case '2' :
+                    return "Casado";
+                    break;
             }
-            return $sivil;
 
         }
         public function val_edad($edad){
@@ -173,12 +178,13 @@
         }
     
         public function val_Descripcion($descripcion){
-            $valido = $descripcion;
-            if(strlen($direccion>400)){
+            
+            if(strlen($descripcion)<10||strlen($descripcion)>400){
                 return false;
             }else{
                 return true;
             }
+            
 
         }
         public function get_id($id){

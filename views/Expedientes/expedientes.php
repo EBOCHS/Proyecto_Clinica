@@ -18,7 +18,6 @@
 <nav class="navbar navbar-dark bg-dark">
  <a href="index.php" class="navbar-brand">Crea un Expediente</a>
  <a href="index.php" class="navbar-brand"><?php echo ($_SESSION['usuario']);?></a>
-
 <a href="../inicio/index.php" class="navbar-brand">inicio</a>
 </nav>
 
@@ -31,17 +30,20 @@
             <?= $_SESSION['message']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php session_unset();}?>
+         <?php 
+        session_unset(); 
+        }
+         ?>
          
             <form  action="../../models/ExpedienteModel.php" method="POST" >
                 <div class="form-group">
-                <input type="text" name="nombre" placeholder="Nombre Del Paciente" class="form-control" value= "<?php echo ($_SESSION['nombre'])?>" autofocus  >
+                <input type="text" name="nombre" placeholder="Nombre Del Paciente" class="form-control" value= "<?php echo ($_SESSION['nombre']);?>" >
                 </div>
                 <div class="form-group">
-                    <input type="text" name="apellido" class="form-control" placeholder="Apellido Del Paciente" >
+                    <input type="text" name="apellido" class="form-control" placeholder="Apellido Del Paciente" value= "<?php echo ($_SESSION['apellido']);?>" >
                 </div>
                 <div class="form-group">
-                    <input type="text" name="cui" class="form-control" placeholder="CUI Del Paciente">
+                    <input type="text" name="cui" class="form-control" placeholder="CUI Del Paciente" value= "<?php echo ($_SESSION['cui']);?>">
                 </div>
                 <div class="form-group">
                     <select class="form-control" aria-label="Default select example" id="Tsangre" name="Tsangre">
@@ -54,29 +56,34 @@
                         <option value="6"  name="O-" >O-</option>
                         <option value="7"  name="AB+" >AB+</option>
                         <option value="8"  name="AB-" >AB-</option>
+                        <option value="9"  name="NA" >NA</option>
                     </select>    
                 </div>
                 <div>
-                    <select class="form-control" aria-label="Default select example" id="Sexo" name="Sexo">
+                    <select class="form-control" aria-label="Default select example" id="Sexo" name="Sexo" values="1">
                         <option selected>SEXO</option>
                         <option value="1">MASCULINO</option>
                         <option value="2">FEMENINO</option>
                     </select> 
                 </div>
                 <div class="form-group">
-                    <input type="text" name="direccion" class="form-control" placeholder="Direccion" >
+                    <input type="text" name="direccion" class="form-control" placeholder="Direccion" value= "<?php echo ($_SESSION['direccion']);?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="Edad" class="form-control" placeholder="Edad" >
+                    <input type="text" name="Edad" class="form-control" placeholder="Edad" value= "<?php echo ($_SESSION['edad']);?>">
+                </div>
+                <div>
+                    <select class="form-control" aria-label="Default select example" id="Civil" name="Civil">
+                        <option selected>Estado Civil</option>
+                        <option value="1">Soltero</option>
+                        <option value="2">Casado</option>
+                    </select> 
                 </div>
                 <div class="form-group">
-                    <input type="text" name="Estado_civil" class="form-control" placeholder="Estado civil" >
+                    <input type="text" name="nit" class="form-control" placeholder="nit" value= "<?php echo ($_SESSION['nit']);?>">
                 </div>
                 <div class="form-group">
-                    <input type="text" name="nit" class="form-control" placeholder="nit" >
-                </div>
-                <div class="form-group">
-                    <input type="text" name="Descripcion" class="form-control" placeholder="Descripcion" >
+                    <input type="text" name="Descripcion" class="form-control" placeholder="Descripcion" value= "<?php echo ($_SESSION['descripcion']);?>" >
                 </div>
                 <div class="form-group mx-auto" >
                 <input type="submit" class="btn btn-success " name="Crear" value=" Crear" >
