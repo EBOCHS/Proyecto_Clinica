@@ -18,7 +18,8 @@
 <nav class="navbar navbar-dark bg-dark">
  <a href="index.php" class="navbar-brand">Crea un Expediente</a>
  <a href="index.php" class="navbar-brand"><?php echo ($_SESSION['usuario']);?></a>
- <a href="../inicio/index.php" class="navbar-brand">inicio</a>
+
+<a href="../inicio/index.php" class="navbar-brand">inicio</a>
 </nav>
 
 
@@ -34,7 +35,7 @@
          
             <form  action="../../models/ExpedienteModel.php" method="POST" >
                 <div class="form-group">
-                <input type="text" name="nombre" placeholder="Nombre Del Paciente" class="form-control" autofocus  >
+                <input type="text" name="nombre" placeholder="Nombre Del Paciente" class="form-control" value= "<?php echo ($_SESSION['nombre'])?>" autofocus  >
                 </div>
                 <div class="form-group">
                     <input type="text" name="apellido" class="form-control" placeholder="Apellido Del Paciente" >

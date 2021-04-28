@@ -57,6 +57,29 @@ class validar_muestra{
             return false;
         }
     }
+    public function get_codigo_muestra($cod_muestra){
+        $fecha = getdate();
+        $dia = $fecha["mday"];
+        $mes = $fecha["mon"];
+        $año = $fecha["year"];
+        $año_=substr($año,2);
+       
+        while($datos = mysqli_fetch_array($cod_muestra)){
+            $codigo_muestra = $datos['codigo_muestra'];
+        }
+        if($codigo_muestra!=""){
+            (int)$primer_digito = substr($codigo_muestra,0,3);
+            $num = ((int)$primer_digito+1);
+
+            $codigo_muestra =$num."-".$dia."-".$mes."-".$año_."-".$num;
+            return $codigo_muestra;
+
+        }else{
+            $codigo_muestra ="100"."-".$dia."-".$mes."-".$año_."-"."100";
+            return $codigo_muestra;
+        }
+
+    }
 
 }
 ?>

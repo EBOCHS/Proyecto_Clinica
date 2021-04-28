@@ -25,7 +25,11 @@ if (isset($_POST['Crear'])){
     $val_descripcion =$modelExp->val_Descripcion($Descripcion); 
     $val_apellido = $modelExp->val_apellido($apellido);
 
+    $_SESSION['nombre'] = $nombre;
+    echo ($_SESSION['nombre']);
+    $_SESSION['$apellido'] = $apellido;
     //validamos que todo los datos esten correctos 
+   
     if($val_nombre==true){
         if($val_apellido==true){
             if($val_cui==true){
@@ -149,7 +153,6 @@ if (isset($_POST['Crear'])){
        header("Location: ../views/Expedientes/expedientes.php");
        
     }
-
 
 }else if(isset($_POST['cancelar'])){
        header("Location: ../views/inicio/index.php");
