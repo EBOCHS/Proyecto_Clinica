@@ -49,6 +49,7 @@
         <table class="table table-bordered">
         <thead >
         <tr>
+        <th>id muestra</th>
         <th>cod.Muestra</th>
         <th>tipo_muestra</th>
         <th>presentacion_muestra</th>
@@ -73,6 +74,7 @@
                 $resltados = mysqli_query($conn,$query);
                 while($row = mysqli_fetch_array($resltados)){?>
                 <tr>
+                    <td><?php $id =$row['id_muestra']; echo $row['id_muestra']?></td>
                     <td><?php echo $row['codigo_muestra']?></td>
                     <td><?php echo $row['tipo_muestra']?></td>
                     <td><?php echo $row['presentacion_muestra']?></td>
@@ -80,30 +82,25 @@
                     <td><?php echo $row['unidad_medida']?></td>
                     <td><?php echo $row['adjunto']?></td>
                     <td>
-                        <form action="../../models/AsociarModelo.php"  method="POST" >
+                            <form action="../../models/AsociarModelo.php"  method="POST" >
+                            <input type="hidden" name="id" value="<?php echo $id;?>">
                             <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle"
                                     data-toggle="dropdown">
                                     ASOCIAR ITEMS<span class="caret"></span>
                             </button>
-
                             <ul class="dropdown-menu" role="menu">
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="item1">
-                            <label class="form-check-label" for="exampleCheck1">item 1</label>
-                            </div>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="item2">
-                            <label class="form-check-label" for="exampleCheck1">item 2</label>
-                            </div>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="item3">
-                            <label class="form-check-label" for="exampleCheck1">item 3</label>
-                            </div>
-                            <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="item4">
-                            <label class="form-check-label" for="exampleCheck1">item 4</label>
-                            </div>
+                            <?php
+                                $query = "SELECT ID,DESCRIPCION FROM ITEMS";
+                                $resltados = mysqli_query($conn,$query);
+                                while($row = mysqli_fetch_array($resltados)){ ?>
+
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="<?php echo $row['ID'] ?>">
+                                            <label class="form-check-label" for="exampleCheck1"><?php echo $row['DESCRIPCION']?></label>
+                                        </div>
+                                    
+                            <?php }?>
                             <input type="submit" class="btn btn-success " name="asociar" value="ASOCIAR" >           
                             </ul>
                             </div>
@@ -111,6 +108,7 @@
                         </form>
                         <p></p>
                         <form action="../../models/AsociarModelo.php"  method="POST" >
+                        <input type="hidden" name="id" value="<?php echo $id;?>">
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger dropdown-toggle"
                                     data-toggle="dropdown">
@@ -132,7 +130,7 @@
                                 <?php }
                                
                                ?> 
-                               <input type="submit" class="btn btn-danger" name="asociar" value="Desasociar" > 
+                               <input type="submit" class="btn btn-danger" name="Desasociar" value="Desasociar" > 
                             
                             </ul>
                         </form>

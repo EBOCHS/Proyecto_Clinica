@@ -28,11 +28,38 @@ include ("../config/databases.php");
        }
     }
     if(isset($_POST['asociar'])){
-        $item1 = $_POST['item1'];
-        $item2 = $_POST['item2'];
-        $item3 = $_POST['item3'];
-        $item4 = $_POST['item4'];
+        $C_asociar = new asociar;
+        $item1 = $_POST['1'];
+        $item2 = $_POST['2'];
+        $item3 = $_POST['3'];
+        $item4 = $_POST['4'];
+        $id_muestra=$_POST['id'];
+        //echo("id: ".$id_muestra." item:1" .$item1);
+        $resultado = $C_asociar->asociar_item($item1,$item2,$item3,$item4,$id_muestra);
+    
+        $res=mysqli_query($conn,$resultado);
+        if(!$res){
+            die(mysqli_error($conn));
+        }
+        $_SESSION['message']='Items asociado con exito';
+        $_SESSION['message_type']='success';
+        header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
+    }
+    if (isset($_POST['Desasociar'])) {
+        $C_asociar = new asociar;
+        $item1 = $_POST['1'];
+        $item2 = $_POST['2'];
+        $item3 = $_POST['3'];
+        $item4 = $_POST['4'];
+        $id_muestra=$_POST['id'];
+        $resultado = $C_asociar->desacociar_item($item1,$item2,$item3,$item4,$id_muestra);
+        $res=mysqli_query($conn,$resultado);
+        if(!$res){
+            die(mysqli_error($conn));
+        }
+        $_SESSION['message']='Items desasociados con exito';
+        $_SESSION['message_type']='success';
+        header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         
-
     }
 ?>
