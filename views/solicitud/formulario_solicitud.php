@@ -1,3 +1,6 @@
+<?php
+include("../../config/databases.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,55 +25,55 @@
         <h6>INGRESE LOS DATOS QUE SE LE SOLICITAN </h6>
         <div class="row">
             <div class="col col-md-5">
-                <?php if (isset($_SESSION['mensaje'])) { ?>
-
-                    <div class="alert alert-<?= $_SESSION['tipo']; ?> alert-dismissible fade show" role="alert">
-                        <?= $_SESSION['mensaje'] ?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                <?php if (isset($_SESSION['message'])) { ?>
+                    <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                        <?= $_SESSION['message'] ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
+                <?php session_unset();
+                } ?>
 
-                <?php } ?>
-                <?php session_unset(); ?>
 
                 <div class="card card-body">
-                    <form action="save_task.php" method="POST">
+                    <form action=" ../../models/SolicitudModelo.php" method="POST">
                         <div class="form-group">
                             <h6>Elija el tipo de usuario: </h6>
 
-                            <select class="form-control" name="comunidad" required>
+                            <select class="form-control" name="tipo_usu" require>
                                 <option value="">Seleccione una opción</option>
-                                <option value="1">IN-Usuario interno</option>
-                                <option value="2">EX-Usuario externo</option>
+                                <option value="IN">IN-Usuario interno</option>
+                                <option value="EX">EX-Usuario externo</option>
                             </select>
 
                         </div>
                         <br>
                         <div class="form-group">
                             <h6>Elija el tipo de solicitud: </h6>
-                            <select class="form-control" name="comunidad" required>
+                            <select class="form-control" name="tipo_solicitud" require>
                                 <option value="">Seleccione una opción</option>
-                                <option value="1">MM-Muestra medica</option>
-                                <option value="2">LQ-Laboratorio </option>
+                                <option value="MM">MM-Muestra medica</option>
+                                <option value="LQ">LQ-Laboratorio </option>
                             </select>
                         </div>
                         <br>
                         <h6> Descripción: </h6>
                         <div class="form-group">
-                            <textarea required type="text" name="des" class="form-control"></textarea>
+                            <textarea minlength="10" maxlength="2001" type="text" name="descripcion" class="form-control" require></textarea>
                         </div>
                         <br>
                         <h6> No. Expediente: </h6>
                         <div class="form-group card card-body">
-                            <input required type="text" name="expediente" id="exp" class="form-control" placeholder="0000-00-00-00-0000000000" pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{10}" title="Numero de expediente incorrecto"></input>
+                            <input type="text" name="expediente" id="exp" class="form-control" placeholder="0000-00-00-00-0000000000" pattern="[0-9]{4}-[0-9]{2}-[0-9]{1}-[0-9]{2}-[0-9]{7-10}" title="Numero de expediente incorrecto" require></input>
+
                             <br>
-                            <button id="search" class="btn btn-secondary btn-sm" onclick="mostrar()"><i class="fas fa-search"> Buscar Expediente</i></button>
+
+                            <a id="search" class="btn btn-secondary btn-sm" onclick="mostrar()"><i class="fas fa-search"> Buscar Expediente</i></a>
                         </div>
 
                         <br>
-                        <input type="submit" class="btn btn-success btn-block" name="Guardar_Usuario" onclick="return confirmar_solicitud()">
-                        <a href="/proyecto_clinica/views/solicitud/solicitud.php" class="btn btn-outline-danger">Volver</a>
+                        <input type="submit" class="btn btn-success btn-block" name="Crear_Solicitud" value="Crear Solicitud" onclick="return confirmar_solicitud()">
+                        <a href="/Proyecto_Clinica/views/solicitud/solicitud.php" class="btn btn-outline-danger">Volver</a>
+
                     </form>
 
                 </div>
@@ -81,11 +84,13 @@
                 <div class="card card-body" id="search_expediente">
                     <h5>Buscar Expediente</h5>
                     <div class="form-group">
-                        <h6>Ingrese su numero de CUI: </h6>
-                        <input required type="text" name="DPI" class="form-control"> </input>
-                        <br>
-                        <button class="btn btn-success" id="exp_buscar" onclick="mostrar_dat()">Buscar</button>
-                        <button class="btn btn-secondary" id="exp_cancelar" onclick="ocultar()">Cancelar</button>
+                        <form method="POST">
+                            <h6>Ingrese su numero de CUI: </h6>
+                            <input type="text" required name="DPI" class="form-control"> </input>
+                            <br>
+                            <button type="submit" name="searchexp" class="btn btn-success" id="exp_buscar" onclick="mostrar_dat()">Buscar</button>
+                            <button class="btn btn-secondary" id="exp_cancelar" onclick="ocultar()">Cancelar</button>
+                        </form>
                     </div>
 
 
