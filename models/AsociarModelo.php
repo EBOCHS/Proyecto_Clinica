@@ -62,4 +62,12 @@ include ("../config/databases.php");
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         
     }
+    if(isset($_POST['etiqueta'])){
+        $id = $_POST['id'];
+        echo("id de ".$id);
+        $_SESSION['id']=$id;
+        header("Location: ../views/Creacion_Muestras/etiqueta_muestra.php");
+        
+
+    }
 ?>

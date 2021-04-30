@@ -32,7 +32,8 @@
             <?= $_SESSION['message']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php session_unset();}?>
+         <?php //session_unset();
+        }?>
          
             <form  action="../../models/AsociarModelo.php" method="POST" >
 
@@ -56,7 +57,7 @@
         <th>cantidad_muestra</th>
         <th>unidad_medida</th>
         <th>adjunto</th>
-        <th>accion</th>
+        <th>OPCIONES</th>
         <th>salir</th>
         
         </tr>
@@ -133,13 +134,30 @@
                                <input type="submit" class="btn btn-danger" name="Desasociar" value="Desasociar" > 
                             
                             </ul>
+                            </div>
                         </form>
-                        
+                        <p></p>
+                        <form action="../../models/AsociarModelo.php" method="POST">
+                        <input type="hidden" name="id" value="<?php echo $id;?>">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle"
+                                        data-toggle="dropdown">
+                                        mas opciones<span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <input type="submit" class="btn btn-danger" name="etiqueta" value="ETIQUETA" > 
+                            
+                                    <p></p>
+                                    <a class="dropdown-item" href="">Eliminar muestra</a>
+                                    
+                                </ul>
+                            </div>
+                        </form>
                     </td>
                 </tr>
                 <?php }
                 //session_destroy();
-                }session_destroy();
+                }//session_destroy();
                 
                 
                 ?>
