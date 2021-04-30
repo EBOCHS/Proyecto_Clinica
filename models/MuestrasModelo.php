@@ -1,6 +1,18 @@
 <?php
     include_once ("../controllers/C_muestras.php");
     include ("../config/databases.php");
+
+    if(!isset ($_SESSION['usuario'])){
+        header ("location: ../views/Login/Vista_Login.php");
+    }
+    else{
+        if(isset($_POST['Crear_muestra'])){
+            header ("location: ../views/Creacion_Muestras/Vista_Muestras.php");
+        }else{
+            header ("location: ../views/inicio/index.php");
+        }
+    }
+    
     if(isset($_POST['Crear'])){
         //creamos el modelo de una muestra
         //con los datos del formulario creasion de muestra
@@ -21,11 +33,18 @@
         $cantidad = $C_muestra->val_cantidad((int)$cantidad);
         $Umedida = $C_muestra->val_medida($Umedida);
         
-        if($Tmuestra!=false){
+       /* if($Tmuestra!=false){
             if($presentacion!=false){
                 if($cantidad!=false){
-                    if($Umedida!=false){
-                        echo ("unidad de medida ".$Umedida);
+                    if($Umedida!=false){*/
+                        $queri = "SELECT  codigo_muestra from MUESTRAS_MEDICAS  order by codigo_muestra desc limit 1";
+                        $res = mysqli_query($conn,$queri);
+
+                        $codigo_muestra=$C_muestra ->get_codigo_muestra($res);
+                        $_SESSION['message']= "Codigo de la muestra \n".$codigo_muestra;
+                        $_SESSION['message_type']='success';
+                        header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
+                    /*
                     }else{
                         $_SESSION['message']= "Elija una Unidad de medida";
                         $_SESSION['message_type']='danger';
@@ -46,7 +65,7 @@
             $_SESSION['message']='Elija Un tipo de Muestra';
             $_SESSION['message_type']='danger';
             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
-        }
+        }*/
         
 
     }
