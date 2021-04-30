@@ -46,7 +46,7 @@ if (isset($_POST['Crear_Solicitud'])) {
                             if (!$resultado) {
                                 die(mysqli_error($conn));
                             }
-                            $_SESSION['message'] = 'Solicitud Creada: ';
+                            $_SESSION['message'] = 'Solicitud Creada: ' . $num_solicitud;
                             $_SESSION['message_type'] = 'success';
                             header("Location: ../views/solicitud/formulario_solicitud.php");
                         } else {
@@ -79,6 +79,33 @@ if (isset($_POST['Crear_Solicitud'])) {
     } else {
 
         $_SESSION['message'] = 'Seleccione un tipo de usuario';
+        $_SESSION['message_type'] = 'danger';
+        header("Location: ../views/solicitud/formulario_solicitud.php");
+    }
+}
+
+
+if (isset($_POST['buscar_dpi'])) {
+
+    $No_cui = $_POST['DPI'];
+    $val_cui = $Model_solicitud->val_Cui($No_cui);
+
+    if ($val_cui == true) {
+
+        $query = "SELECT NOMBRE,CUI, EX.NUM_EXPEDIENTE  FROM (PACIENTE PC INNER JOIN EXPEDIENTE EX ON PC.ID_PACIENTE = EX.ID_PACIENTE) 
+        WHERE PC.CUI =$No_cui";
+        $result = mysqli_query($conn, $query);
+        $row = mysqli_fetch_array($result);
+        $nombre_ex = $row['NOMBRE'];
+        $dpi_ex = $row['CUI'];
+        $num_exp = $row['NUM_EXPEDIENTE'];
+
+        $_SESSION['message'] = 'Nombre:' . $nombre_ex . ' Numero de CUI: ' . $dpi_ex . ' Numero de Expediente: ' . $num_exp;
+        $_SESSION['message_type'] = 'success';
+        header("Location: ../views/solicitud/formulario_solicitud.php");
+    } else {
+
+        $_SESSION['message'] = 'Numero de CUI incorrecto';
         $_SESSION['message_type'] = 'danger';
         header("Location: ../views/solicitud/formulario_solicitud.php");
     }

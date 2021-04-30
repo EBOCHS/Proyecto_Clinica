@@ -74,12 +74,18 @@ class validar_solicitud
         return $numero_valido;
     }
 
-    /* public function get_dia($numero_solicitud)
+    public function val_Cui($cui)
     {
-        while ($resp = mysqli_fetch_array($numero_solicitud)) {
-            $codigo_solicitud = $resp['COD_SOLICITUD'];
+        $exp_cui = "/^[0-9]+$/";
+        $val = preg_match($exp_cui, $cui, $res);
+
+        if (!$val) {
+            return false;
+        } else {
+            if (strlen($cui) < 13 || strlen($cui) > 13) {
+                return false;
+            }
         }
-        $dia = substr($codigo_solicitud, -8, 2);
-        return $dia;
-    }*/
+        return true;
+    }
 }

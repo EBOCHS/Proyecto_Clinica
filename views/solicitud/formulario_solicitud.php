@@ -1,5 +1,6 @@
 <?php
 include("../../config/databases.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,11 +85,11 @@ include("../../config/databases.php");
                 <div class="card card-body" id="search_expediente">
                     <h5>Buscar Expediente</h5>
                     <div class="form-group">
-                        <form method="POST">
+                        <form action="../../models/SolicitudModelo.php" method="POST">
                             <h6>Ingrese su numero de CUI: </h6>
-                            <input type="text" required name="DPI" class="form-control"> </input>
+                            <input type="text" required name="DPI" class="form-control" placeholder="0000 00000 0000"> </input>
                             <br>
-                            <button type="submit" name="searchexp" class="btn btn-success" id="exp_buscar" onclick="mostrar_dat()">Buscar</button>
+                            <input type="submit" name="buscar_dpi" class="btn btn-success" id="exp_buscar" onclick="mostrar_dat()" value="Buscar"></input>
                             <button class="btn btn-secondary" id="exp_cancelar" onclick="ocultar()">Cancelar</button>
                         </form>
                     </div>
@@ -97,25 +98,7 @@ include("../../config/databases.php");
 
                 </div>
 
-                <div class="card card-body" id="datos_expediente">
-                    <h5>Expediente:</h5>
-                    <table class="table table-light">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Numero de CUI</th>
-                                <th>Numero de Expediente</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <td>ejemplo</td>
-                            <td>456456</td>
-                            <td>0000-00-00-00-000000000</td>
-                        </tbody>
 
-                    </table>
-                    <div><button class="btn btn-outline-danger" id="exp_cerrar" onclick="ocultar_dat()">Cerrar</button></div>
-                </div>
 
             </div>
 
