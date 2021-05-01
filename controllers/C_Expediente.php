@@ -140,7 +140,7 @@ class validar
     }
     public function estado_sivil($sivil)
     {
-        switch ($indice_Sx) {
+        switch ($sivil) {
             case '1':
                 return "SOLTERO";
                 break;
