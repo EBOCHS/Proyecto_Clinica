@@ -66,12 +66,18 @@ class validar_solicitud
     }
     public function get_numero_solicitud($numero_solicitud)
     {
-        while ($resp = mysqli_fetch_array($numero_solicitud)) {
-            $codigo_solicitud = $resp['COD_SOLICITUD'];
+        
+        if($codigo_Exp != ""){
+            while ($resp = mysqli_fetch_array($numero_solicitud)) {
+                $codigo_solicitud = $resp['COD_SOLICITUD'];
+            }
+            (int)$numero = substr($codigo_solicitud, -5);
+            $numero_valido = ($numero + 1);
+            return $numero_valido;
+
+        }else{
+            return "10000";
         }
-        (int)$numero = substr($codigo_solicitud, -5);
-        $numero_valido = ($numero + 1);
-        return $numero_valido;
     }
 
     public function val_Cui($cui)

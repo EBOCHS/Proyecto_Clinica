@@ -117,7 +117,7 @@ if (isset($_POST['Crear'])){
                                             header("Location: ../views/Expedientes/expedientes.php");
                                         }
                                     }else{
-                                        $_SESSION['message']='nit no valido debe de cumplir la siguente estructura 99999999999-9';
+                                        $_SESSION['message']='nit no valido debe de cumplir la siguiente estructura ejemplo: 1345467A Ó 87453213';
                                         $_SESSION['message_type']='danger';
                                         header("Location: ../views/Expedientes/expedientes.php");
                       

@@ -5,7 +5,7 @@ class validar
     //funcion para validar el nombre del paciente
     public function val_nombre($nombre)
     {
-        $exp_nombre = "/^[a-z]+$/i"; //exprecion regular que aepta solo letras a asta la z 
+        $exp_nombre = "/^[a-z ]+$/i"; //exprecion regular que aepta solo letras a asta la z 
         $val = preg_match($exp_nombre, $nombre, $conside); //fucncion preg_mach compara la cadena con la exprecion regular
         if (!$val) {
             return false;
@@ -16,7 +16,7 @@ class validar
     //funcion para validar el apellido del paciente
     public function val_apellido($apellido)
     {
-        $exp_nombre = "/^[a-z]+$/i";
+        $exp_nombre = "/^[a-z ]+$/i";
         $val = preg_match($exp_nombre, $apellido, $conside);
         if (!$val) {
             return FALSE;
@@ -71,6 +71,9 @@ class validar
                 break;
             case '8':
                 return "AB-";
+                break;
+            case '9':
+                return "NA";
                 break;
         }
     }
@@ -137,16 +140,20 @@ class validar
     }
     public function estado_sivil($sivil)
     {
-        $exp_sivil = "/^[a-z]{20}+$/i";
-        $val = preg_match($exp_sivil, $sivil);
-        if (!$val) {
+        switch ($indice_Sx) {
+            case '1':
+                return "SOLTERO";
+                break;
+
+            case '2':
+                return "CASADO";
+                break;
         }
-        return $sivil;
     }
     public function val_edad($edad)
     {
         $valido = $edad;
-        $exp_edad = "/^[0-9]{1,3}+$/";
+        $exp_edad = "/^[0-9]{1,2}+$/";
         $val = preg_match($exp_edad, $edad);
         if (!$val) {
             return false;
@@ -162,7 +169,7 @@ class validar
     public function val_nit($nit)
     {
         $valido = $nit;
-        $exp_nit = "/^[0-9-]{13}+$/";
+        $exp_nit = "/^[0-9]{7}[0-9A-Z]{1}+$/i";
         $val = preg_match($exp_nit, $nit);
         if (!$val) {
             return false;

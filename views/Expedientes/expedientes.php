@@ -32,7 +32,7 @@ include("../../config/databases.php");
                         <?= $_SESSION['message'] ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                <?php session_unset();
+                <?php //session_unset();
                 } ?>
 
                 <form action="../../models/ExpedienteModel.php" method="POST">
@@ -56,6 +56,7 @@ include("../../config/databases.php");
                             <option value="6" name="O-">O-</option>
                             <option value="7" name="AB+">AB+</option>
                             <option value="8" name="AB-">AB-</option>
+                            <option value="9" name="AB-">NA</option>
                         </select>
                     </div>
                     <div>
@@ -71,8 +72,12 @@ include("../../config/databases.php");
                     <div class="form-group">
                         <input type="text" name="Edad" class="form-control" placeholder="Edad">
                     </div>
-                    <div class="form-group">
-                        <input type="text" name="Estado_civil" class="form-control" placeholder="Estado civil">
+                    <div>
+                        <select class="form-control" aria-label="Default select example" name="Civil">
+                            <option selected>ESTADO CIVIL</option>
+                            <option value="1">SOLTERO</option>
+                            <option value="2">CASADO</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <input type="text" name="nit" class="form-control" placeholder="nit">
