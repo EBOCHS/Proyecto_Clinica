@@ -1,7 +1,5 @@
 <?php
-require ("C_Expediente.php");
-
-$obj = new validar;
-$dato = $obj->val_nit("1234567P");
-echo "dato: ".$dato;
+require ("C_asociar.php");
+$obj = new asociar;
+$obj->generar_QR("este es un mensaje en codigo QR");
 ?>

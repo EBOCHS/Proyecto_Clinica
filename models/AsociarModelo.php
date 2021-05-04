@@ -63,11 +63,20 @@ include ("../config/databases.php");
         
     }
     if(isset($_POST['etiqueta'])){
+        $C_asociar = new asociar;
         $id = $_POST['id'];
-        echo("id de ".$id);
+        $dato1 = $_POST['dato1'];
+        $dato2 = $_POST['dato2'];
+       //echo ("id: ".$id." dato1: ".$dato1." dato2: ".$dato2);
+        $codigo = "Codigo de muestra: ".$dato1." Codigo de Expediente: ". $dato2;
+        $QR = $C_asociar-> generar_QR($codigo);
         $_SESSION['id']=$id;
+        $_SESSION['QR']=$QR; 
         header("Location: ../views/Creacion_Muestras/etiqueta_muestra.php");
-        
+    }
+    if (isset($_POST['imprimir'])){
+        $C_imprimir = new asociar;
+        $C_imprimir->imprimir_Etiqueta();
 
     }
 ?>

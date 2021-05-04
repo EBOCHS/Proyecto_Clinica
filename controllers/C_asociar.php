@@ -23,7 +23,6 @@ class asociar{
         else{
             return false;
         }
-        //return "codigo: ".$codigo_muestra." tipo_muestra: ".$tipo_muestra;
     }
     public function asociar_item($item1,$item2,$item3,$item4,$id_muestra){
         if($item1=="on" && $item2 =="on" && $item3=="on" && $item4=="on"){
@@ -92,6 +91,37 @@ class asociar{
             return  "DELETE FROM ASOCIAR  WHERE  id_muestra = '$id_muestra'  AND id_items = '4'";
         }
 
+    }
+
+    public function generar_QR($contenido){
+       
+        require ("../config/qr/phpqrcode/qrlib.php");
+        $dir = 'temp/';
+        if (!file_exists($dir)){
+            mkdir($dir);
+        }
+        $nombre_qr= $dir.'test.png';
+        $tamanio = 4;
+        $level = 'M';
+        $framesize = 3;
+        QRcode :: png($contenido,$nombre_qr,$level,$tamanio,$framesize);
+        return $nombre_qr;
+    }
+    public function imprimir_Etiqueta(){
+        require ('../config/fpdf183/fpdf.php');
+        $pdf = new FPDF();
+        $pdf->AddPage();
+        $pdf->SetFont('Arial','B',16);
+        $pdf->Cell(40,10,'ETIQUETA DE MUESTRA');
+        $pdf->ln(20);
+        $pdf->Cell(40,10,'Codigo Del Expediente: ');
+        $pdf->ln(20);
+        $pdf->Cell(40,10,'Codigo De muestra: ');
+        $pdf->ln(20);
+        $pdf->Cell(40,10,'Codigo De Solicitud: ');
+        $pdf->ln(20);
+        $pdf->Cell(40,10,'Codigo QR: ');
+        $pdf->Output();
     }
 }
 

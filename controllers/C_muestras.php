@@ -80,6 +80,13 @@ class validar_muestra{
         }
 
     }
+    public function val_numExpediente($exp){
+        if(strlen($exp)<20 || strlen($exp)>21){
+            return false;
+        }else{
+            return true;
+        }
+    }
 
 }
 ?>

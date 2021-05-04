@@ -46,7 +46,8 @@
             <?= $_SESSION['message']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php session_unset();}?>
+         <?php //session_unset();
+        }?>
 
                 <div class="card card-body">
                     <form action="../../models/MuestrasModelo.php" method="POST">
@@ -86,6 +87,9 @@
                         <br>
                         <h6>Adjunto:</h6>
                         <input type="text" name="adjunto" id="adj" class="form-control" placeholder="Adjunto"></input>
+                        <br>
+                        <h6>Ingrese el numero de expediente:</h6>
+                        <input type="text" name="exp" id="adj" class="form-control" placeholder="NUM.Expediente"></input>
                         <br>
                         <div class="form-group mx-auto" >
                             <input type="submit" class="btn btn-success " name="Crear" value=" Crear" >

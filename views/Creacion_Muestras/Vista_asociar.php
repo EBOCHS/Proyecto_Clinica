@@ -76,8 +76,8 @@
                 while($row = mysqli_fetch_array($resltados)){?>
                 <tr>
                     <td><?php $id =$row['id_muestra']; echo $row['id_muestra']?></td>
-                    <td><?php echo $row['codigo_muestra']?></td>
-                    <td><?php echo $row['tipo_muestra']?></td>
+                    <td><?php $codigo_muestra = $row['codigo_muestra']; echo $row['codigo_muestra']?></td>
+                    <td><?php $tipo_muestra=$row['tipo_muestra'];  echo $row['tipo_muestra']?></td>
                     <td><?php echo $row['presentacion_muestra']?></td>
                     <td><?php echo $row['cantidad_muestra']?></td>
                     <td><?php echo $row['unidad_medida']?></td>
@@ -139,6 +139,8 @@
                         <p></p>
                         <form action="../../models/AsociarModelo.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $id;?>">
+                        <input type="hidden" name="dato1" value="<?php echo $codigo_muestra;?>">
+                        <input type="hidden" name="dato2" value="<?php echo $tipo_muestra;?>">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-secondary dropdown-toggle"
                                         data-toggle="dropdown">

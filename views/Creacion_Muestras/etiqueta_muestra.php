@@ -44,8 +44,8 @@
         <th>Codigo de solicitud</th>
         <th>Codigo del expediente</th>
         <th>CODIGO QR</th>
+        <th>unidad medida</th>
         <th>OPCIONES</th>
-        
         </tr>
         </thead>
         <tbody>
@@ -63,15 +63,20 @@
                     <td><?php echo $row['codigo_muestra']?></td>
                     <td><?php echo $row['tipo_muestra']?></td>
                     <td><?php echo $row['presentacion_muestra']?></td>
-                    <td><?php echo $row['cantidad_muestra']?></td>
+                    <td><img src="../../models/<?php echo $_SESSION['QR'];?>" ></td>
                     <td><?php echo $row['unidad_medida']?></td>
+                    <td>
+                    <form action="../../models/AsociarModelo.php" method="POST">
+                        <BUtton name="imprimir">imprimir</BUtton>
+                    </form>
+                    </td>
                 </tr>
                 <?php }
+                
                 //session_destroy();
                 //session_destroy();
-                
-                
                 ?>
+               
         </tbody>
         </table>
     </div>

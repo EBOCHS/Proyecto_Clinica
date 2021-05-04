@@ -174,7 +174,7 @@ class validar
         if (!$val) {
             return false;
         } else {
-            if (strlen($nit) > 13 || strlen($nit < 13)) {
+            if (strlen($nit) > 8 || strlen($nit < 8)) {
                 return false;
             } else {
                 return true;
