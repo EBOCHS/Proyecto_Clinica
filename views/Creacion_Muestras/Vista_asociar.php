@@ -58,7 +58,7 @@
         <th>unidad_medida</th>
         <th>adjunto</th>
         <th>OPCIONES</th>
-        <th>salir</th>
+    
         
         </tr>
         </thead>
@@ -71,9 +71,13 @@
                     
                    $codigo = $_SESSION['dato'];
                 $usuario = $_SESSION['usuario'];
-                $query = "SELECT  * from MUESTRAS_MEDICAS  WHERE  codigo_muestra='$codigo'";
+                $query = "SELECT  MM.id_muestra,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,MM.cantidad_muestra,MM.unidad_medida,MM.adjunto,MM.id_expediente,EX.NUM_EXPEDIENTE from MUESTRAS_MEDICAS MM 
+                INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = MM.id_expediente 
+                WHERE  codigo_muestra='$codigo'";
                 $resltados = mysqli_query($conn,$query);
-                while($row = mysqli_fetch_array($resltados)){?>
+                while($row = mysqli_fetch_array($resltados)){
+                    $num_expediente = $row['NUM_EXPEDIENTE'];
+                    ?>
                 <tr>
                     <td><?php $id =$row['id_muestra']; echo $row['id_muestra']?></td>
                     <td><?php $codigo_muestra = $row['codigo_muestra']; echo $row['codigo_muestra']?></td>
@@ -117,15 +121,15 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                <?php
-                                $query = "SELECT  IT.ID , IT.DESCRIPCION  FROM MUESTRAS_MEDICAS MM 
-                                INNER JOIN ASOCIAR AC ON MM.id_muestra=AC.id_muestra
-                                INNER JOIN ITEMS IT ON AC.id_items=IT.ID
-                                ";
+                                $query = "SELECT  ID,DESCRIPCION FROM ASOCIAR ASO
+                                INNER JOIN ITEMS  IT ON ASO.id_items = IT.ID 
+                                WHERE id_muestra ='$id' ";
                                 $resltados = mysqli_query($conn,$query);
                                 while($row = mysqli_fetch_array($resltados)){ ?>
                            
                                         <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="<?php echo $row['ID'] ?>">
+                                            <input type="hidden" name="id" value="<?php echo $id;?>">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1" name="<?php echo $row['ID'];?>">
                                             <label class="form-check-label" for="exampleCheck1"><?php echo $row['DESCRIPCION']?></label>
                                         </div>
                                 <?php }
@@ -139,18 +143,20 @@
                         <p></p>
                         <form action="../../models/AsociarModelo.php" method="POST">
                         <input type="hidden" name="id" value="<?php echo $id;?>">
-                        <input type="hidden" name="dato1" value="<?php echo $codigo_muestra;?>">
-                        <input type="hidden" name="dato2" value="<?php echo $tipo_muestra;?>">
+                        <input type="hidden" name="cod_muestra" value="<?php echo $codigo_muestra;?>">
+                        <input type="hidden" name="cod_exp" value="<?php echo $num_expediente;?>">
                             <div class="btn-group">
                                 <button type="button" class="btn btn-secondary dropdown-toggle"
                                         data-toggle="dropdown">
                                         mas opciones<span class="caret"></span>
                                 </button>
                                 <ul class="dropdown-menu" role="menu">
-                                    <input type="submit" class="btn btn-danger" name="etiqueta" value="ETIQUETA" > 
-                            
+                                    <input type="submit" class="btn btn-success" name="etiqueta" value="ETIQUETA" > 
                                     <p></p>
-                                    <a class="dropdown-item" href="">Eliminar muestra</a>
+                                    <input type="submit" class="btn btn-success" name="excel" value="Exportar A Excel" >
+                                    <p></p> 
+                                    <input type="submit" class="btn btn-danger" name="eliminar" value="Eliminar muestra" > 
+                                    
                                     
                                 </ul>
                             </div>

@@ -27,24 +27,17 @@
 <h6> ETIQUETA DE MUESTRA </h6>
 <?php echo $id_muestra;?>
     <div class="row">
-        <div class="col-md-10">
-            <?php if(isset($_SESSION['message'])){?>
-            <div class="alert alert-<?=$_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-            <?= $_SESSION['message']?>
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-         <?php //session_unset();
-        }?>
+        
          
-        <div class="col-md-8">
+        <div class="col-md-20">
         <table class="table table-bordered">
         <thead >
         <tr>
         <th>codigo de Muestra</th>
-        <th>Codigo de solicitud</th>
-        <th>Codigo del expediente</th>
+        <th>Codigo de EXPEDIENTE</th>
+        <th>Codigo del Solicitud</th>
         <th>CODIGO QR</th>
-        <th>unidad medida</th>
+        <th>Codigo Etiqueta</th>
         <th>OPCIONES</th>
         </tr>
         </thead>
@@ -54,19 +47,27 @@
             <?php
                 //$obj = new conexion;
                 //$conn = $obj -> conect();
-                   $codigo = $_SESSION['id'];
+                $codigo = $_SESSION['id'];
                 $usuario = $_SESSION['usuario'];
-                $query = "SELECT  * from MUESTRAS_MEDICAS  WHERE  id_muestra='$codigo'";
+                $num_etiqueta =  $_SESSION['cod_et'];
+                $query = "SELECT  MM.codigo_muestra,EX.NUM_EXPEDIENTE,MM.id_muestra from MUESTRAS_MEDICAS MM 
+                INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = MM.id_expediente 
+                 WHERE  id_muestra='$codigo'";
                 $resltados = mysqli_query($conn,$query);
                 while($row = mysqli_fetch_array($resltados)){?>
                 <tr>
-                    <td><?php echo $row['codigo_muestra']?></td>
-                    <td><?php echo $row['tipo_muestra']?></td>
-                    <td><?php echo $row['presentacion_muestra']?></td>
-                    <td><img src="../../models/<?php echo $_SESSION['QR'];?>" ></td>
-                    <td><?php echo $row['unidad_medida']?></td>
+                    <td><?php $cod_muestra = $row['codigo_muestra']; echo $row['codigo_muestra']?></td>
+                    <td><?php $cod_exp = $row['NUM_EXPEDIENTE']; echo $row['NUM_EXPEDIENTE']?></td>
+                    <td><?php echo $row['id_muestra']?></td>
+                    <td><img src="../../models/<?php $qr = $_SESSION['QR']; echo $_SESSION['QR'];?>" ></td>
+                    <td><?php echo $num_etiqueta?></td>
                     <td>
                     <form action="../../models/AsociarModelo.php" method="POST">
+                        <input type="hidden" name="qr" value="<?php echo $qr;?>">
+                        <input type="hidden" name="cod_etiqueta" value="<?php echo $num_etiqueta;?>">
+                        <input type="hidden" name="cod_muestra" value="<?php echo $cod_muestra;?>">
+                        <input type="hidden" name="cod_exp" value="<?php echo $cod_exp;?>">
+                         
                         <BUtton name="imprimir">imprimir</BUtton>
                     </form>
                     </td>
