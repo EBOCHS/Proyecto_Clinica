@@ -1,16 +1,13 @@
 <?php
 class asociar{
     public function val_codigo_muestra($codigo){
-       if($codigo!=""){
-            if(strlen($codigo)>=15){
-                return true;
-            }else{
-                return false;
+    
+            if(strlen($codigo)>=14){
+                    return true;
+                }else{
+                    return 0;
             }
-            
-       }else{
-           return false;
-       }
+        
     }
     public function val_consulta($datos){
         
@@ -21,7 +18,7 @@ class asociar{
             return true;
         }
         else{
-            return false;
+            return 0;
         }
     }
     public function asociar_item($item1,$item2,$item3,$item4,$id_muestra){

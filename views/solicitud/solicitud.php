@@ -67,7 +67,7 @@
                             Opciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="../../models/rutas_asociar.php">ASIGNAR</a>
+                            <a class="dropdown-item" href="../../models/rutas_asociar.php">Asociar</a>
                             <a class="dropdown-item" href="#">Another action</a>
                             <a class="dropdown-item" href="#">Something else here</a>
                         </div>

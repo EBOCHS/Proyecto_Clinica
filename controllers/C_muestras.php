@@ -10,7 +10,7 @@ class validar_muestra{
                     return "PLAQUETAS"; 
                     break;
                 case 3:
-                    return "ESES";
+                    return "HESES";
                     break;
                 case 4:
                     return "ORINA";
@@ -68,11 +68,12 @@ class validar_muestra{
             $codigo_muestra = $datos['codigo_muestra'];
         }
         if($codigo_muestra!=""){
-            (int)$primer_digito = substr($codigo_muestra,0,3);
+            (int)$primer_digito = substr($codigo_muestra,0,4);
             $num = ((int)$primer_digito+1);
 
-            $codigo_muestra =$num."-".$dia."-".$mes."-".$año_."-".$num;
-            return $codigo_muestra;
+            $codigo_muestra = $num."-".$dia."-".$mes."-".$año_."-".$num;
+            
+            return ltrim($codigo_muestra);
 
         }else{
             $codigo_muestra ="100"."-".$dia."-".$mes."-".$año_."-"."100";

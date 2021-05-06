@@ -27,24 +27,27 @@
 <h6> BUSCAR MUESTRA MEDICA </h6>
     <div class="row">
         <div class="col-md-4">
-            <?php if(isset($_SESSION['message'])){?>
+            <?php if(isset($_SESSION['alerta'])){?>
             <div class="alert alert-<?=$_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-            <?= $_SESSION['message']?>
+            <?= $_SESSION['alerta']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php //session_unset();
+         <?php session_unset($_SESSION['alerta']);
         }?>
-         
+        </div>
+         <div class="row">
+         <div class="col-md-4">
             <form  action="../../models/AsociarModelo.php" method="POST" >
 
                 <div class="form-group">
-                <input type="text" name="codigo" placeholder="Codigo Muestra" class="form-control" autofocus  >
+                <input type="text" name="codigo" placeholder="Codigo Muestra" class="form-control" >
                 </div>
-                <input type="submit" class="btn btn-success " name="BUSCAR" value=" BUSCAR" >
-                <input type="submit" class="btn btn-danger " name="cancelar" value=" Cancelar" >
+                <input type="submit" class="btn btn-success" name="BUSCAR" value=" BUSCAR" >
+                <input type="submit" class="btn btn-danger" name="cancelar" value=" Cancelar" >
                 </div>
             </form>
-        </div>
+            </div>
+            </div>
 
         <div class="col-md-7">
         <table class="table table-bordered">
@@ -69,7 +72,7 @@
                 //$conn = $obj -> conect();
                 if (isset($_SESSION['dato'])) {
                     
-                   $codigo = $_SESSION['dato'];
+                $codigo = $_SESSION['dato'];
                 $usuario = $_SESSION['usuario'];
                 $query = "SELECT  MM.id_muestra,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,MM.cantidad_muestra,MM.unidad_medida,MM.adjunto,MM.id_expediente,EX.NUM_EXPEDIENTE from MUESTRAS_MEDICAS MM 
                 INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = MM.id_expediente 

@@ -41,12 +41,12 @@
         <h6>INGRESE LOS DATOS QUE SE LE SOLICITAN </h6>
         <div class="row">
             <div class="col col-md-5">
-            <?php if(isset($_SESSION['message'])){?>
+            <?php if(isset($_SESSION['mms'])){?>
             <div class="alert alert-<?=$_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-            <?= $_SESSION['message']?>
+            <?= $_SESSION['mms']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php //session_unset();
+         <?php unset($_SESSION['mms']);
         }?>
 
                 <div class="card card-body">
@@ -58,7 +58,7 @@
                                 <option value="">Seleccione una opción</option>
                                 <option value="1">CULTIVO</option>
                                 <option value="2">PLAQUETAS</option>
-                                <option value="3">ESES</option>
+                                <option value="3">HESES</option>
                                 <option value="4">ORINA</option>
                             </select>
                         </div>

@@ -1,31 +1,33 @@
 <?php
 include ("../controllers/C_asociar.php");
 include ("../config/databases.php");
+
     if(isset($_POST['BUSCAR'])){
         $get_codigo_muestra = $_POST['codigo'];
      
         $C_asociar = new asociar;
-
-        $estado = $C_asociar->val_codigo_muestra($get_codigo_muestra);
-       if($estado==true){
-            $queri = "SELECT  COUNT(*) from MUESTRAS_MEDICAS  WHERE  codigo_muestra='$get_codigo_muestra' ";
+        $codigo = $get_codigo_muestra;
+        $estado = $C_asociar->val_codigo_muestra($codigo);
+       if($estado!=0){
+            $queri = "
+            SELECT  COUNT(codigo_muestra) from MUESTRAS_MEDICAS  WHERE  codigo_muestra= '$codigo';
+            ";
             $res = mysqli_query($conn,$queri);
-            $datos = $C_asociar->val_consulta($res);
-            if($datos==true){
-                $codigo = $get_codigo_muestra;
+            $rows =mysqli_fetch_array($res);
+            if($rows['COUNT(codigo_muestra)']==1){
+                echo('codigo valido');
                 $_SESSION['dato']=$codigo;
                 header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
-            }else{
-                $_SESSION['message']='Codigo no existe en la base de datos ';
+            }else {
+                $_SESSION['alerta']='Codigo no existe en la base de datos ';
                 $_SESSION['message_type']='danger';
                 header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
-            }
-            
+            }   
        }else{
-        $_SESSION['message']='codigo ingresado incorrecto ';
-        $_SESSION['message_type']='danger';
-        header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
-       }
+            $_SESSION['alerta']='Codigo no valido';
+            $_SESSION['message_type']='danger';
+            header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
+        }
     }
     if(isset($_POST['asociar'])){
         $C_asociar = new asociar;
@@ -41,7 +43,7 @@ include ("../config/databases.php");
         if(!$res){
             die(mysqli_error($conn));
         }
-        $_SESSION['message']='Items asociado con exito';
+        $_SESSION['alerta']='Items asociado con exito';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
     }
@@ -58,7 +60,7 @@ include ("../config/databases.php");
         if(!$res){
             die(mysqli_error($conn));
         }
-        $_SESSION['message']='Items desasociados con exito';
+        $_SESSION['alerta']='Items desasociados con exito';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         
@@ -110,7 +112,7 @@ include ("../config/databases.php");
         if(!$res){
             die(mysqli_error($conn));
         }
-        $_SESSION['message']='MUESTRA MEDICA ELIMINADO CON EXITO';
+        $_SESSION['alerta']='MUESTRA MEDICA ELIMINADO CON EXITO';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
 

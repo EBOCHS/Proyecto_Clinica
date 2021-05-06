@@ -30,7 +30,7 @@
             <?= $_SESSION['message']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php session_unset();}?>
+         <?php session_unset($_SESSION['message']);}?>
     <label for="exampleInputEmail1" class="form-label">Usuario:</label>
     <input type="text" class="form-control" name="usuario" placeholder="Usuario" >
    </div>

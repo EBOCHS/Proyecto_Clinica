@@ -41,14 +41,14 @@
                             $queri = "SELECT  codigo_muestra from MUESTRAS_MEDICAS  order by codigo_muestra desc limit 1";
                             $res = mysqli_query($conn,$queri);
                             $COD_MUESTRA = $C_muestra-> get_codigo_muestra($res);
-
+                            $codigo_muestra= $COD_MUESTRA;
                             $exp = "SELECT ID_EXPEDIENTE ,NUM_EXPEDIENTE FROM EXPEDIENTE WHERE  NUM_EXPEDIENTE ='$numExp'";
                             $resp = mysqli_query($conn,$exp);
                             
                             $rows = mysqli_fetch_array($resp);
                             if($rows['ID_EXPEDIENTE']==""){
                                 $codigo_muestra=$C_muestra ->get_codigo_muestra($res);
-                                $_SESSION['message']= "NUMERO DE EXPEDIENTE NO EXISTE EN LA BASE DE DATOS";
+                                $_SESSION['mms']= "NUMERO DE EXPEDIENTE NO EXISTE EN LA BASE DE DATOS";
                                 $_SESSION['message_type']='danger';
                                 header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                                 
@@ -60,44 +60,44 @@
 
                             //insetando muestra medica a la base de datos 
                             $insert = "INSERT  into MUESTRAS_MEDICAS (codigo_muestra,tipo_muestra,presentacion_muestra,cantidad_muestra,unidad_medida,adjunto,id_expediente)
-                             VALUES (' $COD_MUESTRA','$Tmuestra','$presentacion','$cantidad','$Umedida','$adjunto','$id_exp')";
+                             VALUES ('$COD_MUESTRA','$Tmuestra','$presentacion','$cantidad','$Umedida','$adjunto','$id_exp')";
                             $respons = mysqli_query($conn,$insert);
                             if(!$respons){
                                 die (die(mysqli_error($conn)));
                             }
                             
-                            $_SESSION['message']= "Codigo de la muestra \n".$COD_MUESTRA;
+                            $_SESSION['mms']= "Muestra medica creada con exito\n
+                                 Codigo de la muestra \n".$COD_MUESTRA;
                             $_SESSION['message_type']='success';
                             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                         
                         }else{
-                            $_SESSION['message']= "NUMERO DE EXPEDIENTE NO VALIDO";
+                            $_SESSION['mms']= "NUMERO DE EXPEDIENTE NO VALIDO";
                             $_SESSION['message_type']='danger';
                             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                         }
                         
                     }else{
-                        $_SESSION['message']= "Elija una Unidad de medida";
+                        $_SESSION['mms']= "Elija una Unidad de medida";
                         $_SESSION['message_type']='danger';
                         header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                     }
                 }else{
-                    $_SESSION['message']= "Cantidad no es valida";
+                    $_SESSION['mms']= "Cantidad no es valida";
                     $_SESSION['message_type']='danger';
                     header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                 }
                     
             }else{
-                $_SESSION['message']='Presentacion no valida';
+                $_SESSION['mms']='Presentacion no valida';
                 $_SESSION['message_type']='danger';
                 header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
             }
         }else{
-            $_SESSION['message']='Elija Un tipo de Muestra';
+            $_SESSION['mms']='Elija Un tipo de Muestra';
             $_SESSION['message_type']='danger';
             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
         }
         
-
     }
 ?>
