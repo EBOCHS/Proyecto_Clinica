@@ -29,7 +29,7 @@
                     <a class="nav-item nav-link" href="#">CLASIFICACION</a>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            MANTENIMIENTO DE SOLICITUDES
+                            MANTENIMIENTO DE SOLICITUDES DE MUESTRAS MEDICAS
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <a class="dropdown-item" href="/Proyecto_Clinica/views/solicitud/solicitud.php">CREAR SOLICITUD</a>
@@ -50,12 +50,11 @@
 <body>
 
     <div class="container p-4">
-        <h1>MANTENIMIENTO DE SOLICITUDES</h1>
+        <h3>MANTENIMIENTO DE SOLICITUDES DE MUESTRAS MEDICAS</h3>
         <div class="row">
             <div class="col-sm-4">
-
                 <div class="card card-body">
-
+                <h5>OPCIONES</h5>
                     <a href="formulario_solicitud.php" class="btn btn-success">Crear Solicitud</a>
                     <br>
                     <button type="button" class="btn btn-warning">Modificar Solicitud</button>
