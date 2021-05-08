@@ -54,21 +54,21 @@
         <div class="row">
             <div class="col-sm-4">
                 <div class="card card-body">
-                <h5>OPCIONES</h5>
+                    <h5>OPCIONES</h5>
                     <a href="formulario_solicitud.php" class="btn btn-success">Solicitud</a>
                     <br>
                     <button type="button" class="btn btn-warning">Estado Solicitud</button>
                     <br>
                     <button type="button" class="btn btn-danger">Eliminar Solicitud</button>
                     <div class="dropdown">
-                    <br>
+                        <br>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Opciones
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="../../models/rutas_asociar.php">Asociar</a>
                             <a class="dropdown-item" href="../../models/rutas_muestra.php">Muestra</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="/Proyecto_Clinica/views/consulta_muestras/consulta_mm.php">Consulta de solicitudes de muestras</a>
                         </div>
                     </div>
                 </div>

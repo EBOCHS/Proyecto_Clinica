@@ -4,7 +4,7 @@ include("../../config/databases.php");
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -12,9 +12,9 @@ include("../../config/databases.php");
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!---BOOSTRAP------->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="datatables/datatables.min.css" />
+    <link rel="stylesheet" type="text/css" href="../Consulta_Solicitudes/datatables/datatables.min.css" />
     <!--datables estilo bootstrap 4 CSS-->
-    <link rel="stylesheet" type="text/css" href="datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" type="text/css" href="../Consulta_Solicitudes/datatables/DataTables-1.10.18/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.5/css/buttons.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.23/css/dataTables.bootstrap5.min.css">
     <!--font awesome con CDN-->
@@ -53,7 +53,7 @@ include("../../config/databases.php");
 <!--FILTROS DE BUSQUEDA-->
 
 <body>
-    <h1 class="text-center fw-bold">Consulta de solicitudes</h1>
+    <h1 class="text-center fw-bold">Consulta de solicitudes de muestras </h1>
     <div class="container p-4 card card-body">
         <form class="row g-3" action="../../models/consulta_solicitudModel.php" method="POST">
 
@@ -102,7 +102,7 @@ include("../../config/databases.php");
     <div>
 
     </div>
-    <h1 class="text-center fw-bold">Datos de la Solicitud</h1>
+    <h1 class="text-center fw-bold">Datos de la Solicitudes de muestras</h1>
     <div class="text-center card card-body">
         <table id="datos" class="table">
             <thead class="table-dark">
@@ -181,20 +181,20 @@ include("../../config/databases.php");
     -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-    <script src="jquery/jquery-3.3.1.min.js"></script>
+    <script src="../Consulta_Solicitudes/jquery/jquery-3.3.1.min.js"></script>
 
     <!-- datatables JS -->
-    <script type="text/javascript" src="datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="../Consulta_Solicitudes/datatables/datatables.min.js"></script>
 
     <!-- para usar botones en datatables JS -->
-    <script src="datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
-    <script src="datatables/JSZip-2.5.0/jszip.min.js"></script>
-    <script src="datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
-    <script src="datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
-    <script src="datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
+    <script src="../Consulta_Solicitudes/datatables/Buttons-1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="../Consulta_Solicitudes/datatables/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="../Consulta_Solicitudes/datatables/pdfmake-0.1.36/pdfmake.min.js"></script>
+    <script src="../Consulta_Solicitudes/datatables/pdfmake-0.1.36/vfs_fonts.js"></script>
+    <script src="../Consulta_Solicitudes/datatables/Buttons-1.5.6/js/buttons.html5.min.js"></script>
 
     <!-- código JS propìo-->
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="../Consulta_Solicitudes/main.js"></script>
 </body>
 
 
