@@ -43,7 +43,7 @@ include("../../config/databases.php");
         <?= $_SESSION['message'] ?>
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-<?php session_unset();
+<?php session_unset($_SESSION['message']);
 } ?>
 
 <!--FILTROS DE BUSQUEDA-->

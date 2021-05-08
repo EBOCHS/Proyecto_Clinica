@@ -37,9 +37,13 @@ if (isset($_POST['Crear_Solicitud'])) {
 
                             $peticion = "SELECT COD_SOLICITUD from SOLICITUD order by COD_SOLICITUD desc limit 1";
                             $res = mysqli_query($conn, $peticion);
+                            
                             $codgio = $Model_solicitud->get_numero_solicitud($res);
+                            echo($codgio);
+                            
                             $num_solicitud = $tipo_usuario . '-' . $fecha . '-' . $codgio;
 
+                            
                             $query_in = "INSERT  INTO SOLICITUD (TIPO_SOLICITANTE,TIPO_SOLICITUD,DESCRIPCION,COD_SOLICITUD,ID_EXPEDIENTE,NUM_FACTURA,FECHA_SOLICITUD_FINAL,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD) 
                             VALUES('$tipo_usuario','$tipo_solicitud','$descripcion','$num_solicitud','$id_exp',null,null,sysdate(),'creado')";
                             $resultado = mysqli_query($conn, $query_in);
