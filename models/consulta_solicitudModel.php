@@ -4,7 +4,7 @@ require("../controllers/C_consulta_solicitud.php");
 include("../config/databases.php");
 $Model_consulta = new validar_consulta;
 
-
+//validaciones del filtro
 if (isset($_POST['consultar_solicitud'])) {
 
     $filtro = $_POST['FILTRO'];
