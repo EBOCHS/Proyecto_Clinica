@@ -18,12 +18,12 @@ include ("../config/databases.php");
                 $_SESSION['dato']=$codigo;
                 header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
             }else {
-                $_SESSION['alerta']='Codigo no existe en la base de datos ';
+                $_SESSION['message']='Codigo no existe en la base de datos ';
                 $_SESSION['message_type']='danger';
                 header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
             }   
        }else{
-            $_SESSION['alerta']='Codigo no valido';
+            $_SESSION['message']='Codigo no valido';
             $_SESSION['message_type']='danger';
             header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         }
@@ -43,7 +43,7 @@ include ("../config/databases.php");
         if(!$res){
             die(mysqli_error($conn));
         }
-        $_SESSION['alerta']='Items asociado con exito';
+        $_SESSION['message']='Items asociado con exito';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
     }
@@ -61,7 +61,7 @@ include ("../config/databases.php");
         if(!$res){
             die(mysqli_error($conn));
         }
-        $_SESSION['alerta']='Items desasociados con exito';
+        $_SESSION['message']='Items desasociados con exito';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         
@@ -117,7 +117,7 @@ include ("../config/databases.php");
         if(!$res){
             die(mysqli_error($conn));
         }
-        $_SESSION['alerta']='MUESTRA MEDICA ELIMINADO CON EXITO';
+        $_SESSION['message']='MUESTRA MEDICA ELIMINADO CON EXITO';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
     }
@@ -126,5 +126,9 @@ include ("../config/databases.php");
     }
     if(isset($_POST['regresar'])){
         header("Location: ../views/solicitud/solicitud.php");
+    }
+    if(isset($_POST['Inicio'])){
+        header("Location: ../views/inicio/index.php");
+        usert( $_SESSION['message']);
     }
 ?>

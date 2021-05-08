@@ -20,7 +20,9 @@ include("../../config/databases.php");
     <nav class="navbar navbar-dark bg-dark">
         <a href="#" class="navbar-brand">Crea un Expediente</a>
         <a href="#" class="navbar-brand"><?php echo ($_SESSION['usuario']); ?></a>
-        <a href="../inicio/index.php" class="navbar-brand">inicio</a>
+        <form action="../../models/ExpedienteModel.php" method="POST">
+        <input type="submit" class="btn btn-success " name="Inicio" value="Inicio">
+        </form>
     </nav>
 
 

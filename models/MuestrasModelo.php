@@ -66,35 +66,35 @@
                                 die (die(mysqli_error($conn)));
                             }
                             
-                            $_SESSION['mms']= "Muestra medica creada con exito\n
+                            $_SESSION['message']= "Muestra medica creada con exito\n
                                  Codigo de la muestra \n".$COD_MUESTRA;
                             $_SESSION['message_type']='success';
                             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                         
                         }else{
-                            $_SESSION['mms']= "NUMERO DE EXPEDIENTE NO VALIDO";
+                            $_SESSION['message']= "NUMERO DE EXPEDIENTE NO VALIDO";
                             $_SESSION['message_type']='danger';
                             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                         }
                         
                     }else{
-                        $_SESSION['mms']= "Elija una Unidad de medida";
+                        $_SESSION['message']= "Elija una Unidad de medida";
                         $_SESSION['message_type']='danger';
                         header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                     }
                 }else{
-                    $_SESSION['mms']= "Cantidad no es valida";
+                    $_SESSION['message']= "Cantidad no es valida";
                     $_SESSION['message_type']='danger';
                     header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
                 }
                     
             }else{
-                $_SESSION['mms']='Presentacion no valida';
+                $_SESSION['message']='Presentacion no valida';
                 $_SESSION['message_type']='danger';
                 header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
             }
         }else{
-            $_SESSION['mms']='Elija Un tipo de Muestra';
+            $_SESSION['message']='Elija Un tipo de Muestra';
             $_SESSION['message_type']='danger';
             header("Location: ../views/Creacion_Muestras/Vista_Muestras.php");
         }
@@ -103,4 +103,10 @@
     if(isset($_POST['salir'])){
         header ("location: ../views/inicio/index.php");
     }
+
+    if(isset($_POST['Inicio'])){
+        header("Location: ../views/inicio/index.php");
+         usert( $_SESSION['message']);
+    }
+
 ?>

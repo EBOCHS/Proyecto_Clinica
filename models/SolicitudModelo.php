@@ -113,4 +113,14 @@ if (isset($_POST['buscar_dpi'])) {
         $_SESSION['message_type'] = 'danger';
         header("Location: ../views/solicitud/formulario_solicitud.php");
     }
+    
+}
+if(isset($_POST['salir'])){
+    unset($_SESSION['message']);
+    header("Location: ../views/solicitud/solicitud.php");
+    
+}
+if(isset($_POST['Inicio'])){
+    header("Location: ../views/inicio/index.php");
+    usert( $_SESSION['message']);
 }

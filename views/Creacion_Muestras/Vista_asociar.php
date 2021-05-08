@@ -19,7 +19,9 @@
  <a href="#" class="navbar-brand">ASOCIAR MUESTRA MEDICA</a>
  <a href="index.php" class="navbar-brand"><?php echo ($_SESSION['usuario']);?></a>
  
-<a href="../inicio/index.php" class="navbar-brand">inicio</a>
+ <form action="../../models/AsociarModelo.php" method="POST">
+        <input type="submit" class="btn btn-success " name="Inicio" value="Inicio">
+        </form>
 </nav>
 
 
@@ -27,12 +29,12 @@
 <h6> BUSCAR MUESTRA MEDICA </h6>
     <div class="row">
         <div class="col-md-4">
-            <?php if(isset($_SESSION['alerta'])){?>
+            <?php if(isset($_SESSION['message'])){?>
             <div class="alert alert-<?=$_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-            <?= $_SESSION['alerta']?>
+            <?= $_SESSION['message']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php session_unset($_SESSION['alerta']);
+         <?php unset($_SESSION['message']);
         }?>
         </div>
          <div class="row">

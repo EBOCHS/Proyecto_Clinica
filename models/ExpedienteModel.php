@@ -172,5 +172,10 @@ if (isset($_POST['Crear'])){
 
 }else if(isset($_POST['cancelar'])){
        header("Location: ../views/inicio/index.php");
+       usert( $_SESSION['message']);
+}
+if(isset($_POST['Inicio'])){
+    header("Location: ../views/inicio/index.php");
+    usert( $_SESSION['message']);
 }
 ?>

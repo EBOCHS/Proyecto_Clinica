@@ -27,7 +27,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="../inicio/index.php">INICIO</a>
+                    <form action="../../models/MuestrasModelo.php" method="POST">
+                        <input type="submit" class="btn btn-success " name="Inicio" value="Inicio">
+                    </form>
                     </div>
                 </div>
             </div>
@@ -40,12 +42,12 @@
         <h6>INGRESE LOS DATOS QUE SE LE SOLICITAN </h6>
         <div class="row">
             <div class="col col-md-5">
-            <?php if(isset($_SESSION['mms'])){?>
+            <?php if(isset($_SESSION['message'])){?>
             <div class="alert alert-<?=$_SESSION['message_type']?> alert-dismissible fade show" role="alert">
-            <?= $_SESSION['mms']?>
+            <?= $_SESSION['message']?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
-         <?php unset($_SESSION['mms']);
+         <?php unset($_SESSION['message']);
         }?>
 
                 <div class="card card-body">

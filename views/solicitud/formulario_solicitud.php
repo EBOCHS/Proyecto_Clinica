@@ -31,7 +31,7 @@ include("../../config/databases.php");
                         <?= $_SESSION['message'] ?>
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
-                <?php session_unset($_SESSION['message']);
+                <?php unset($_SESSION['message']);
                 } ?>
 
 
@@ -73,8 +73,8 @@ include("../../config/databases.php");
 
                         <br>
                         <input type="submit" class="btn btn-success btn-block" name="Crear_Solicitud" value="Crear Solicitud" onclick="return confirmar_solicitud()">
-                        <a href="/Proyecto_Clinica/views/solicitud/solicitud.php" class="btn btn-outline-danger">Volver</a>
-
+                        <input type="submit" class="btn btn-danger btn-block" name="salir" value="Salir" >
+                       
                     </form>
 
                 </div>
@@ -90,7 +90,7 @@ include("../../config/databases.php");
                             <input type="text" required name="DPI" class="form-control" placeholder="0000 00000 0000"> </input>
                             <br>
                             <input type="submit" name="buscar_dpi" class="btn btn-success" id="exp_buscar" onclick="mostrar_dat()" value="Buscar"></input>
-                            <button class="btn btn-secondary" id="exp_cancelar" onclick="ocultar()">Cancelar</button>
+                            <button class="btn btn-secondary" id="exp_cancelar" name="regresar" onclick="ocultar()">Cancelar</button>
                         </form>
                     </div>
 
