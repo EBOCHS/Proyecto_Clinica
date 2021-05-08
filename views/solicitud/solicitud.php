@@ -25,7 +25,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-item nav-link active" href="../inicio/index.php">INICIO</a>
+                    <a class="nav-item nav-link active" href="../inicio/index.php">INICIO</a>
                     </a>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     <br>
                     <a href="/Proyecto_Clinica/views/Consulta_Solicitudes/consulta_solicitud.php" class="btn btn-warning">Consulta de Solicitudes</a>
                     <br>
-                    <button type="button" class="btn btn-danger">Eliminar Solicitud</button>
+
                     <div class="dropdown">
                         <br>
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -57,7 +57,7 @@
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="../../models/rutas_asociar.php">Asociar</a>
                             <a class="dropdown-item" href="../../models/rutas_muestra.php">Muestra</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" href="/Proyecto_Clinica/views/consulta_muestras/consulta_mm.php">Consulta de solicitudes de muestras</a>
                         </div>
                     </div>
                 </div>

@@ -90,7 +90,7 @@ class validar_muestra{
     }
     //funcion para validad el numero de expediente que nos ingresan para la relacion
     public function val_numExpediente($exp){
-        if(strlen($exp)<20 || strlen($exp)>21){
+        if(strlen($exp)<18 || strlen($exp)>21){
             return false;
         }else{
             return true;
@@ -98,4 +98,3 @@ class validar_muestra{
     }
 
 }
-?>
