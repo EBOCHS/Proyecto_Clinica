@@ -16,7 +16,7 @@
     
 <body >
 <nav class="navbar navbar-dark bg-dark">
- <a href="index.php" class="navbar-brand">ASOCIAR MUESTRA MEDICA</a>
+ <a href="#" class="navbar-brand">ASOCIAR MUESTRA MEDICA</a>
  <a href="index.php" class="navbar-brand"><?php echo ($_SESSION['usuario']);?></a>
  
 <a href="../inicio/index.php" class="navbar-brand">inicio</a>
@@ -43,7 +43,7 @@
                 <input type="text" name="codigo" placeholder="Codigo Muestra" class="form-control" >
                 </div>
                 <input type="submit" class="btn btn-success" name="BUSCAR" value=" BUSCAR" >
-                <input type="submit" class="btn btn-danger" name="cancelar" value=" Cancelar" >
+                <input type="submit" class="btn btn-danger" name="regresar" value="Salir" >
                 </div>
             </form>
             </div>

@@ -18,7 +18,7 @@
 ?>
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/proyecto_clinica/views/inicio/index.php">CLINICA LA BENDICION</a>
+            <a class="navbar-brand" href="#">CLINICA LA BENDICION</a>
             
             <div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -50,15 +50,13 @@
                                 <a class="dropdown-item" href="../Expedientes/expedientes.php">externo</a>
                             </div>
                         </li>
-               
-                        
-                        <a class="nav-item nav-link active" href="#">ANALISIS TECNICO <span class="sr-only"></span></a>
-                        <a class="nav-item nav-link" href="#">CLASIFICACION</a>
+            
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 MANTENIMIENTO DE SOLICITUDES
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../solicitud/solicitud.php">MANTENIMIENTO DE SOLICITUDES </a>
                                 <a class="dropdown-item" href="../solicitud/solicitud.php">CREAR SOLICITUD</a>
                                 <a class="dropdown-item" href="#">Buscar SOLICITUD</a>
                                 <form action="../../models/MuestrasModelo.php" method="POST"; >

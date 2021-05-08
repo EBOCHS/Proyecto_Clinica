@@ -1,10 +1,9 @@
 <?php
 include ("../controllers/C_asociar.php");
 include ("../config/databases.php");
-
+//buscar una muestra
     if(isset($_POST['BUSCAR'])){
         $get_codigo_muestra = $_POST['codigo'];
-     
         $C_asociar = new asociar;
         $codigo = $get_codigo_muestra;
         $estado = $C_asociar->val_codigo_muestra($codigo);
@@ -29,6 +28,7 @@ include ("../config/databases.php");
             header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         }
     }
+    //codigo para 
     if(isset($_POST['asociar'])){
         $C_asociar = new asociar;
         $item1 = $_POST['1'];
@@ -115,6 +115,11 @@ include ("../config/databases.php");
         $_SESSION['alerta']='MUESTRA MEDICA ELIMINADO CON EXITO';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
-
+    }
+    if (isset($_POST['salir'])) {
+        header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
+    }
+    if(isset($_POST['regresar'])){
+        header("Location: ../views/solicitud/solicitud.php");
     }
 ?>

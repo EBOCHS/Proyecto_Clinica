@@ -20,14 +20,13 @@
 <?php include ("../../models/MuestraModelo.php"); ?>
     <div class="">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/proyecto_clinica/views/inicio/index.php">CLINICA LA BENDICION</a>
+            <a class="navbar-brand" href="#">MUESTRAS MEDICAS</a>
             <div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="../Expedientes/expedientes.php">CREACION DE MUESTRAS MEDICAS <span class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link active" href="../inicio/index.php">INICIO</a>
                     </div>
                 </div>
@@ -93,7 +92,7 @@
                         <br>
                         <div class="form-group mx-auto" >
                             <input type="submit" class="btn btn-success " name="Crear" value=" Crear" >
-                            <input type="submit" class="btn btn-danger " name="cancelar" value=" Regrasar" >
+                            <input type="submit" class="btn btn-danger " name="salir" value="SALIR" >
                         </div>
                     </form>
 
