@@ -115,6 +115,11 @@ include ("../config/databases.php");
         $_SESSION['alerta']='MUESTRA MEDICA ELIMINADO CON EXITO';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
-
+    }
+    if (isset($_POST['salir'])) {
+        header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
+    }
+    if(isset($_POST['regresar'])){
+        header("Location: ../views/solicitud/solicitud.php");
     }
 ?>

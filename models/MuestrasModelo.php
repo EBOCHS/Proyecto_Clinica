@@ -100,4 +100,7 @@
         }
         
     }
+    if(isset($_POST['salir'])){
+        header ("location: ../views/inicio/index.php");
+    }
 ?>

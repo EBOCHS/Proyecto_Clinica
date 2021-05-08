@@ -55,9 +55,9 @@
             <div class="col-sm-4">
                 <div class="card card-body">
                 <h5>OPCIONES</h5>
-                    <a href="formulario_solicitud.php" class="btn btn-success">Crear Solicitud</a>
+                    <a href="formulario_solicitud.php" class="btn btn-success">Solicitud</a>
                     <br>
-                    <button type="button" class="btn btn-warning">Modificar Solicitud</button>
+                    <button type="button" class="btn btn-warning">Estado Solicitud</button>
                     <br>
                     <button type="button" class="btn btn-danger">Eliminar Solicitud</button>
                     <div class="dropdown">

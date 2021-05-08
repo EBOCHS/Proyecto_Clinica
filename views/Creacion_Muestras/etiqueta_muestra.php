@@ -16,8 +16,8 @@
     
 <body >
 <nav class="navbar navbar-dark bg-dark">
- <a href="index.php" class="navbar-brand">ETIQUETA DE MUESTRA MEDICA</a>
- <a href="index.php" class="navbar-brand"><?php echo ($_SESSION['id']);?></a>
+ <a href="#" class="navbar-brand">ETIQUETA DE MUESTRA MEDICA</a>
+ <a href="#" class="navbar-brand"><?php echo ($_SESSION['usuario']);?></a>
  
 <a href="../inicio/index.php" class="navbar-brand">inicio</a>
 </nav>
@@ -67,17 +67,15 @@
                         <input type="hidden" name="cod_etiqueta" value="<?php echo $num_etiqueta;?>">
                         <input type="hidden" name="cod_muestra" value="<?php echo $cod_muestra;?>">
                         <input type="hidden" name="cod_exp" value="<?php echo $cod_exp;?>">
-                         
-                        <BUtton name="imprimir">imprimir</BUtton>
+                            
+                        <input type="submit" class="btn btn-success" name="imprimir" value="Imprimir" >
+                         <input type="submit" class="btn btn-danger" name="salir" value="Regresar" >
+                
                     </form>
                     </td>
                 </tr>
                 <?php }
-                
-                //session_destroy();
-                //session_destroy();
                 ?>
-               
         </tbody>
         </table>
     </div>

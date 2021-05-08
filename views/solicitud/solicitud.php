@@ -25,19 +25,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" href="#">ANALISIS TECNICO <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#">CLASIFICACION</a>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            MANTENIMIENTO DE SOLICITUDES
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/Proyecto_Clinica/views/solicitud/solicitud.php">CREAR SOLICITUD</a>
-                            <a class="dropdown-item" href="#">EDITAR SOLICITUD</a>
-                        </div>
-                    </li>
-
-                    <a class="nav-item nav-link disabled" href="#">
+                <a class="nav-item nav-link active" href="../inicio/index.php">INICIO</a>
                     </a>
                 </div>
             </div>

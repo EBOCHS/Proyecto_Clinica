@@ -33,7 +33,7 @@ class validar_muestra{
         if(!$val){
             return false;
         }else{
-            if(strlen($cantida)>4){
+            if($cantida>4){
                 return false;
             }else{
                 return $cantida;
