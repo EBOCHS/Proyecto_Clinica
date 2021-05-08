@@ -28,7 +28,7 @@ include ("../config/databases.php");
             header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         }
     }
-    //codigo para 
+    //codigo para asociar items a una muestra medica
     if(isset($_POST['asociar'])){
         $C_asociar = new asociar;
         $item1 = $_POST['1'];
@@ -47,6 +47,7 @@ include ("../config/databases.php");
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
     }
+  //codigo para desasociar items de una  muestra medica 
     if (isset($_POST['Desasociar'])) {
         $C_asociar = new asociar;
         $item1 = $_POST['1'];
@@ -65,6 +66,7 @@ include ("../config/databases.php");
         header("Location: ../views/Creacion_Muestras/Vista_asociar.php");
         
     }
+    //codigo para generar etiqueta de la muestra medica 
     if(isset($_POST['etiqueta'])){
         $C_asociar = new asociar;
         $id = $_POST['id'];
@@ -84,6 +86,9 @@ include ("../config/databases.php");
         $_SESSION['QR']=$QR; 
         header("Location: ../views/Creacion_Muestras/etiqueta_muestra.php");
     }
+
+    //
+    
     if (isset($_POST['imprimir'])){
         $cod_muestra = $_POST['cod_muestra'];
         $cod_exp = $_POST['cod_exp'];

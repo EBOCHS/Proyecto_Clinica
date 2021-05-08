@@ -32,7 +32,7 @@
         $cantidad1 = $C_muestra->val_cantidad((int)$cantidad);
         $Umedida1 = $C_muestra->val_medida($Umedida);
         $valnumexp1 = $C_muestra ->val_numExpediente($numExp);
-        if($Tmuestra1!=false){
+        if($Tmuestra!=0){
             if($presentacion1!=false){
                 if($cantidad1!=false){
                     if($Umedida1!=false){
@@ -60,7 +60,7 @@
 
                             //insetando muestra medica a la base de datos 
                             $insert = "INSERT  into MUESTRAS_MEDICAS (codigo_muestra,tipo_muestra,presentacion_muestra,cantidad_muestra,unidad_medida,adjunto,id_expediente)
-                             VALUES ('$COD_MUESTRA','$Tmuestra','$presentacion','$cantidad','$Umedida','$adjunto','$id_exp')";
+                             VALUES ('$COD_MUESTRA','$Tmuestra1','$presentacion','$cantidad','$Umedida','$adjunto','$id_exp')";
                             $respons = mysqli_query($conn,$insert);
                             if(!$respons){
                                 die (die(mysqli_error($conn)));
