@@ -1,5 +1,7 @@
 <?php
+//clase para valida datos de la vista crear muestras mediacas
 class validar_muestra{
+    //funcion que retorna el tipo de muestra
     public function val_Tipo_muestra($Tmuestra){
         if($Tmuestra!=0){
             switch($Tmuestra){
@@ -20,6 +22,7 @@ class validar_muestra{
            return false;
        }
     }
+    //funcion para validar la presentacion ingresada
     public function val_Presentacion($presentacion){
         if(strlen($presentacion)<10 ||strlen($presentacion)>2000){
             return false;
@@ -27,6 +30,7 @@ class validar_muestra{
             return $presentacion;
         }
     }
+    //funcion para validar la cantidad de muestra ingresadas que no sea mayor una cantidad mayor a 4 
     public function val_cantidad($cantida){
         $exp = "/^[0-9]+$/";
         $val = preg_match($exp,$cantida);
@@ -40,6 +44,7 @@ class validar_muestra{
             }
         }
     }
+    //funcion que retorna la unidad de medida que el usuario selecciona
     public function val_medida($medida){
         if($medida!=0){
             switch($medida){
@@ -57,6 +62,8 @@ class validar_muestra{
             return false;
         }
     }
+
+    //funcion para generar el codigo de muestra medica
     public function get_codigo_muestra($cod_muestra){
         $fecha = getdate();
         $dia = $fecha["mday"];
@@ -81,6 +88,7 @@ class validar_muestra{
         }
 
     }
+    //funcion para validad el numero de expediente que nos ingresan para la relacion
     public function val_numExpediente($exp){
         if(strlen($exp)<20 || strlen($exp)>21){
             return false;

@@ -1,8 +1,8 @@
 <?php
-
+//clase para las validaciones de 
 class validar_solicitud
 {
-
+    // funcion para retornar el tipo de usuario interno o externo
     public function val_tipo_usr($t_usr)
     {
         if ($t_usr == 'IN') {
@@ -15,7 +15,7 @@ class validar_solicitud
             return false;
         }
     }
-
+    // funcion para retornar el tipo de solicitud
     public function val_tipo_solicitud($t_solicitud)
     {
         if ($t_solicitud == 'MM') {
@@ -28,7 +28,7 @@ class validar_solicitud
             return false;
         }
     }
-
+    //funcion  para ladiar la descripcion que no sea mayor a 2000 caracteres
     public function val_descripcion($descripcion)
     {
         if ($descripcion != "") {
@@ -41,7 +41,7 @@ class validar_solicitud
             return false;
         }
     }
-
+    //funcion para validad el numero de expediente que el usuario ingresa a la vista
     public function val_expediente($No_expediente)
     {
         if ($No_expediente != "") {
@@ -52,7 +52,7 @@ class validar_solicitud
             return false;
         }
     }
-
+    //funcion para obtener la fecha del sistema
     public function fecha()
     {
         $fecha = getdate();
@@ -64,6 +64,7 @@ class validar_solicitud
         return $fecha_valida;
         //return $dia;
     }
+    //funcion para obtener el numero de solicitud 
     public function get_numero_solicitud($numero_solicitud)
     {
         
@@ -79,7 +80,7 @@ class validar_solicitud
             return "10000";
         }
     }
-
+    //funcion para validar la estructura del cui ingresado por el usuario
     public function val_Cui($cui)
     {
         $exp_cui = "/^[0-9]+$/";

@@ -1,4 +1,5 @@
 <?php
+//clase para validar informacion que es ingresado en la vista creacion expedientes
 class validar
 {
 
@@ -6,7 +7,8 @@ class validar
     public function val_nombre($nombre)
     {
         $exp_nombre = "/^[a-z ]+$/i"; //exprecion regular que aepta solo letras a asta la z 
-        $val = preg_match($exp_nombre, $nombre, $conside); //fucncion preg_mach compara la cadena con la exprecion regular
+        $val = preg_match($exp_nombre, $nombre, $conside); //fucncion preg_mach compara la cadena con la exprecion regular retorna true si encuentra coincidencia o false si no lo hace
+
         if (!$val) {
             return false;
         }
@@ -25,6 +27,7 @@ class validar
         return TRUE;
     }
 
+    //funcion para validar el cui ingresado por el usuario 
     public function val_Cui($cui)
     {
         $exp_cui = "/^[0-9]+$/";
@@ -33,16 +36,16 @@ class validar
         if (!$val) {
             return false;
         } else {
-            if (strlen($cui) < 13 || strlen($cui) > 13) {
+            if (strlen($cui) < 13 || strlen($cui) > 13) { //la funcion strlen() retorna la cantidad de caracteres de una cadena de texto
                 return false;
             }
         }
         return true;
     }
 
+    //funcion para retornar el tipo de sangre segun lo seleccionado por el usuario
     public function val_tipo_sangre($indice)
     {
-        //echo ($indice);
         switch ($indice) {
             case '1':
                 # code...
@@ -77,7 +80,7 @@ class validar
                 break;
         }
     }
-
+    //funcion que retorna el tipo de sexo segun lo seleccionado por el usuario 
     public function val_sexo($indice_Sx)
     {
 
@@ -95,8 +98,7 @@ class validar
     //funcio que genera el codigo del Expediente
     public function get_Num_Expediente($num_expediente)
     {
-        //$codigo_Exp= "";
-        $fecha = getdate();
+        $fecha = getdate();//funcion getdate() obtiene la fecha en un arreglo de datos
         $dia = $fecha["mday"];
         $mes = $fecha["mon"];
         $año = $fecha["year"];
@@ -107,10 +109,8 @@ class validar
             $codigo_Exp = $resp['NUM_EXPEDIENTE'];
         }
         if ($codigo_Exp != "") {
-            (int)$primer_digito = substr($codigo_Exp, 0, 4);
+            (int)$primer_digito = substr($codigo_Exp, 0, 4); //funcion substr() extrae una procion de caracteres de una cadena de texto
             $nuevo_primer = ($primer_digito + 1);
-
-            //(int)$ultimo_digito=substr($codigo_Exp,14,17);
             (int)$ultimo_digito = substr($codigo_Exp, -7);
             $nuevo_ultimo = ($ultimo_digito + 1);
             $codigo_nuevo = $nuevo_primer . "-" . $dia . "-" . $mes . "-" . $año_ . "-" . $nuevo_ultimo;
@@ -130,7 +130,6 @@ class validar
         if (!$val) {
             return false;
         } else {
-            //echo ("direccion correcta");
             if (strlen($direccion) > 200) {
                 return false;
             } else {
@@ -138,9 +137,10 @@ class validar
             }
         }
     }
-    public function estado_sivil($sivil)
+    //funcion que retorna el stado civil
+    public function estado_sivil($civil)
     {
-        switch ($sivil) {
+        switch ($civil) {
             case '1':
                 return "SOLTERO";
                 break;
@@ -150,6 +150,7 @@ class validar
                 break;
         }
     }
+    //funcion para validad la edad ingresada que no sea mayor a 100 años
     public function val_edad($edad)
     {
         $valido = $edad;
@@ -159,13 +160,14 @@ class validar
             return false;
         } else {
             $ed = (int)$edad;
-            if ($ed > 110) {
+            if ($ed > 100) {
                 return false;
             } else {
                 return true;
             }
         }
     }
+    //funcion para validad el nit ingresado que no sea menor a 8 caracteres
     public function val_nit($nit)
     {
         $valido = $nit;
@@ -181,7 +183,7 @@ class validar
             }
         }
     }
-
+    //funcion para valida la descripcion que no sea mayor a 400 caracteres
     public function val_Descripcion($descripcion)
     {
         $valido = $descripcion;
@@ -191,6 +193,7 @@ class validar
             return true;
         }
     }
+    //funcion para obtener el id del paciente creado para relacionarlo con el expediente
     public function get_id($id)
     {
         $id_paciente = "";

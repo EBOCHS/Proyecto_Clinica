@@ -1,5 +1,7 @@
 <?php
+//esta clase es utilizada para la validacion de datos de la vista de asociar items
 class asociar{
+    //funcion que valida el codigo de muestra que ingresan verifica la cantidad de caracteres
     public function val_codigo_muestra($codigo){
     
             if(strlen($codigo)>=14){
@@ -9,6 +11,8 @@ class asociar{
             }
         
     }
+    //esta funcion valida que la consulta que se realiza con el codigo de muestra ingresado sea valido 
+    //traendo informacion de la base de datos
     public function val_consulta($datos){
         
         while($rows = mysqli_fetch_array($datos)){
@@ -21,6 +25,7 @@ class asociar{
             return 0;
         }
     }
+    //funcion para la asociacion de items. 
     public function asociar_item($item1,$item2,$item3,$item4,$id_muestra){
         if($item1=="on" && $item2 =="on" && $item3=="on" && $item4=="on"){
             return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,2), ($id_muestra,3), ($id_muestra,4)";
@@ -54,6 +59,8 @@ class asociar{
             return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,4)";
         }
     }
+
+    //funcion para la desasociacion de items.
     public function desacociar_item($item1,$item2,$item3,$item4,$id_muestra){
         
         if($item1=="on" && $item2 =="on" && $item3=="on" && $item4=="on"){
@@ -89,7 +96,7 @@ class asociar{
         }
 
     }
-
+    //esta funcion genera un codigo QR con el parametro que se le ingresa.
     public function generar_QR($contenido){
        
         require ("../config/qr/phpqrcode/qrlib.php");
@@ -104,8 +111,9 @@ class asociar{
         QRcode :: png($contenido,$nombre_qr,$level,$tamanio,$framesize);
         return $nombre_qr;
     }
+    //esta funcion crea un pdf listo para imprimir segun los datos que reciba como parametros.
     public function imprimir_Etiqueta($cod_muestra,$cod_exp,$cod_solicitud,$qr,$cod_etiqueta){
-        require ('../config/fpdf183/fpdf.php');
+        require ('../config/fpdf183/fpdf.php');//requiere la libreria fpdf.php para su funcionamiento
         $pdf = new FPDF();
         $pdf->AddPage();
         $pdf->SetFont('Arial','B',16);
@@ -123,7 +131,7 @@ class asociar{
         $pdf -> Image($qr,30,120,40,40,'png');
         $pdf->Output();
     }
-
+    //esta funcion genera un codigo de etiqueta
     public function get_cod_etiqueta($fecha){
         $random = rand(1, 4);
         $num = rand(10000,99999);
@@ -154,6 +162,7 @@ class asociar{
                 break;
         }
     }
+    //esta funcion Genera un exel con la informacion que recibe como parametros
     public function crear_excel($cod_muestra){    
       require ("../config/databases.php");
         header('Content-Type: application/vnd.ms-excel');
@@ -191,6 +200,8 @@ class asociar{
          }
          echo '</tr>';
     }
+
+    //esta funcion elimina una muestra medica 
     public function eliminar_muestra($id_muestra){
         $eliminar = "DELETE FROM MUESTRAS_MEDICAS WHERE id_muestra = '$id_muestra'";
         return $eliminar;
