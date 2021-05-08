@@ -24,7 +24,7 @@ class validar_muestra{
     }
     //funcion para validar la presentacion ingresada
     public function val_Presentacion($presentacion){
-        if(strlen($presentacion)<10 ||strlen($presentacion)>2000){
+        if(strlen($presentacion)<5 ||strlen($presentacion)>2000){
             return false;
         }else{
             return $presentacion;

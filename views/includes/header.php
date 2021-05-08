@@ -56,6 +56,7 @@
                                 MANTENIMIENTO DE SOLICITUDES
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="../solicitud/solicitud.php">MANTENIMIENTO DE SOLICITUDES </a>
                                 <a class="dropdown-item" href="../solicitud/solicitud.php">CREAR SOLICITUD</a>
                                 <a class="dropdown-item" href="#">Buscar SOLICITUD</a>
                                 <form action="../../models/MuestrasModelo.php" method="POST"; >
