@@ -22,7 +22,9 @@ if (isset($_POST['consultar_solicitud'])) {
             if ($validar_dato) {
                 $_SESSION['var1'] = $filtro;
                 $_SESSION['datos'] = $dato;
+                //echo $_SESSION['var1']." ".$_SESSION['datos'];
                 header("Location: ../views/Consulta_Solicitudes/consulta_solicitud.php");
+                
             } else {
                 $_SESSION['message'] = 'Código de solicitud invalido, tiene que cumplir con la estrucutra AB-00000000-00000';
                 $_SESSION['message_type'] = 'danger';

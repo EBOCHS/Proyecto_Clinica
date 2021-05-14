@@ -76,8 +76,10 @@
                     
                 $codigo = $_SESSION['dato'];
                 $usuario = $_SESSION['usuario'];
-                $query = "SELECT  MM.id_muestra,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,MM.cantidad_muestra,MM.unidad_medida,MM.adjunto,MM.id_expediente,EX.NUM_EXPEDIENTE from MUESTRAS_MEDICAS MM 
-                INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = MM.id_expediente 
+                $query = "SELECT  MM.id_muestra,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,
+                MM.cantidad_muestra,MM.unidad_medida,MM.adjunto, EX.NUM_EXPEDIENTE from MUESTRAS_MEDICAS MM 
+                INNER JOIN SOLICITUD so ON so.ID_SOLICITUD = MM.id_solicitud
+                INNER  JOIN EXPEDIENTE  EX ON EX.ID_EXPEDIENTE = so.ID_EXPEDIENTE 
                 WHERE  codigo_muestra='$codigo'";
                 $resltados = mysqli_query($conn,$query);
                 while($row = mysqli_fetch_array($resltados)){

@@ -2,15 +2,14 @@ $("#search_expediente").hide();
 $("#datos_expediente").hide();
 
 function mostrar() {
-    let text = "";
-    if ($("#search").text() === " Buscar Expediente") {
+    if ($("#search").text() === "¿?") {
         $("#search_expediente").show();
     }
 }
 
 function ocultar() {
     let text = "";
-    if ($("#exp_cancelar").text() === "Cancelar") {
+    if ($("#exp_cancelar").text() === "X") {
         $("#search_expediente").hide();
     }
 }

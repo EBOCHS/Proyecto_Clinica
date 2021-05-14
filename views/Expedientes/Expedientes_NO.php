@@ -21,7 +21,7 @@ include("../../config/databases.php");
         <a href="#" class="navbar-brand">Crea un Expediente</a>
         <a href="#" class="navbar-brand"><?php echo ($_SESSION['usuario']); ?></a>
         <form action="../../models/ExpedienteModel.php" method="POST">
-        <input type="submit" class="btn btn-success " name="Inicio" value="Inicio">
+        <input type="submit" class="btn btn-secondary " name="Inicio" value="Inicio">
         </form>
     </nav>
 
@@ -87,9 +87,10 @@ include("../../config/databases.php");
                     <div class="form-group">
                         <input type="text" name="Descripcion" class="form-control" placeholder="Descripcion">
                     </div>
-                    <div class="form-group mx-auto">
-                        <input type="submit" class="btn btn-success " name="Crear" value=" Crear">
-                        <input type="submit" class="btn btn-danger " name="cancelar" value=" Cancelar">
+                    <p></p>
+                    <div class="form-group center-block " >
+                        <input type="submit" class="btn  btn-secondary" name="Crear" value="  Crear   ">
+                        <input type="submit" class="btn btn-secondary" name="cancelar" value="Cancelar">
                     </div>
                 </form>
             </div>
@@ -123,8 +124,8 @@ include("../../config/databases.php");
                                 <td><?php echo $row['ESTADO'] ?></td>
                                 <td><?php echo $row['USUARIO_CREACION'] ?></td>
                                 <td>
-                                    <a href="editar.php?id=<?php echo $row['id'] ?> " class="btn btn-success"><i class="fas fa-marker"></i></a>
-                                    <a href="eliminar.php?id=<?php echo $row['id'] ?>" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+                                    <a href="editar.php?id=<?php echo $row['id'] ?> " class="btn "><i class="fas fa-marker"></i></a>
+                                    <a href="eliminar.php?id=<?php echo $row['id'] ?>" class="btn"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
                         <?php }

@@ -28,7 +28,7 @@
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                     <form action="../../models/MuestrasModelo.php" method="POST">
-                        <input type="submit" class="btn btn-success " name="Inicio" value="Inicio">
+                        <input type="submit" class="btn btn-secondary " name="Inicio" value="Inicio">
                     </form>
                     </div>
                 </div>
@@ -89,12 +89,12 @@
                         <h6>Adjunto:</h6>
                         <input type="text" name="adjunto" id="adj" class="form-control" placeholder="Adjunto"></input>
                         <br>
-                        <h6>Ingrese el numero de expediente:</h6>
-                        <input type="text" name="exp" id="adj" class="form-control" placeholder="NUM.Expediente"></input>
+                        <h6>Ingrese El Codigo De Solicitud:</h6>
+                        <input type="text" name="cod_solicitud" id="adj" class="form-control" placeholder="NUM.Expediente"></input>
                         <br>
                         <div class="form-group mx-auto" >
-                            <input type="submit" class="btn btn-success " name="Crear" value=" Crear" >
-                            <input type="submit" class="btn btn-danger " name="salir" value="SALIR" >
+                            <input type="submit" class="btn btn-secondary " name="Crear" value="Crear" >
+                            <input type="submit" class="btn btn-secondary " name="salir" value="SALIR" >
                         </div>
                     </form>
 

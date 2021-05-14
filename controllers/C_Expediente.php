@@ -160,7 +160,7 @@ class validar
             return false;
         } else {
             $ed = (int)$edad;
-            if ($ed > 100) {
+            if ($ed > 100||$ed<18) {
                 return false;
             } else {
                 return true;
@@ -171,12 +171,12 @@ class validar
     public function val_nit($nit)
     {
         $valido = $nit;
-        $exp_nit = "/^[0-9]{7}[0-9A-Z]{1}+$/i";
+        $exp_nit = "/^[0-9]{8}[0-9A-Z]{1}+$/i";
         $val = preg_match($exp_nit, $nit);
         if (!$val) {
             return false;
         } else {
-            if (strlen($nit) > 8 || strlen($nit < 8)) {
+            if (strlen($nit) > 9 || strlen($nit < 9)) {
                 return false;
             } else {
                 return true;
@@ -187,7 +187,7 @@ class validar
     public function val_Descripcion($descripcion)
     {
         $valido = $descripcion;
-        if (strlen($descripcion > 400)) {
+        if (strlen($descripcion > 400)||strlen($descripcion)<5) {
             return false;
         } else {
             return true;

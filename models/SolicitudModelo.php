@@ -14,19 +14,18 @@ if (isset($_POST['Crear_Solicitud'])) {
     $val_expediente = $Model_solicitud->val_expediente($N_expediente);
     $fecha = $Model_solicitud->fecha();
 
-
-    if ($val_tipo_usr == true) {
+   if ($val_tipo_usr == true) {
 
 
         if ($val_tipo_solicitud == true) {
 
 
-            if ($val_descripcion != false) {
+            if ($val_expediente == true) {
 
-                if ($val_descripcion == true) {
+                if ($val_descripcion !== false) {
 
 
-                    if ($val_expediente == true) {
+                    if ($val_descripcion == true) {
 
                         $query = "SELECT NUM_EXPEDIENTE,ID_EXPEDIENTE FROM EXPEDIENTE WHERE EXPEDIENTE.NUM_EXPEDIENTE ='$N_expediente'";
                         $result = mysqli_query($conn, $query);
@@ -50,46 +49,47 @@ if (isset($_POST['Crear_Solicitud'])) {
                             if (!$resultado) {
                                 die(mysqli_error($conn));
                             }
-                            $_SESSION['message'] = 'Solicitud Creada: ' . $num_solicitud;
+                            $_SESSION['message'] = 'Solicitud Creada, Su Numero De Solicitud Es:    ' . $num_solicitud;
                             $_SESSION['message_type'] = 'success';
-                            header("Location: ../views/solicitud/formulario_solicitud.php");
+                            header("Location: ../views/solicitud/solicitud.php");
                         } else {
 
                             $_SESSION['message'] = 'El número de expediente no está en base de datos';
                             $_SESSION['message_type'] = 'danger';
-                            header("Location: ../views/solicitud/formulario_solicitud.php");
+                            header("Location: ../views/solicitud/solicitud.php");
                         }
                     } else {
                         $_SESSION['message'] = 'Debe ingresar un numero de Expediente';
                         $_SESSION['message_type'] = 'danger';
-                        header("Location: ../views/solicitud/formulario_solicitud.php");
+                        header("Location: ../views/solicitud/solicitud.php");
                     }
                 } else {
-                    $_SESSION['message'] = 'La descripción solo puede contener 2000 caracteres y no puede ser una cadena de números';
+                    $_SESSION['message'] = 'Debe De Ingresar Una Descripcion ';
                     $_SESSION['message_type'] = 'danger';
-                    header("Location: ../views/solicitud/formulario_solicitud.php");
+                    header("Location: ../views/solicitud/solicitud.php");
                 }
             } else {
-                $_SESSION['message'] = 'Debe ingresar una descripción para la solicitud';
+                $_SESSION['message'] = 'Debe De Ingresar El Numero De Expediente';
                 $_SESSION['message_type'] = 'danger';
-                header("Location: ../views/solicitud/formulario_solicitud.php");
+                header("Location: ../views/solicitud/solicitud.php");
             }
         } else {
 
             $_SESSION['message'] = 'Seleccione un tipo de solicitud';
             $_SESSION['message_type'] = 'danger';
-            header("Location: ../views/solicitud/formulario_solicitud.php");
+            header("Location: ../views/solicitud/solicitud.php");
         }
     } else {
 
         $_SESSION['message'] = 'Seleccione un tipo de usuario';
         $_SESSION['message_type'] = 'danger';
-        header("Location: ../views/solicitud/formulario_solicitud.php");
+        header("Location: ../views/solicitud/solicitud.php");
     }
 }
 
 
 if (isset($_POST['buscar_dpi'])) {
+    //echo "buscando...";
 
     $No_cui = $_POST['DPI'];
     $val_cui = $Model_solicitud->val_Cui($No_cui);
@@ -106,14 +106,13 @@ if (isset($_POST['buscar_dpi'])) {
 
         $_SESSION['message'] = 'Nombre:' . $nombre_ex . ' Numero de CUI: ' . $dpi_ex . ' Numero de Expediente: ' . $num_exp;
         $_SESSION['message_type'] = 'success';
-        header("Location: ../views/solicitud/formulario_solicitud.php");
+        header("Location: ../views/solicitud/solicitud.php");
     } else {
 
         $_SESSION['message'] = 'Numero de CUI incorrecto';
         $_SESSION['message_type'] = 'danger';
-        header("Location: ../views/solicitud/formulario_solicitud.php");
+        header("Location: ../views/solicitud/solicitud.php");
     }
-    
 }
 if(isset($_POST['salir'])){
     unset($_SESSION['message']);

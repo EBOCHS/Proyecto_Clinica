@@ -50,15 +50,17 @@
                 $codigo = $_SESSION['id'];
                 $usuario = $_SESSION['usuario'];
                 $num_etiqueta =  $_SESSION['cod_et'];
-                $query = "SELECT  MM.codigo_muestra,EX.NUM_EXPEDIENTE,MM.id_muestra from MUESTRAS_MEDICAS MM 
-                INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = MM.id_expediente 
-                 WHERE  id_muestra='$codigo'";
+                $query = "SELECT mm.codigo_muestra,ex.NUM_EXPEDIENTE,so.COD_SOLICITUD FROM MUESTRAS_MEDICAS mm 
+                inner join SOLICITUD so on mm.id_solicitud = so.ID_SOLICITUD
+                inner join EXPEDIENTE ex on ex.ID_EXPEDIENTE = so.ID_EXPEDIENTE 
+                WHERE mm.id_muestra = $codigo";
                 $resltados = mysqli_query($conn,$query);
                 while($row = mysqli_fetch_array($resltados)){?>
                 <tr>
                     <td><?php $cod_muestra = $row['codigo_muestra']; echo $row['codigo_muestra']?></td>
                     <td><?php $cod_exp = $row['NUM_EXPEDIENTE']; echo $row['NUM_EXPEDIENTE']?></td>
-                    <td><?php echo $row['id_muestra']?></td>
+
+                    <td><?php $cod_solicitud = $row['COD_SOLICITUD'];echo $row['COD_SOLICITUD']?></td>
                     <td><img src="../../models/<?php $qr = $_SESSION['QR']; echo $_SESSION['QR'];?>" ></td>
                     <td><?php echo $num_etiqueta?></td>
                     <td>
@@ -66,6 +68,7 @@
                         <input type="hidden" name="qr" value="<?php echo $qr;?>">
                         <input type="hidden" name="cod_etiqueta" value="<?php echo $num_etiqueta;?>">
                         <input type="hidden" name="cod_muestra" value="<?php echo $cod_muestra;?>">
+                        <input type="hidden" name="cod_solicitud" value="<?php echo $cod_solicitud;?>">
                         <input type="hidden" name="cod_exp" value="<?php echo $cod_exp;?>">
                             
                         <input type="submit" class="btn btn-success" name="imprimir" value="Imprimir" >

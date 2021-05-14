@@ -107,57 +107,38 @@ include("../../config/databases.php");
         <table id="datos" class="table">
             <thead class="table-dark">
                 <tr>
-                    <th>Codigo de Solicitud</th>
-                    <th>No. Expediente</th>
+                    <th>Cod. Solicitud</th>
+                    <th>Tipo Muestra</th>
+                    <th>Codigo Solicitud</th>
+                    <th>NO. Expediente</th>
                     <th>NIT</th>
-                    <th>Tipo Solicitud</th>
-                    <th>Usr Asignacion</th>
-                    <th>Estado</th>
-                    <th>Fecha de creacion</th>
-                    <th>Cantidad de muestras</th>
-                    <th>Cantidad de items</th>
-                    <th>Dias de Vencimiento</th>
+                    <th>Presentacion</th>
+                    <th>Usuario Asignacion</th>
+                    <th>Usuario Creacion</th>
+                    <th>Fecha Creacion</th>
+                    <th>Fecha </th>
 
                 </tr>
             </thead>
-            <?php
-            $var1 = $_SESSION['var1'];
-            $dato = $_SESSION['datos'];
 
-            $query = "SELECT COD_SOLICITUD,e.NUM_EXPEDIENTE,p.NIT,TIPO_SOLICITUD,p.NOMBRE,ESTADO_SOLICITUD,
-            FECHA_SOLICITUD_INICIAL,COUNT(a.id_muestra),COUNT(a.id_items),DATE_ADD(FECHA_SOLICITUD_INICIAL ,INTERVAL 30 DAY) as fecha_f 
-            FROM SOLICITUD s  
-            INNER JOIN EXPEDIENTE e ON s.ID_EXPEDIENTE =e.ID_EXPEDIENTE 
-            INNER  JOIN  PACIENTE p ON e.ID_PACIENTE = p.ID_PACIENTE 
-            INNER JOIN MUESTRAS_MEDICAS mm ON e.ID_EXPEDIENTE =mm.id_expediente 
-            INNER  JOIN ASOCIAR a ON mm.id_muestra =a.id_muestra 
-            INNER JOIN ITEMS i ON a.id_items =i.ID WHERE $var1 = '$dato'";
-            $result = mysqli_query($conn, $query);
-
-            ?>
-
-            <?php
-
-            while ($row = mysqli_fetch_array($result)) {
-
-            ?>
                 <tbody>
+                    <?php 
+                        $query = "SELECT S.COD_SOLICITUD,EX.NUM_EXPEDIENTE,P.NIT,S.TIPO_SOLICITUD,P.NOMBRE ,S.ESTADO_SOLICITUD, 
+                        S.FECHA_SOLICITUD_INICIAL,COUNT(A.id_muestra ),COUNT(A.id_items ),
+                        DATE_ADD(S.FECHA_SOLICITUD_INICIAL ,INTERVAL 30 DAY) as fecha_f
+                        FROM SOLICITUD S 
+                        INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = S.ID_EXPEDIENTE 
+                        INNER JOIN PACIENTE P ON P.ID_PACIENTE = EX.ID_PACIENTE 
+                        INNER JOIN MUESTRAS_MEDICAS MM ON MM.id_solicitud
+                        INNER JOIN ASOCIAR A ON A.id_muestra = MM.id_muestra 
+                        WHERE $var1 = '$dato' ";
+                    ?>
                     <tr>
-                        <td><?php $_SESSION['cod_s'] = $row['COD_SOLICITUD'];
-                            echo $row['COD_SOLICITUD']; ?></td>
-                        <td><?php echo $row['NUM_EXPEDIENTE']; ?></td>
-                        <td><?php echo $row['NIT'] ?></td>
-                        <td><?php echo $row['TIPO_SOLICITUD']; ?></td>
-                        <td><?php echo $row['NOMBRE'] ?></td>
-                        <td><?php echo $row['ESTADO_SOLICITUD']; ?></td>
-                        <td><?php echo $row['FECHA_SOLICITUD_INICIAL']; ?></td>
-                        <td><?php echo $row['COUNT(a.id_muestra)']; ?></td>
-                        <td><?php echo $row['COUNT(a.id_items)']; ?></td>
-                        <td><?php echo $row['fecha_f']; ?></td>
-
+                        <?php
+                            $res =mysqli_query($connm); 
+                        ?>
                     </tr>
 
-                <?php } ?>
 
                 </tbody>
         </table>

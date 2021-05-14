@@ -121,25 +121,20 @@ include("../../config/databases.php");
                 </tr>
             </thead>
             <?php
-            $var1 = $_SESSION['var1'];
-            $dato = $_SESSION['datos'];
+                $filtro=$_SESSION['var1'];
+                $dato=$_SESSION['datos'];
+                 $query = "SELECT S.COD_SOLICITUD,EX.NUM_EXPEDIENTE,P.NIT,S.TIPO_SOLICITUD,P.NOMBRE ,S.ESTADO_SOLICITUD, 
+                 S.FECHA_SOLICITUD_INICIAL,COUNT(A.id_muestra),COUNT(A.id_items),
+                 DATE_ADD(S.FECHA_SOLICITUD_INICIAL ,INTERVAL 30 DAY) as fecha_f
+                 FROM SOLICITUD S 
+                 INNER JOIN EXPEDIENTE EX ON EX.ID_EXPEDIENTE = S.ID_EXPEDIENTE 
+                 INNER JOIN PACIENTE P ON P.ID_PACIENTE = EX.ID_PACIENTE 
+                 INNER JOIN MUESTRAS_MEDICAS MM ON MM.id_solicitud
+                 INNER JOIN ASOCIAR A ON A.id_muestra = MM.id_muestra
+                 WHERE $filtro = '$dato' ";
 
-            $query = "SELECT COD_SOLICITUD,e.NUM_EXPEDIENTE,p.NIT,TIPO_SOLICITUD,p.NOMBRE,ESTADO_SOLICITUD,
-            FECHA_SOLICITUD_INICIAL,COUNT(a.id_muestra),COUNT(a.id_items),DATE_ADD(FECHA_SOLICITUD_INICIAL ,INTERVAL 30 DAY) as fecha_f 
-            FROM SOLICITUD s  
-            INNER JOIN EXPEDIENTE e ON s.ID_EXPEDIENTE =e.ID_EXPEDIENTE 
-            INNER  JOIN  PACIENTE p ON e.ID_PACIENTE = p.ID_PACIENTE 
-            INNER JOIN MUESTRAS_MEDICAS mm ON e.ID_EXPEDIENTE =mm.id_expediente 
-            INNER  JOIN ASOCIAR a ON mm.id_muestra =a.id_muestra 
-            INNER JOIN ITEMS i ON a.id_items =i.ID WHERE $var1 = '$dato'";
-            $result = mysqli_query($conn, $query);
-
-            ?>
-
-            <?php
-
+            $result=mysqli_query($conn,$query);
             while ($row = mysqli_fetch_array($result)) {
-
             ?>
                 <tbody>
                     <tr>
@@ -151,8 +146,8 @@ include("../../config/databases.php");
                         <td><?php echo $row['NOMBRE'] ?></td>
                         <td><?php echo $row['ESTADO_SOLICITUD']; ?></td>
                         <td><?php echo $row['FECHA_SOLICITUD_INICIAL']; ?></td>
-                        <td><?php echo $row['COUNT(a.id_muestra)']; ?></td>
-                        <td><?php echo $row['COUNT(a.id_items)']; ?></td>
+                        <td><?php echo $row['COUNT(A.id_muestra)']; ?></td>
+                        <td><?php echo $row['COUNT(A.id_items)']; ?></td>
                         <td><?php echo $row['fecha_f']; ?></td>
 
                     </tr>

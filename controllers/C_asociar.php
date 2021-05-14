@@ -28,35 +28,35 @@ class asociar{
     //funcion para la asociacion de items. 
     public function asociar_item($item1,$item2,$item3,$item4,$id_muestra){
         if($item1=="on" && $item2 =="on" && $item3=="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,2), ($id_muestra,3), ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,2,'asociado'), ($id_muestra,3,'asociado'), ($id_muestra,4,'asociado')";
         }else if($item1=="on" && $item2 =="on" && $item3=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,2), ($id_muestra,3)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,2,'asociado'), ($id_muestra,3,'asociado')";
         }else if($item1=="on" && $item3 =="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,3), ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,3,'asociado'), ($id_muestra,4,'asociado')";
         }else if($item1=="on" && $item2 =="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,2), ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,2,'asociado'), ($id_muestra,4,'asociado')";
         }else if($item2=="on" && $item3 =="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,2), ($id_muestra,3),($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,2,'asociado'), ($id_muestra,3,'asociado'),($id_muestra,4,'asociado')";
         }else if($item1=="on" && $item2 =="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,2)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,2,'asociado')";
         }else if($item1=="on" && $item3 =="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,3)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,3,'asociado')";
         }else if($item1=="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1), ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado'), ($id_muestra,4,'asociado')";
         }else if($item2=="on" && $item3=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,2), ($id_muestra,3)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,2,'asociado'), ($id_muestra,3,'asociado')";
         }else if($item2=="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,2), ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,2,'asociado'), ($id_muestra,4,'asociado')";
         }else if($item3=="on" && $item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,3), ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,3,'asociado'), ($id_muestra,4,'asociado')";
         }else if($item1=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,1)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,1,'asociado')";
         }else if($item2=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,2)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,2,'asociado')";
         }else if($item3=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,3)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,3,'asociado')";
         }else if($item4=="on"){
-            return "INSERT INTO ASOCIAR (id_muestra,id_items) VALUES ($id_muestra,4)";
+            return "INSERT INTO ASOCIAR (id_muestra,id_items,ESTADO) VALUES ($id_muestra,4,'asociado')";
         }
     }
 
@@ -203,10 +203,54 @@ class asociar{
 
     //esta funcion elimina una muestra medica 
     public function eliminar_muestra($id_muestra){
-        $eliminar = "DELETE FROM MUESTRAS_MEDICAS WHERE id_muestra = '$id_muestra'";
+        $eliminar = "UPDATE MUESTRAS_MEDICAS SET estado ='eliminado' WHERE id_muestra= '$id_muestra'";
         return $eliminar;
     }
+    public function val_items($rows_items){
 
+        while($rows_ = mysqli_fetch_array($rows_items)){
+            //$_SESSION['item'] = $rows_['id_items'];
+            if($rows_['id_items']==1){
+                $tiem1 = 1;
+                $_SESSION['item1A']="disabled checked";
+                $_SESSION['item1B']="";
+            }
+            if($rows_['id_items']==2){
+                $item2= 2;
+                $_SESSION['item2A']="disabled checked";
+                $_SESSION['item2B']="";
+            }
+            if($rows_['id_items']==3){
+                $tiem3= 3;
+                $_SESSION['item3A']= "disabled checked";
+                $_SESSION['item3B']="";
+            }
+            if($rows_['id_items']==4){
+                $item4= 4;
+                $_SESSION['item4A']= "disabled checked";
+                $_SESSION['item4B']="";
+            }
+        }
+        header("Location: ../views/Creacion_Muestras/asociar.php");
+    }
+    public function val_items_desasociados($items_rows){
+        while($filas = mysqli_fetch_array($items_rows)){
+            if($filas['id_items']==1){
+                $_SESSION['item1A']="disabled checked";
+                $_SESSION['item1B']="";
+            }if($filas['id_items']==2){
+                $_SESSION['item2A']="disabled checked";
+                $_SESSION['item2B']="";
+            }if($filas['id_items']==3){
+                $_SESSION['item3A']="disabled checked";
+                $_SESSION['item3B']="";
+            }if($filas['id_items']==4){
+                $_SESSION['item4A']="disabled checked";
+                $_SESSION['item4B']="";
+            }
+        }
+        header("Location: ../views/Creacion_Muestras/asociar.php");
+    }
 }
 
 ?>

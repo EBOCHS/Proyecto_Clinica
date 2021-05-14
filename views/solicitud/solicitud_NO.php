@@ -44,15 +44,16 @@
 
                 <div class="card card-body">
 
-                    <a href="formulario_solicitud.php" class="btn btn-success">Crear Solicitud</a>
+                    <a href="formulario_solicitud.php" class="btn btn-secondary">Crear Solicitud</a>
                     <br>
-                    <a href="/Proyecto_Clinica/views/Consulta_Solicitudes/consulta_solicitud.php" class="btn btn-warning">Consulta de Solicitudes</a>
+                    <a href="/Proyecto_Clinica/views/Consulta_Solicitudes/consulta_solicitud.php" class="btn btn-secondary">Consulta de Solicitudes</a>
                     <br>
 
-                    <div class="dropdown">
+                    <div class="dropdown ">
                         <br>
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Opciones
+                        <button class="btn btn-secondary btn-block" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Opciones     
+                                 
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="../../models/rutas_asociar.php">Asociar</a>
