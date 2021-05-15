@@ -31,6 +31,7 @@ include ("../../config/databases.php");
 </head>
 
 <body class="leading-normal tracking-normal text-white gradient overflow-hidden"
+
   style="font-family: 'Source Sans Pro', sans-serif;">
   <!--Loader-->
   <div id="loader" class="mesh-loader">
@@ -67,16 +68,11 @@ include ("../../config/databases.php");
         <ul class="list-reset lg:flex justify-end flex-1 items-center transition duration-1000">
           <li
             class="mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <a class="inline-block text-black font-bold no-underline" href="#">Clasificacion</a>
+            <a class="inline-block text-black no-underline hover:text-underline " href="#">Crear Expediente</a>
           </li>
           <li
             class="mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <a class="inline-block text-black no-underline hover:text-underline " href="#">Análisis
-              Técnico</a>
-          </li>
-          <li
-            class="mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <a class="inline-block text-black no-underline hover:text-underline" href="#">Gestionar
+            <a class="inline-block text-black no-underline hover:text-underline" href="../solicitud/solicitud.php">Gestionar
               Solicitudes</a>
           </li>
         </ul>
@@ -101,7 +97,7 @@ include ("../../config/databases.php");
         <p class="leading-normal text-2xl mb-8">
           Puedes gestionar cualquier consulta o laboratorio desde aqui!
         </p>
-        <a href="comenzar.html">
+        <a href="comenzar.php">
           <button
             class="mx-auto lg:mx-0 text-2xl hover:bg-blue-500 hover:text-gray-100 bg-white text-gray-800 font-bold rounded-xl my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
             Comenzar
@@ -213,7 +209,6 @@ include ("../../config/databases.php");
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   -->
   <script src="script.js"></script>
-
 </body>
 
 </html>
