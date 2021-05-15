@@ -12,7 +12,7 @@ class validar_muestra{
                     return "PLAQUETAS"; 
                     break;
                 case 3:
-                    return "HESES";
+                    return "Heces";
                     break;
                 case 4:
                     return "ORINA";
@@ -24,38 +24,55 @@ class validar_muestra{
     }
     //funcion para validar la presentacion ingresada
     public function val_Presentacion($presentacion){
-        if(strlen($presentacion)<5 ||strlen($presentacion)>2000){
-            return false;
-        }else{
-            return $presentacion;
-        }
+        if($presentacion!=0){
+            switch($presentacion){
+                case 1:
+                    return "Frasco";
+                    break;
+                case 2 :
+                    return "Jeringa"; 
+                    break;
+                case 3:
+                    return "Bolsa";
+                    break;
+           }
+       }else{
+           return false;
+       }
     }
     //funcion para validar la cantidad de muestra ingresadas que no sea mayor una cantidad mayor a 4 
     public function val_cantidad($cantida){
-        $exp = "/^[0-9]+$/";
-        $val = preg_match($exp,$cantida);
-        if(!$val){
-            return false;
-        }else{
-            if($cantida>4){
-                return false;
-            }else{
-                return $cantida;
-            }
-        }
+        if($cantida!=0){
+            switch($cantida){
+                case 1:
+                    return "1";
+                    break;
+                case 2 :
+                    return "2"; 
+                    break;
+                case 3:
+                    return "3";
+                    break;
+                case 4:
+                    return "4";
+                    break;
+           }
+       }else{
+           return false;
+       }
     }
     //funcion que retorna la unidad de medida que el usuario selecciona
     public function val_medida($medida){
         if($medida!=0){
             switch($medida){
                 case 1:
-                    return "Mililimetros";
+                    return "miligramos";
                     break;
                 case 2:
-                    return "Gramos";
+                    return "mililitros";
                     break;
                 case 3:
-                    return "Miligramos";
+                    return "gramos";
                     break;
             }
         }else{
@@ -89,8 +106,8 @@ class validar_muestra{
 
     }
     //funcion para validad el numero de expediente que nos ingresan para la relacion
-    public function val_numExpediente($exp){
-        if(strlen($exp)<15 || strlen($exp)>21){
+    public function val_numSolicitud($exp){
+        if(strlen($exp)<14 || strlen($exp)>21){
             return false;
         }else{
             return true;

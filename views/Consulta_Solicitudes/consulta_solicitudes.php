@@ -1,3 +1,6 @@
+<?php
+include ("../../config/databases.php");
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -61,19 +64,20 @@
                             <label for="buscar" class="text-center text-2xl text-gray-600 font-semibold">Filtro de
                                 Busqueda</label>
 
-                            <form action="" method="POST">
+                            <form action="../../models/consulta_solicitudModel.php" method="POST">
                                 <div
                                     class="flex border border-gray-200 overflow-hidden px-2 rounded-xl shadow-lg items-center">
-                                    <select required name="Tsangre" id="Tsangre" class=" cursor-pointer py-2 px-4 bg-gray-100 border border-transparent focus:outline-none
+                                    <select required name ="FILTRO" class=" cursor-pointer py-2 px-4 bg-gray-100 border border-transparent focus:outline-none
                                     focus:ring-0 focus:ring-gray-100 focus:border-transparent">
-                                        <option name="A+">Seleccione</option>
-                                        <option name="A-">Codigo de Solicitud</option>
-                                        <option name="B+">NIT</option>
-                                        <option name="B-">Estado Solicitud</option>
+                                        <option value="">Seleccione</option>
+                                        <option value="COD_SOLICITUD">Codigo de Solicitud</option>
+                                        <option value="NIT">NIT</option>
+                                        <option value="ESTADO_SOLICITUD">Estado Solicitud</option>
                                     </select>
-                                    <input class="py-2 px-4 bg-gray-100 border border-transparent focus:outline-none
+                                    <input  name="DATO_FILTRO"
+                                    class="py-2 px-4 bg-gray-100 border border-transparent focus:outline-none
                                     focus:ring-0 focus:ring-gray-100 focus:border-transparent" type="text">
-                                    <button type="submit" class="mx-2"><i class="fas fa-search text-xl"></i></button>
+                                    <button type="submit" name="consultar_solicitud" class="mx-2"><i class="fas fa-search text-xl"></i></button>
                                 </div>
 
                             </form>
@@ -91,7 +95,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['COD_SOLICITUD'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="John">
                                     </div>
@@ -103,7 +107,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-folder-open"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['NUM_EXPEDIENTE'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="Smith">
                                     </div>
@@ -115,7 +119,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-user-tie"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['NIT'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="Smith">
                                     </div>
@@ -131,7 +135,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['TIPO_SOLICITUD'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="1351328050109">
                                     </div>
@@ -143,7 +147,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['ESTADO_SOLICITUD'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="usr">
                                     </div>
@@ -155,7 +159,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-user"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['NOMBRE'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="usr">
                                     </div>
@@ -171,7 +175,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['FECHA_SOLICITUD_INICIAL'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="00/00/0000">
                                     </div>
@@ -183,7 +187,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['fecha_f'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="usr">
                                     </div>
@@ -197,7 +201,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-syringe"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['cantidad_muestra'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="usr">
                                     </div>
@@ -209,7 +213,7 @@
                                             class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-vial"></i>
                                         </div>
-                                        <input type="text"
+                                        <input type="text" value="<?php echo $_SESSION['cant_items'];?>"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500"
                                             placeholder="00">
                                     </div>
@@ -221,6 +225,7 @@
 
                         </form>
                         <!--OPCIONES DEL FORM-->
+                        <form action="../../models/consulta_solicitudModel.php" method="POST">
                         <div class="flex">
                             <div class=" px-5">
 
@@ -231,8 +236,8 @@
                                     <div class="mx-auto my-2">
 
                                         <a id="ayuda"
-                                            class="text-4xl cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out"><i
-                                                class="fas fa-print"></i></a>
+                                            class="text-4xl cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out disabled">
+                                            <button name="imprimir" ><i class="fas fa-print" disabled></button></i></a>
 
                                     </div>
 
@@ -240,21 +245,21 @@
 
                                     <div class="mx-auto my-2">
                                         <a
-                                            class="text-4xl cursor-pointer hover:text-green-500 transition duration-300 ease-in-out"><i
-                                                class="fas fa-file-excel"></i></a>
+                                            class="text-4xl cursor-pointer hover:text-green-500 transition duration-300 ease-in-out">
+                                            <button name="excel" ><i class="fas fa-file-excel"></button></i></a>
                                     </div>
                                     <div class="mx-auto my-2">
                                         <a
-                                            class="text-4xl cursor-pointer hover:text-gray-400 transition duration-300 ease-in-out"><i
-                                                class="fas fa-broom"></i></a>
+                                            class="text-4xl cursor-pointer hover:text-gray-400 transition duration-300 ease-in-out">
+                                            <button name="limpiar"><i class="fas fa-broom"></button></i></a>
                                     </div>
 
                                     <label for="" class="text-xs font-semibold my-2 ">Eliminar</label>
                                     <div class="mx-auto my-2">
 
                                         <a
-                                            class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out"><i
-                                                class="fas fa-trash-alt"></i></a>
+                                            class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out">
+                                            <button name="eliminar"><i class="fas fa-trash-alt"></button></i></a>
                                     </div>
 
                                 </div>
@@ -292,7 +297,7 @@
 
                         </div>
 
-
+                        </form>
                     </div>
                 </div>
             </div>
