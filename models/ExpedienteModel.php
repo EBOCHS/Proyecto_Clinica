@@ -159,128 +159,16 @@ if (isset($_POST['Crear'])){
         header("Location: ../views/Expedientes/expediente.php");
             
     }
-    /*
-    if($val_nombre==true){
-        if($val_apellido==true){
-            if($val_cui==true){
-                if($Tsangre!=0){
-                    if($Sexo!=0){
-                        if($val_direccion==true){
-                            if($val_edad==true){
-                                if($Estado_civil!=0){
-                                    if($val_nit==true){
-                                        if($val_descripcion==true){
-                                             //guardamos el paciente en la base de datos
-                                                if(!isset($_SESSION['usuario'])){
-                                                    $query ="INSERT  INTO PACIENTE (NOMBRE,APELLIDO,CUI,TIPO_SANGRE,SEXO,DERECCION,EDAD,NIT,ESTADO_CIVIL) 
-                                                    VALUES('$nombre','$apellido','$cui','$val_tsangre','$val_sexo','$Descripcion',$Edad,'$nit','$Estado_civil')";
-                                                    $resultado = mysqli_query($conn,$query);
-                                                    if(!$resultado){
-                                                        die(mysqli_error($conn));
-                                                    }
-                                                    //creamos expediente
-                                                    $consulta_expediente = "SELECT  NUM_EXPEDIENTE from EXPEDIENTE order by NUM_EXPEDIENTE desc limit 1";
-                                                    $res = mysqli_query($conn,$consulta_expediente);//obtengo el ultimo numero de expediente creado 
-                                                    $num_Expediente=$modelExp->get_Num_Expediente($res);
-                                            
-                                                    $get_id_pacinet="SELECT ID_PACIENTE FROM PACIENTE order bY ID_PACIENTE desc limit 1";
-                                                    $result = mysqli_query($conn,$get_id_pacinet);//obtengo la id del paciente nuevo
-                                                    if(!$result){
-                                                        die(mysqli_error($conn));
-                                                    }
-                                                    
-                                                    (int)$id =$modelExp-> get_id($result);//id para la relacion con la tabla expediente y paciente
-                                                    $new_exp= "INSERT INTO EXPEDIENTE (NUM_EXPEDIENTE,DESCRIPCION,ESTADO,USUARIO_CREACION,ID_PACIENTE)
-                                                    VALUES('$num_Expediente','$Descripcion','Creado','EXTERNO',$id)";
-                                                    $resultado = mysqli_query($conn,$new_exp);
-                                                    if(!$resultado){
-                                                        die(mysqli_error($conn));
-                                                    }
-                                                    
-                                                    $_SESSION['message']='EXPEDIENTE CREADO EL CODIGO DEL EXPEDIENTE ES: '.$num_Expediente;
-                                                    $_SESSION['message_type']='success';
-                                                    header("Location: ../views/Expedientes/expedientes.php");
-                                                    
-                                                    
-                                                }
-                                                else{
-                                                    $usuario_creacion =$_SESSION['usuario'];
-                                                $query ="INSERT  INTO PACIENTE (NOMBRE,APELLIDO,CUI,TIPO_SANGRE,SEXO,DERECCION,EDAD,NIT,ESTADO_CIVIL) 
-                                                VALUES('$nombre','$apellido','$cui','$val_tsangre','$val_sexo','$Descripcion',$Edad,'$nit','$Estado_civil')";
-                                                $resultado = mysqli_query($conn,$query);
-                                                if(!$resultado){
-                                                     die(mysqli_error($conn));
-                                                }
-                                                //creamos expediente
-                                                $consulta_expediente = "SELECT  NUM_EXPEDIENTE from EXPEDIENTE order by NUM_EXPEDIENTE desc limit 1;";
-                                                $res = mysqli_query($conn,$consulta_expediente);//obtengo el ultimo numero de expediente creado 
-                                                $num_Expediente=$modelExp->get_Num_Expediente($res);
-                                        
-                                                
-                                                $get_id_pacinet="SELECT ID_PACIENTE FROM PACIENTE order bY ID_PACIENTE desc limit 1";
-                                                $result = mysqli_query($conn,$get_id_pacinet);//obtengo la id del paciente nuevo
-                                                if(!$result){
-                                                    die(mysqli_error($conn));
-                                                }
-                                                
-                                                (int)$id =$modelExp-> get_id($result);//id para la relacion con la tabla expediente y paciente
-                                                $new_exp= "INSERT INTO EXPEDIENTE (NUM_EXPEDIENTE,DESCRIPCION,ESTADO,USUARIO_CREACION,ID_PACIENTE)
-                                                VALUES('$num_Expediente','$Descripcion','Creado','$usuario_creacion',$id)";
-                                                $resultado = mysqli_query($conn,$new_exp);
-                                                if(!$resultado){
-                                                    die(mysqli_error($conn));
-                                                }
-                                                
-                                                $_SESSION['message']='EXPEDIENTE CREADO EL CODIGO DEL EXPEDIENTE ES: '.$num_Expediente;
-                                                $_SESSION['message_type']='success';
-                                                header("Location: ../views/Expedientes/expedientes.php");
-                                                
-                                            }
-    
-                                        asta aqui}else{
-                                            echo "descripcion no valida";
-                                            
-                                        }
-                                    }else{
-                                        echo "NIT no valido";
-                                    }
-
-                                }else{
-                                    echo "Seleccione su estado civil";
-
-                                }
-                                
-                            }else{
-                                echo "Edad no valida solo se permite de 18 a 99 años";
-                            }
-                        }else{
-                            echo "Ingrese la direccion";
-
-                        }
-                }else{
-                    echo "Elija el sexo";
-                }
-
-                }else{
-                   echo "elija un tipo de sangre";
-                    
-                }
-            }else{
-                echo "CUI no valido";
-            }
-            
-        }else{
-            echo "apellido no valido";
-        }
-    }else{
-        echo "Nombre no valido";
-    }*/
-
 }
 
- if(isset($_POST['cancelar'])){
-       header("Location: ../views/inicio/index.php");
-       usert( $_SESSION['message']);
+if(isset($_POST['cancelar'])){
+    unset($_SESSION['message']);
+    if(isset($_SESSION['usuario'])){
+        header("Location: ../views/inicio/menu_interno.php");
+    }else{
+        header("Location: ../views/inicio/index.php");
+    }
+    
 }
 if(isset($_POST['Inicio'])){
     header("Location: ../views/inicio/index.php");

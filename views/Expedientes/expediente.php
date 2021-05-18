@@ -242,9 +242,10 @@ include ("../../config/databases.php");
                                     <input type="submit" value="Crear" name="Crear"
                                         class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                                 </div>
-                                <div class="w-full px-3 mb-5">
-                                    <a href="../inicio/index.php"
-                                        class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Cancelar</a>
+                                <input type="submit" value="cancelar" name="cancelar"
+                                        class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                               
+                                  
                                 </div>
                             </div>
                         </form>
