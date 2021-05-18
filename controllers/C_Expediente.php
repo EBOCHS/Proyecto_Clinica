@@ -123,7 +123,7 @@ class validar
     public function val_direccion($direccion)
     {
         $valida = $direccion;
-        $exp_direc = "/^[a-z0-9-.]+$/i"; //valida que la direccion sea de tipo alfa nuemrico tambien asepta los caracteres guion("-") y el punto (".")
+        $exp_direc = "/^[a-z0-9-.,]+$/i"; //valida que la direccion sea de tipo alfa nuemrico tambien asepta los caracteres guion("-") y el punto (".")
         $cadena = str_replace(" ", "", $direccion); //elimina los espacios en blaco
         $val = preg_match($exp_direc, $cadena, $conside);
 
@@ -187,7 +187,7 @@ class validar
     public function val_Descripcion($descripcion)
     {
         $valido = $descripcion;
-        if (strlen($descripcion > 400)||strlen($descripcion)<5) {
+        if (strlen($descripcion > 400)||strlen($descripcion)<1) {
             return false;
         } else {
             return true;
