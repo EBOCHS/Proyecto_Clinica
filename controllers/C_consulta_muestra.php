@@ -14,14 +14,18 @@
                 return true;
                 break;
             case "cod_solicitud":
-                if( strlen($dato_busqueda)>19){
+                if( strlen($dato_busqueda)>16){
                     return true;
                 }else{
                     return 0;
                 }
                 break ;
             case "nit": 
-                return true;
+                if( strlen($dato_busqueda)>4){
+                    return true;
+                }else{
+                    return 0;
+                }
                 break;
 
             default :false;  

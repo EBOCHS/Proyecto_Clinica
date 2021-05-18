@@ -160,7 +160,7 @@ class validar
             return false;
         } else {
             $ed = (int)$edad;
-            if ($ed > 100||$ed<18) {
+            if ($ed>99) {
                 return false;
             } else {
                 return true;
