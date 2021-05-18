@@ -27,23 +27,23 @@ if(isset($_POST['Sign_in'])){
             $res=mysqli_query($conn,$queri);
             $respuesta=mysqli_query($conn,$queri);
         if(mysqli_fetch_array($respuesta)==0){
-            echo "datos incorrectos";
+            $_SESSION['message']='Datos Incorrectos ';
+            $_SESSION['message_type']='danger';
+            header("Location: ../views/Login/login.php");
         }else{    
   
         while( $row = mysqli_fetch_array($res)){
             $_SESSION['usuario']= $row['NOMBRE'];//interno 
 
-            //echo( $row['NOMBRE']." contraseña: ");
-            //echo( $row['PASSWD']." Tipo usuario: ");
-            //echo( $row['DESCRIPCION']);
+           
              $_SESSION['Tipo_usuario']= $row['DESCRIPCION'];
              }
              header ("location: ../views/inicio/menu_interno.php");
             }
         }else{
           
-            echo "Contraseña incorrecta";
-            $_SESSION['message']='contraseña incorrecta: ';
+            //echo "Contraseña incorrecta";
+            $_SESSION['message']='contraseña incorrecta ';
             $_SESSION['message_type']='danger';
             header("Location: ../views/Login/login.php");
         }
