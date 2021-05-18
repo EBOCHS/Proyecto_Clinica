@@ -106,7 +106,7 @@ if (isset($_POST['Crear'])){
                                     echo 'EXPEDIENTE CREADO EL CODIGO DEL EXPEDIENTE ES: '.$num_Expediente;
                                     $_SESSION['message'] = 'EXPEDIENTE CREADO CON EXITO
                                                             El Numero De Expediente Es: '.$num_Expediente;
-                                    $_SESSION['message_type'] = 'danger';
+                                    $_SESSION['message_type'] = 'success';
                                     header("Location: ../views/Expedientes/expediente.php");
                                 }
 
