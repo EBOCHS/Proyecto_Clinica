@@ -15,7 +15,7 @@ if (isset($_POST['consultar_solicitud'])) {
         case "":
             $_SESSION['message'] = 'Seleccione un filtro de busqueda';
             $_SESSION['message_type'] = 'danger';
-            header("Location: ../views/Consulta_Solicitudes/consulta_solicitud.php");
+            header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             break;
         case "COD_SOLICITUD":
 
@@ -247,4 +247,15 @@ if (isset($_POST['eliminar'])) {
         $_SESSION['message_type'] = 'danger';
         header("Location: ../views/Consulta_Solicitudes/consulta_solicitud.php");
     }
+
+    
+}
+if(isset($_POST['salir'])){
+    unset($_SESSION['message']);
+    if(isset($_SESSION['usuario'])){
+        header("Location: ../views/inicio/menu_interno.php");
+    }else{
+        header("Location: ../views/inicio/index.php");
+    }
+    
 }

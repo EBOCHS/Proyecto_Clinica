@@ -197,8 +197,14 @@ include ("../config/databases.php");
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/asociar.php");
     }
-    if (isset($_POST['salir'])) {
-        header("Location: ../views/Creacion_Muestras/asociar.php");
+    if(isset($_POST['salir'])){
+        unset($_SESSION['message']);
+        if(isset($_SESSION['usuario'])){
+            header("Location: ../views/inicio/menu_interno.php");
+        }else{
+            header("Location: ../views/inicio/index.php");
+        }
+        
     }
     if(isset($_POST['regresar'])){
         header("Location: ../views/solicitud/solicitud.php");

@@ -38,7 +38,7 @@ if(isset($_POST['Sign_in'])){
             //echo( $row['DESCRIPCION']);
              $_SESSION['Tipo_usuario']= $row['DESCRIPCION'];
              }
-             header ("location: ../views/inicio/index.php");
+             header ("location: ../views/inicio/menu_interno.php");
             }
         }else{
           

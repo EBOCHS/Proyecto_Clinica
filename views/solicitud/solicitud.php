@@ -79,7 +79,7 @@ include ("../../config/databases.php");
                                             <i class="fas fa-user"></i>
                                         </div>
 
-                                        <select required name="tipo_usu" id="Tusuario"
+                                        <select  name="tipo_usu" id="Tusuario"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500">
                                             <option value="">Elija</option>
                                             <option value="IN">IN-Usuario Interno</option>
@@ -97,7 +97,7 @@ include ("../../config/databases.php");
                                             <i class="fas fa-id-card"></i>
                                         </div>
 
-                                        <select required name="tipo_solicitud" id="Tsolicitud"
+                                        <select  name="tipo_solicitud" id="Tsolicitud"
                                             class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500">
                                             <option value="">Elija</option>
                                             <option value="MM">MM-Muestra Médica</option>
@@ -191,8 +191,10 @@ include ("../../config/databases.php");
                                         class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                                 </div>
                                 <div class="w-full px-3 mb-5">
-                                    <a href="../inicio/index.php"
-                                        class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Cancelar</a>
+                                <input type="submit" value="cancelar" name="cancelar"
+                                        class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                               
+                                  
                                 </div>
                             </div>
                         </form>

@@ -52,8 +52,9 @@ include ("../../config/databases.php");
         <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1200px">
 
             <!--BOTON DE RETORNO -->
+            <form action="../../models/AsociarModelo.php" method="POST">
             <div class="px-3 py-3">
-                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out" href=""><i class="fas fa-chevron-circle-left"></i></a>
+                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out"><button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
             </div>
 
             <div class="w-full  px-5 md:px-10">
@@ -67,7 +68,7 @@ include ("../../config/databases.php");
                 <div class="flex flex-col mx-auto my-4">
                     <label for="buscar" class="text-center text-2xl text-gray-600 font-semibold">Buscar
                         Muestra Medica</label>
-                    <form action="../../models/AsociarModelo.php" method="POST">
+                    
                         <div class="flex border border-gray-200 overflow-hidden px-2 rounded-xl shadow-lg items-center">
                             <input type="text" name="cod_nuestra" id="buscar" class="py-2 px-4 bg-gray-100 border border-transparent focus:outline-none focus:ring-0 focus:ring-gray-100 focus:border-transparent">
                             <button type="submit" class="mx-2" name="buscar"><i class="fas fa-search text-xl"></i></button>
@@ -237,7 +238,9 @@ include ("../../config/databases.php");
                     </thead>
                     <tbody class="bg-gray-300">
                         <tr>
-                            <td><?php echo  $_SESSION['cod_et']?></td>
+                            <td><?php if(isset($_SESSION['cod_et'])){
+                                $_POST['estado']="" ;
+                            } echo  $_SESSION['cod_et']?></td>
                             <td><?php echo  $_SESSION['codigo_muestra']?></td>
                             <td><?php echo  $_SESSION['num_expediente']?></td>
                             <td><?php echo  $_SESSION['COD_SOLICITUD']?></td>

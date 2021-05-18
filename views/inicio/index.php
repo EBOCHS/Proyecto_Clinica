@@ -68,7 +68,7 @@ include ("../../config/databases.php");
         <ul class="list-reset lg:flex justify-end flex-1 items-center transition duration-1000">
           <li
             class="mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">
-            <a class="inline-block text-black no-underline hover:text-underline " href="#">Crear Expediente</a>
+            <a class="inline-block text-black no-underline hover:text-underline " href="../Expedientes/expediente.php">Crear Expediente</a>
           </li>
           <li
             class="mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">

@@ -11,10 +11,6 @@ include ("../../config/databases.php");
     <title>
         Consulta de Solicitudes
     </title>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <meta name="description" content="" />
-    <meta name="keywords" content="" />
-    <meta name="author" content="" />
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -23,6 +19,13 @@ include ("../../config/databases.php");
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../includes/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://kit.fontawesome.com/6d0034a111.js" crossorigin="anonymous"></script>
+
+    
+    
     <style>
         .gradient {
             background: linear-gradient(40deg, #0354eb 0%, #fcfdff 100%);
@@ -30,7 +33,7 @@ include ("../../config/databases.php");
     </style>
 </head>
 
-<body class="gradient min-h-screen pt-10 md:pt-4 pb-6 px-2 md:px-0 ">
+<body class="gradient min-h-screen pt-0 md:pt-4 pb-6 px-2 md:px-0 ">
     <div id="loader" class="mesh-loader">
         <div class="set-one">
             <div class="circle"></div>
@@ -43,31 +46,39 @@ include ("../../config/databases.php");
     </div>
 
     <div class="min-w-screen min-h-screen flex items-center justify-center py-5 px-5">
-        <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1200px">
+        <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1500px">
             <!--BOTON DE RETORNO -->
+        <form action="../../models/consulta_solicitudModel.php" method="POST">
             <div class="px-3 py-3">
-                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out" href=""><i
-                        class="fas fa-chevron-circle-left"></i></a>
+                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out" href="">
+                <button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
             </div>
 
             <div class="flex justify-center mb-1">
                 <div class=" ">
                     <div class="text-center mb-2">
                         <h1 class="font-bold text-3xl text-black mt-3">Consulta de Solicitudes</h1>
-                        <p class="text-md mt-2 font-bold">Completa la información para consultar el estado de la
-                            Solicitud</p>
+                        <div class="flex justify-center mb-1">
+                        <div class="flex h-auto">                     
+                                                        <?php if (isset($_SESSION['message'])) { ?>
+                                                        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                                                        <?= $_SESSION['message'] ?>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        <?php unset($_SESSION['message']);
+                                                        } ?>
+                                              
+                        </div>
+                        
+                        </div>
+                        
                     </div>
 
                     <!--filtro de busqueda-->
                     <div class="flex h-auto">
-                        <div class="flex flex-col mx-auto my-4">
-                            <label for="buscar" class="text-center text-2xl text-gray-600 font-semibold">Filtro de
-                                Busqueda</label>
-
-                            <form action="../../models/consulta_solicitudModel.php" method="POST">
+                        <div class="flex flex-col mx-auto my-4">           
                                 <div
                                     class="flex border border-gray-200 overflow-hidden px-2 rounded-xl shadow-lg items-center">
-                                    <select required name ="FILTRO" class=" cursor-pointer py-2 px-4 bg-gray-100 border border-transparent focus:outline-none
+                                    <select  name ="FILTRO" class=" cursor-pointer py-2 px-4 bg-gray-100 border border-transparent focus:outline-none
                                     focus:ring-0 focus:ring-gray-100 focus:border-transparent">
                                         <option value="">Seleccione</option>
                                         <option value="COD_SOLICITUD">Codigo de Solicitud</option>
@@ -79,12 +90,15 @@ include ("../../config/databases.php");
                                     focus:ring-0 focus:ring-gray-100 focus:border-transparent" type="text">
                                     <button type="submit" name="consultar_solicitud" class="mx-2"><i class="fas fa-search text-xl"></i></button>
                                 </div>
-
+                                
+                                
                             </form>
                         </div>
+                        
                     </div>
-
+                    
                     <div class="flex justify-items-center">
+                    
                         <form action="" method="POST">
 
                             <div class="flex -mx-3">
@@ -309,6 +323,11 @@ include ("../../config/databases.php");
 
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c658240a4e.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>
