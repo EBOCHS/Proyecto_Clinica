@@ -6,7 +6,7 @@ if (isset($_POST['buscar'])){
     $condicion_de_busqueda = $_POST['condicion'];
     $dato_de_busqueda = $_POST['busqueda'];
     //echo $condicion_de_busqueda." ".$dato_de_busqueda;
-    $estado= $consulta_mm->val_dato_condicion($condicion_de_busqueda);
+    $estado= $consulta_mm->val_dato_condicion($condicion_de_busqueda,$dato_de_busqueda);
     echo $estado;
 
 }

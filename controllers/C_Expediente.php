@@ -171,12 +171,12 @@ class validar
     public function val_nit($nit)
     {
         $valido = $nit;
-        $exp_nit = "/^[0-9]{8}[0-9A-Z]{1}+$/i";
+        $exp_nit = "/^[0-9A-Z]{4,10}+$/i";
         $val = preg_match($exp_nit, $nit);
         if (!$val) {
             return false;
         } else {
-            if (strlen($nit) > 9 || strlen($nit < 9)) {
+            if (strlen($nit) > 10 || strlen($nit < 10)) {
                 return false;
             } else {
                 return true;

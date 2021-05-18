@@ -3,8 +3,10 @@
    public function val_dato_condicion($condicion,$dato_busqueda){
         switch($condicion){
             case "cod_expediente":
-                if( strlen($dato_busqueda) ){
+                if( strlen($dato_busqueda)>19){
                     return true;
+                }else{
+                    return 0;
                 }
                 
                 break;
@@ -12,7 +14,11 @@
                 return true;
                 break;
             case "cod_solicitud":
-                return true;
+                if( strlen($dato_busqueda)>19){
+                    return true;
+                }else{
+                    return 0;
+                }
                 break ;
             case "nit": 
                 return true;
