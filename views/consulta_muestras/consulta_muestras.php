@@ -1,3 +1,7 @@
+<?php
+include ("../../config/databases.php");
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,6 +24,8 @@
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    
     <style>
         .gradient {
             background: linear-gradient(40deg, #0354eb 0%, #fcfdff 100%);
@@ -40,7 +46,7 @@
     </div>
 
     <div class="flex items-center justify-center min-h-screen min-w-screen">
-        <div class="w-full overflow-hidden text-gray-700 bg-gray-100 shadow-xl rounded-3xl" style="max-width:1000px">
+        <div class="w-full overflow-hidden text-gray-700 bg-gray-100 shadow-xl rounded-3xl" style="max-width:2000px">
             <!--BOTON DE RETORNO -->
             <div class="px-3 py-3">
                 <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-red-500" href=""><i
@@ -51,8 +57,24 @@
                 <div class="min-w-full pb-10">
                     <div class="mb-2 text-center">
                         <h1 class="text-3xl font-bold text-gray-800">Gestion de solicitudes de muestras</h1>
-
                     </div>
+                   
+                        
+              <div>
+              <div class="flex justify-center mb-1">
+                        <div class="flex h-auto">                     
+                                                        <?php if (isset($_SESSION['message'])) { ?>
+                                                        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                                                        <?= $_SESSION['message'] ?>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        <?php unset($_SESSION['message']);
+                                                        } ?>
+                                              
+                        </div>
+                        
+                        </div>
+              </div>
+                        
 
                     <!--filtro de busqueda-->
                     <div class="flex h-auto">
@@ -84,53 +106,50 @@
                     <div class="flex flex-col justify-around mt-4 md:flex-row">
                         <div class="flex flex-col">
                             <div class="flex justify-around w-full mb-4 bg-gray-100 rounded-lg shadow-lg">
-                                <div class="p-2">
-                                    <label class="text-xs font-semibold">No. Expediente</label>
-                                    <p>003515105</p>
-                                </div>
-                                <div class="p-2">
-                                    <label class="text-xs font-semibold">Nombre</label>
-                                    <p>Dolores del Ano</p>
-                                </div>
-                                <div class="p-2">
-                                    <label class="text-xs font-semibold">Nit</label>
-                                    <p>85134146</p>
-                                </div>
+                                
                             </div>
                             <div class="flex w-auto lg:w-full">
                                 <div class="mx-auto rounded shadow-lg">
-                                    <table class="max-w-sm bg-white table-auto lg:w-full ">
+                                    <table >
                                         <thead>
                                             <tr
                                                 class="text-xs leading-normal text-gray-600 uppercase bg-gray-200 md:text-sm">
-                                                <th class="px-2 py-3 text-left md:px-6">Codigo solicitud</th>
+                                                <th class="px-2 py-3 text-left md:px-6">Codigo de muestra</th>
                                                 
-                                                <th class="px-2 py-3 text-left md:px-6">Tipo de solicitud</th>
-                                                <th class="px-2 py-3 text-left md:px-6">Fecha creacion</th>
+                                                <th class="px-2 py-3 text-left md:px-6">Tipo De Muestra</th>
+                                                <th class="px-2 py-3 text-left md:px-6">COdigo Solicitud</th>
+                                                <th class="px-2 py-3 text-left md:px-6">Numero de expediente</th>
+                                                <th class="px-2 py-3 text-left md:px-6">Presentacion</th>
                                                 <th class="px-2 py-3 text-left md:px-6">Estado</th>
+                                                <th class="px-2 py-3 text-left md:px-6">Fecha creacion</th>
+                                                
                                                 <th class="hidden px-2 py-3 text-left md:px-6 md:block">Acciones</th>
                                             </tr>
                                         </thead>
-                                        <tbody class="text-xs font-light text-gray-600 md:text-sm">
-                                            <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                                <td class="py-3 text-left md:px-6 whitespace-nowrap">
-                                                    <span class="font-medium">01020350</span>
-                                                </td>
-                                                <td class="py-3 text-left md:px-6">
-                                                    <span>alv</span>
-                                                </td>
-                                                <td class="py-3 text-left md:px-6">
-                                                    <p>15/05/2021</p>
-                                                </td>
-                                                <td class="py-3 text-left md:px-6">
-                                                    <span
-                                                        class="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full">Activo</span>
-                                                </td>
-                                                <td class="hidden px-2 py-3 text-center md:px-6 md:block">
+                                        <tbody >
+                                            
+                                              <?php 
+                                                $consulta =  $_SESSION['rows'];
+                                                $res = mysqli_query($conn,$consulta);
+                                                if (!$res){
+                                                    $_SESSION['message']="NO SE ENCONTRARON RESULADOS";
+                                                    $_SESSION['message_type'] = 'danger';
+                                                    header("Location: ../views/consulta_muestras/consulta_muestras.php");
+                                                }
+                                                while ($rows=mysqli_fetch_array($res)){ ?>
+                                                <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                                    <td><?php echo $rows['codigo_muestra'];?></td>
+                                                    <td><?php echo $rows['tipo_muestra'];?></td>
+                                                    <td><?php echo $rows['COD_SOLICITUD'];?></td>
+                                                    <td><?php echo $rows['NUM_EXPEDIENTE'];?></td>
+                                                    <td><?php echo $rows['presentacion_muestra'];?></td>
+                                                    <td><?php echo $rows['estado'];?></td>
+                                                    <td><?php echo $rows['FECHA_CREACION'];?></td>
+                                                    <td class="hidden px-2 py-3 text-center md:px-6 md:block">
                                                     <div class="flex justify-center text-xl item-center">
                                                         <div
                                                             class="w-4 mr-2 transform cursor-pointer hover:text-blue-600 hover:scale-110">
-                                                            <a onclick="viewOverlay();"><i class="fas fa-eye"></i></a>
+                                                            <a ><button name="imprimir"><i class="fas fa-eye"></button></i></a>
                                                         </div>
                                                         <div
                                                             class="w-4 mx-2 transform hover:text-blue-600 hover:scale-110">
@@ -142,7 +161,9 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                            </tr>
+                                                </tr>
+                                                <?php }?>
+                                            
                                         </tbody>
                                     </table>
                                 </div>
@@ -150,7 +171,7 @@
                         </div>
 
                         <!--OPCIONES DEL FORM-->
-                        <div class="flex py-2 mx-auto mt-4 rounded-lg shadow-lg lg:mt-0 bg-gray-50 lg:mx-0">
+                        <div class="flex py-2 mx-auto mt-2 rounded-lg shadow-lg lg:mt-0 bg-gray-20 lg:mx-0">
                             <div class="px-5">
                                 <div class="flex flex-col justify-center text-center">
 
@@ -273,6 +294,10 @@
             </div>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c658240a4e.js" crossorigin="anonymous"></script>
 
 
     <script src="script.js"></script>

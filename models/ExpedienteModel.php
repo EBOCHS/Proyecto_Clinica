@@ -103,7 +103,6 @@ if (isset($_POST['Crear'])){
                                     if(!$resultado){
                                         die(mysqli_error($conn));
                                     }
-                                    echo 'EXPEDIENTE CREADO EL CODIGO DEL EXPEDIENTE ES: '.$num_Expediente;
                                     $_SESSION['message'] = 'EXPEDIENTE CREADO CON EXITO
                                                             El Numero De Expediente Es: '.$num_Expediente;
                                     $_SESSION['message_type'] = 'success';
@@ -161,7 +160,7 @@ if (isset($_POST['Crear'])){
     }
 }
 
-if(isset($_POST['cancelar'])){
+if(isset($_POST['cancelar'])||isset($_POST['salir']) ){
     unset($_SESSION['message']);
     if(isset($_SESSION['usuario'])){
         header("Location: ../views/inicio/menu_interno.php");

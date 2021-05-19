@@ -43,9 +43,14 @@ include ("../../config/databases.php");
             <div class="circle"></div>
         </div>
     </div>
-
+    <form action="../../models/SolicitudModelo.php" method="POST">
     <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
         <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
+        <div class="px-3 py-3">
+                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out" href="">
+                <button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
+            </div>
+
             <div class="md:flex w-full">
                 <div class="hidden zoom-picture md:block w-1/2 bg-white">
                     <img src="../images/data-health.jpg" alt="icono_registro" class="max-h-screen">
@@ -69,7 +74,7 @@ include ("../../config/databases.php");
                                     
                                     </div>
                             </div>
-                        <form action="../../models/SolicitudModelo.php" method="POST">
+                       
                             <div class="flex -mx-3">
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-xs font-semibold px-1">Tipo de Usuario</label>

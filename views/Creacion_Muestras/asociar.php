@@ -25,6 +25,11 @@ include ("../../config/databases.php");
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../includes/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://kit.fontawesome.com/6d0034a111.js" crossorigin="anonymous"></script>
+    
     <style>
         .gradient {
             background: linear-gradient(40deg, #0354eb 0%, #fcfdff 100%);
@@ -32,7 +37,7 @@ include ("../../config/databases.php");
     </style>
 </head>
 
-<body class="gradient min-h-screen pt-10 md:pt-4 pb-6 px-2 md:px-0 ">
+<body class="gradient min-h-screen pt-0 md:pt-0 pb-6 px-2 md:px-0 ">
 
 
 
@@ -57,13 +62,26 @@ include ("../../config/databases.php");
                 <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out"><button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
             </div>
 
-            <div class="w-full  px-5 md:px-10">
+            <div>
                 <div class="text-center">
-                    <h1 class="font-bold text-3xl text-black mt-5">Asociar Muestra Médica</h1>
+                    <h1 >Asociar Muestra Médica</h1>
                     <p class="text-md mt-3 font-bold">Completa la información para asociar items
                     </p>
                 </div>
+                <div class="flex justify-center mb-1">
+                        <div class="flex h-auto">                     
+                                                        <?php if (isset($_SESSION['message'])) { ?>
+                                                        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                                                        <?= $_SESSION['message'] ?>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                                        <?php unset($_SESSION['message']);
+                                                        } ?>
+                                              
+                        </div>
+                        
+                        </div>
             </div>
+            
             <div class="flex h-auto">
                 <div class="flex flex-col mx-auto my-4">
                     <label for="buscar" class="text-center text-2xl text-gray-600 font-semibold">Buscar
@@ -83,13 +101,13 @@ include ("../../config/databases.php");
                     <form class="" action="" method="POST">
                         <div class="flex -mx-3">
                             <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">Id Muestra</label>
+                                <label for="" class="text-xs font-semibold px-1">TIPO DE MUESTRA</label>
                                 <div class="flex">
                                     <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="fas fa-vial"></i>
                                     </div>
 
-                                    <input type="text" value="<?php echo $_SESSION['id_muestra'] ?>"
+                                    <input type="text" value="<?php echo $_SESSION['tipo_muestra'] ?>"
                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
 
                                 </div>
@@ -145,6 +163,18 @@ include ("../../config/databases.php");
 
                                     <input type="text" value="<?php echo $_SESSION['unidad_medida'] ?>"
                                      class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+                                </div>
+                            </div>
+                            <div class="w-1/2 px-3 mb-5">
+                                <label for="" class="text-xs font-semibold px-1">ESTADO</label>
+                                <div class="flex">
+                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                        <i class="fas fa-vial"></i>
+                                    </div>
+
+                                    <input type="text" value="<?php echo $_SESSION['estado'] ?>"
+                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
 
                                 </div>
                             </div>
@@ -262,10 +292,10 @@ include ("../../config/databases.php");
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/c658240a4e.js" crossorigin="anonymous"></script>
 
 
     <script>

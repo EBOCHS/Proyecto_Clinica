@@ -32,7 +32,7 @@ include ("../config/databases.php");
             $rows =mysqli_fetch_array($res);
             if($rows['COUNT(codigo_muestra)']==1){
                 //echo('codigo valido');
-                $query = "SELECT EX.NUM_EXPEDIENTE,SO.COD_SOLICITUD  ,MM.id_muestra ,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,MM.cantidad_muestra,MM.unidad_medida,MM.adjunto 
+                $query = "SELECT MM.tipo_muestra,MM.estado,MM.FECHA_CREACION,EX.NUM_EXPEDIENTE,SO.COD_SOLICITUD  ,MM.id_muestra ,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,MM.cantidad_muestra,MM.unidad_medida,MM.adjunto 
                 FROM  MUESTRAS_MEDICAS MM 
                 INNER JOIN SOLICITUD SO ON SO.ID_SOLICITUD = MM.id_solicitud 
                 INNER JOIN EXPEDIENTE  EX ON SO.ID_EXPEDIENTE = EX.ID_EXPEDIENTE 
@@ -40,6 +40,8 @@ include ("../config/databases.php");
                 ";
                 $res = mysqli_query($conn,$query);
                 $row = mysqli_fetch_array($res);
+                $_SESSION['estado']= $row['estado'];
+                $_SESSION['tipo_muestra']= $row['tipo_muestra'];
                 $_SESSION['id_muestra']= $row['id_muestra'];
                 $_SESSION['codigo_muestra']=$row['codigo_muestra'];
                 $_SESSION['tipo_muestra']=$row['tipo_muestra'];
@@ -50,7 +52,7 @@ include ("../config/databases.php");
                 $_SESSION['num_expediente']=$row['NUM_EXPEDIENTE'];
                 $_SESSION['COD_SOLICITUD']=$row['COD_SOLICITUD'];
                 $id_muestra=$row['id_muestra'];
-                $ITEMS = "SELECT id_items FROM ASOCIAR  WHERE id_muestra = '$id_muestra' AND ESTADO = 'asociado' ";
+                $ITEMS = "SELECT id_items FROM ASOCIAR  WHERE id_muestra = '$id_muestra' AND ESTADO='asociado' ";
                 $E_ITEMS=mysqli_query($conn,$ITEMS);
                 
                 $C_asociar->val_items($E_ITEMS);
@@ -59,7 +61,7 @@ include ("../config/databases.php");
                 //echo $_SESSION['num_muestra'];
                 //header("Location: ../views/Creacion_Muestras/asociar.php");
             }else {
-                echo ("falso");
+                
                 $_SESSION['message']='Codigo  de muestra no existe en la base de datos ';
                 $_SESSION['message_type']='danger';
                 header("Location: ../views/Creacion_Muestras/asociar.php");
@@ -192,7 +194,7 @@ include ("../config/databases.php");
         unset($_SESSION['num_expediente']);
         unset($_SESSION['COD_SOLICITUD']);
         unset($_SESSION['tipo_muestra']);
-        
+        unset($_SESSION['estado']);
         $_SESSION['message']='MUESTRA MEDICA ELIMINADO CON EXITO';
         $_SESSION['message_type']='success';
         header("Location: ../views/Creacion_Muestras/asociar.php");

@@ -46,6 +46,7 @@ include ("../../config/databases.php");
             <div class="circle"></div>
         </div>
     </div>
+    <form action="../../models/MuestrasModelo.php" method="POST">
 
     <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
         <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1200px">
@@ -58,9 +59,9 @@ include ("../../config/databases.php");
                 <div class="hidden zoom-picture md:block w-1/2 bg-white">
                     <!--BOTON DE RETORNO -->
                     <div class="px-3 py-3">
-                        <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out"
-                            href=""><i class="fas fa-chevron-circle-left"></i></a>
-                    </div>
+                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out" href="">
+                <button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
+            </div>
                     <img src="../images/data-health.jpg" alt="icono_registro" class="max-h-screen">
                 </div>
                 <div class="w-full md:w-1/2 py-0 px-5 md:px-10">
@@ -69,7 +70,7 @@ include ("../../config/databases.php");
                         <p class="text-md mt-2 font-bold">Completa la informacion para crear una Muestra</p>
                     </div>
                     <div>
-                    <form action="../../models/MuestrasModelo.php" method="POST">
+                    
                         <div class="flex -mx-3">
                                     <div class="w-full px-3 mb-3">
                                                         

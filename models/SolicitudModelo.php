@@ -114,7 +114,7 @@ if (isset($_POST['buscar_dpi'])) {
         header("Location: ../views/solicitud/solicitud.php");
     }
 }
-if(isset($_POST['cancelar'])){
+if(isset($_POST['cancelar'])|| isset($_POST['salir'])){
     unset($_SESSION['message']);
     if(isset($_SESSION['usuario'])){
         header("Location: ../views/inicio/menu_interno.php");

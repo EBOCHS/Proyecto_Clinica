@@ -58,11 +58,11 @@
                             //echo ("id: ".$id_exp." numero expediente: ".$num_exp);
 
                             //insetando muestra medica a la base de datos 
-                            $insert = "INSERT  into MUESTRAS_MEDICAS (codigo_muestra,tipo_muestra,presentacion_muestra,cantidad_muestra,unidad_medida,adjunto,id_solicitud,estado)
-                             VALUES ('$COD_MUESTRA','$Tmuestra1','$presentacion1','$cantidad1','$Umedida1','$adjunto','$id_COD','creado')";
+                            $insert = "INSERT  into MUESTRAS_MEDICAS (codigo_muestra,tipo_muestra,presentacion_muestra,cantidad_muestra,unidad_medida,adjunto,id_solicitud,estado,FECHA_CREACION,FECHA_FINAL)
+                             VALUES ('$COD_MUESTRA','$Tmuestra1','$presentacion1','$cantidad1','$Umedida1','$adjunto','$id_COD','creado',sysdate(),sysdate())";
                             $respons = mysqli_query($conn,$insert);
                             if(!$respons){
-                                die (die(mysqli_error($conn)));
+                                die (mysqli_error($conn));
                             }
                             
                             $_SESSION['message']= "Muestra medica creada con exito\n
@@ -100,7 +100,7 @@
 
     }
 
-    if(isset($_POST['cancelar'])){
+    if(isset($_POST['cancelar'])||isset($_POST['salir']) ){
         unset($_SESSION['message']);
         if(isset($_SESSION['usuario'])){
             header("Location: ../views/inicio/menu_interno.php");

@@ -48,11 +48,16 @@ include ("../../config/databases.php");
             <div class="circle"></div>
         </div>
     </div>
-
+    <form action="../../models/ExpedienteModel.php" method="POST">   
     <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
         <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
             <div class="md:flex w-full">
-                <div class="hidden zoom-picture md:block w-1/2 bg-white">
+             
+                <div class="hidden  md:block w-1/2 bg-white">
+                <div class="px-3 py-3">
+                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out" href="">
+                <button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
+            </div>
                     <img src="../images/data-health.jpg" alt="icono_registro" class="max-h-screen">
                 </div>
                 <div class="w-full md:w-1/2 py-2 px-5 md:px-10">
@@ -162,12 +167,12 @@ include ("../../config/databases.php");
                                         </div>
                                         <div class="mx-4">
                                             <div class="flex items-center">
-                                                <input type="radio" name="sexo" value="Masculino" id="Masculino"
+                                                <input type="radio" name="sexo" value="1" id="Masculino"
                                                     checked class="mr-2">
                                                 <label for="Masculino">Masculino</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input type="radio" name="sexo" value="Femenino" id="Femenino"
+                                                <input type="radio" name="sexo" value="2" id="Femenino"
                                                     class="mr-2">
                                                 <label for="Femenino">Femenino</label>
                                             </div>
