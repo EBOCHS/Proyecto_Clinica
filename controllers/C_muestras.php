@@ -9,13 +9,13 @@ class validar_muestra{
                     return "CULTIVO";
                     break;
                 case 2 :
-                    return "PLAQUETAS"; 
+                    return "Heces"; 
                     break;
                 case 3:
-                    return "Heces";
+                    return "Plaquetas";
                     break;
                 case 4:
-                    return "ORINA";
+                    return "Orina";
                     break;
            }
        }else{

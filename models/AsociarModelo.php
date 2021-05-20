@@ -56,6 +56,17 @@ if (isset($_POST['buscar'])) {
             $E_ITEMS = mysqli_query($conn, $ITEMS);
 
             $C_asociar->val_items($E_ITEMS);
+            $codigo = "Codigo de muestra: " .$num_muestra. " Codigo de Expediente: " .$_SESSION['num_expediente'];
+                $QR = $C_asociar->generar_QR($codigo);
+
+                $fecha = "SELECT CURDATE() FROM DUAL";
+                $TIME = mysqli_query($conn, $fecha);
+                $rows = mysqli_fetch_array($TIME);
+                $fecha = $rows['CURDATE()'];
+                $cod_etiqueta = $C_asociar->get_cod_etiqueta($fecha);
+                $_SESSION['cod_et'] = $cod_etiqueta;
+                $_SESSION['QR'] = $QR;
+                header("Location: ../views/Creacion_Muestras/asociar.php");
 
             //$_SESSION['num_muestra']=$num_muestra;
             //echo $_SESSION['num_muestra'];
@@ -127,7 +138,7 @@ if (isset($_POST['Desasociar'])) {
     header("Location: ../views/Creacion_Muestras/asociar.php");
 }
 //codigo para generar etiqueta de la muestra medica 
-if (isset($_POST['buscar'])) {
+/*if (isset($_POST['buscar'])) {
     //echo "hola";        
     $C_asociar = new asociar;
     $id = $_SESSION['id_muestra'];
@@ -146,7 +157,7 @@ if (isset($_POST['buscar'])) {
     $_SESSION['cod_et'] = $cod_etiqueta;
     $_SESSION['QR'] = $QR;
     header("Location: ../views/Creacion_Muestras/asociar.php");
-}
+}*/
 
 //
 
@@ -154,7 +165,7 @@ if (isset($_POST['imprimir'])) {
 
     $cod_muestra = $_SESSION['codigo_muestra'];
     $cod_exp = $_SESSION['num_expediente'];
-    echo $cod_muestra . $cod_exp;
+    //echo $cod_muestra . $cod_exp;
     $qr = $_SESSION['QR'];
     $cod_etiqueta =  $_SESSION['cod_et'];
     $cod_solicitud = $_SESSION['COD_SOLICITUD'];

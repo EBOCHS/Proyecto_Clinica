@@ -146,7 +146,7 @@ include ("../../config/databases.php");
                                     </li>
                                     <li
                                         class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">
-                                        <a class="p-2" href="../Creacion_Muestras/asociar.php">Consulta de Muestras</a>
+                                        <a class="p-2" href="../consulta_muestras/consulta_muestras.php">Consulta de Muestras</a>
                                     </li>
                                 </ul>
                             </div>
