@@ -2,14 +2,23 @@ $("#search_expediente").hide();
 $("#datos_expediente").hide();
 
 function mostrar() {
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     if ($("#search").text() === "¿?") {
         $("#search_expediente").show();
     }
 }
 
 function ocultar() {
+<<<<<<< Updated upstream
     let text = "";
     if ($("#exp_cancelar").text() === "X") {
+=======
+
+    if ($("#exp_cancelar").text() === "Cancelar") {
+>>>>>>> Stashed changes
         $("#search_expediente").hide();
     }
 }

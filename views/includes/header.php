@@ -14,62 +14,61 @@
 </head>
 
 <body>
-<?php require ("../../config/databases.php");
-?>
-    <div class="">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">CLINICA LA BENDICION</a>
-            
-            <div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
-                    <div class="navbar-nav">
-                    <div class="btn-group dropleft">
-                        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <img src="../images/user.png" width="50" height="50"><?php echo( $_SESSION['usuario']) ?> 
-                        </button>
-                        <div class="dropdown-menu">
-                        <a class="dropdown-item" href="../../models/LoginModelo.php">Iniciar sesion</a>
-                        <form action="../../models/LoginModelo.php" method="POST"; >
-                        <button type="submit" class="btn "  name ="cerrar">Cerrar Sesion</button>
-                        </form>        
-                        </div>
-                    </div>
-                    
-                    <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Crear Expediente
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">Tipo de usuario</a>
-                            <form action="../../models/LoginModelo.php" method="POST"; >
-                        <button type="submit" class="btn "  name ="Interno">Interno</button>
-                        </form>  
-                                <a class="dropdown-item" href="../Expedientes/expedientes.php">externo</a>
-                            </div>
-                        </li>
-            
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                MANTENIMIENTO DE SOLICITUDES
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="../solicitud/solicitud.php">MANTENIMIENTO DE SOLICITUDES </a>
-                                <a class="dropdown-item" href="../solicitud/solicitud.php">CREAR SOLICITUD</a>
-                                <a class="dropdown-item" href="#">Buscar SOLICITUD</a>
-                                <form action="../../models/MuestrasModelo.php" method="POST"; >
-                                    <button type="submit" class="btn "  name ="Crear_muestra">Crear muestra medica</button>
-                                </form> 
-                            </div>
-                        </li>
+    <?php require("../../config/databases.php");
+    ?>
 
-                        <a class="nav-item nav-link disabled" href="#">
-                        </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">CLINICA LA BENDICION</a>
+
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="navbar-nav">
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../images/user.png" width="50" height="50"><?php echo ($_SESSION['usuario']) ?>
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="../../models/LoginModelo.php">Iniciar sesion</a>
+                        <form action="../../models/LoginModelo.php" method="POST" ;>
+                            <button type="submit" class="btn " name="cerrar">Cerrar Sesion</button>
+                        </form>
                     </div>
                 </div>
-            </div>
 
-        </nav>
-    </div>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Crear Expediente
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">Tipo de usuario</a>
+                        <form action="../../models/LoginModelo.php" method="POST" ;>
+                            <button type="submit" class="btn " name="Interno">Interno</button>
+                        </form>
+                        <a class="dropdown-item" href="../Expedientes/expedientes.php">externo</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        MANTENIMIENTO DE SOLICITUDES
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="../solicitud/solicitud.php">MANTENIMIENTO DE SOLICITUDES </a>
+                        <a class="dropdown-item" href="../solicitud/solicitud.php">CREAR SOLICITUD</a>
+                        <a class="dropdown-item" href="#">Buscar SOLICITUD</a>
+                        <form action="../../models/MuestrasModelo.php" method="POST" ;>
+                            <button type="submit" class="btn " name="Crear_muestra">Crear muestra medica</button>
+                        </form>
+                    </div>
+                </li>
+
+                <a class="nav-item nav-link disabled" href="#">
+                </a>
+            </div>
+        </div>
+        </div>
+
+    </nav>

@@ -36,13 +36,13 @@ if (isset($_POST['Crear_Solicitud'])) {
 
                             $peticion = "SELECT COD_SOLICITUD from SOLICITUD order by COD_SOLICITUD desc limit 1";
                             $res = mysqli_query($conn, $peticion);
-                            
+
                             $codgio = $Model_solicitud->get_numero_solicitud($res);
-                            echo($codgio);
-                            
+                            echo ($codgio);
+
                             $num_solicitud = $tipo_usuario . '-' . $fecha . '-' . $codgio;
 
-                            
+
                             $query_in = "INSERT  INTO SOLICITUD (TIPO_SOLICITANTE,TIPO_SOLICITUD,DESCRIPCION,COD_SOLICITUD,ID_EXPEDIENTE,NUM_FACTURA,FECHA_SOLICITUD_FINAL,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD) 
                             VALUES('$tipo_usuario','$tipo_solicitud','$descripcion','$num_solicitud','$id_exp',null,null,sysdate(),'creado')";
                             $resultado = mysqli_query($conn, $query_in);
@@ -114,6 +114,7 @@ if (isset($_POST['buscar_dpi'])) {
         header("Location: ../views/solicitud/solicitud.php");
     }
 }
+<<<<<<< Updated upstream
 if(isset($_POST['cancelar'])|| isset($_POST['salir'])){
     unset($_SESSION['message']);
     if(isset($_SESSION['usuario'])){
@@ -122,8 +123,13 @@ if(isset($_POST['cancelar'])|| isset($_POST['salir'])){
         header("Location: ../views/inicio/index.php");
     }
     
+=======
+if (isset($_POST['salir'])) {
+    unset($_SESSION['message']);
+    header("Location: ../views/solicitud/solicitud.php");
+>>>>>>> Stashed changes
 }
-if(isset($_POST['Inicio'])){
+if (isset($_POST['Inicio'])) {
     header("Location: ../views/inicio/index.php");
-    usert( $_SESSION['message']);
+    unset($_SESSION['message']);
 }
