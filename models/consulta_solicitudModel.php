@@ -14,14 +14,14 @@ if (isset($_POST['consultar_solicitud'])) {
     switch ($filtro) {
         case "":
             $_SESSION['message'] = 'Seleccione un filtro de busqueda';
-            $_SESSION['message_type'] = 'danger';
+            $_SESSION['message_type'] = 'red';
             header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             break;
         case "COD_SOLICITUD":
 
             $validar_dato = $Model_consulta->v_Codigo_solicitud($dato);
             if ($validar_dato) {
-            //echo $filtro." ".$dato;
+                //echo $filtro." ".$dato;
                 //$_SESSION['var1'] = $filtro;
                 //$_SESSION['datos'] = $dato;
                 //echo $_SESSION['var1']." ".$_SESSION['datos'];
@@ -35,27 +35,27 @@ if (isset($_POST['consultar_solicitud'])) {
                  INNER JOIN ASOCIAR A ON A.id_muestra = MM.id_muestra
                  WHERE $filtro = '$dato' AND ESTADO_SOLICITUD='creado'";
 
-            $result=mysqli_query($conn,$query);
+                $result = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_array($result)) {
-                $_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];
-                $_SESSION['NUM_EXPEDIENTE'] =$row['NUM_EXPEDIENTE']; 
-                $_SESSION['NIT'] =$row['NIT']; 
-                $_SESSION['TIPO_SOLICITUD'] =$row['TIPO_SOLICITUD']; 
-                $_SESSION['NOMBRE'] =$row['NOMBRE']; 
-                $_SESSION['ESTADO_SOLICITUD'] =$row['ESTADO_SOLICITUD']; 
-                $_SESSION['FECHA_SOLICITUD_INICIAL'] =$row['FECHA_SOLICITUD_INICIAL']; 
-                $_SESSION['cantidad_muestra'] =$row['cantidad_muestra'];
-                $_SESSION['cant_items'] =$row['COUNT(A.id_items)']; 
-                $_SESSION['fecha_f'] =$row['fecha_f']; 
-                //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
+                while ($row = mysqli_fetch_array($result)) {
+                    $_SESSION['COD_SOLICITUD'] = $row['COD_SOLICITUD'];
+                    $_SESSION['NUM_EXPEDIENTE'] = $row['NUM_EXPEDIENTE'];
+                    $_SESSION['NIT'] = $row['NIT'];
+                    $_SESSION['TIPO_SOLICITUD'] = $row['TIPO_SOLICITUD'];
+                    $_SESSION['NOMBRE'] = $row['NOMBRE'];
+                    $_SESSION['ESTADO_SOLICITUD'] = $row['ESTADO_SOLICITUD'];
+                    $_SESSION['FECHA_SOLICITUD_INICIAL'] = $row['FECHA_SOLICITUD_INICIAL'];
+                    $_SESSION['cantidad_muestra'] = $row['cantidad_muestra'];
+                    $_SESSION['cant_items'] = $row['COUNT(A.id_items)'];
+                    $_SESSION['fecha_f'] = $row['fecha_f'];
+                    //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
 
-            }
-              header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
-               //echo $_SESSION['COD_SOLICITUD']." ".$_SESSION['NUM_EXPEDIENTE'];
+                }
+                header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
+                //echo $_SESSION['COD_SOLICITUD']." ".$_SESSION['NUM_EXPEDIENTE'];
             } else {
                 $_SESSION['message'] = 'Código de solicitud invalido, tiene que cumplir con la estrucutra AB-00000000-00000';
-                $_SESSION['message_type'] = 'danger';
+                $_SESSION['message_type'] = 'red';
                 header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             }
             break;
@@ -73,26 +73,26 @@ if (isset($_POST['consultar_solicitud'])) {
                  INNER JOIN ASOCIAR A ON A.id_muestra = MM.id_muestra
                  WHERE $filtro = '$dato' ";
 
-            $result=mysqli_query($conn,$query);
+                $result = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_array($result)) {
-                $_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];
-                $_SESSION['NUM_EXPEDIENTE'] =$row['NUM_EXPEDIENTE']; 
-                $_SESSION['NIT'] =$row['NIT']; 
-                $_SESSION['TIPO_SOLICITUD'] =$row['TIPO_SOLICITUD']; 
-                $_SESSION['NOMBRE'] =$row['NOMBRE']; 
-                $_SESSION['ESTADO_SOLICITUD'] =$row['ESTADO_SOLICITUD']; 
-                $_SESSION['FECHA_SOLICITUD_INICIAL'] =$row['FECHA_SOLICITUD_INICIAL']; 
-                $_SESSION['cantidad_muestra'] =$row['cantidad_muestra'];
-                $_SESSION['cant_items'] =$row['COUNT(A.id_items)']; 
-                $_SESSION['fecha_f'] =$row['fecha_f']; 
-                //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
+                while ($row = mysqli_fetch_array($result)) {
+                    $_SESSION['COD_SOLICITUD'] = $row['COD_SOLICITUD'];
+                    $_SESSION['NUM_EXPEDIENTE'] = $row['NUM_EXPEDIENTE'];
+                    $_SESSION['NIT'] = $row['NIT'];
+                    $_SESSION['TIPO_SOLICITUD'] = $row['TIPO_SOLICITUD'];
+                    $_SESSION['NOMBRE'] = $row['NOMBRE'];
+                    $_SESSION['ESTADO_SOLICITUD'] = $row['ESTADO_SOLICITUD'];
+                    $_SESSION['FECHA_SOLICITUD_INICIAL'] = $row['FECHA_SOLICITUD_INICIAL'];
+                    $_SESSION['cantidad_muestra'] = $row['cantidad_muestra'];
+                    $_SESSION['cant_items'] = $row['COUNT(A.id_items)'];
+                    $_SESSION['fecha_f'] = $row['fecha_f'];
+                    //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
 
-            }
-              header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
-                } else {
+                }
+                header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
+            } else {
                 $_SESSION['message'] = 'Número de Expediente invalido, debe que cumplir con la estrucutra 0000-00-00-00-0000000000' . $dato;
-                $_SESSION['message_type'] = 'danger';
+                $_SESSION['message_type'] = 'red';
                 header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             }
             break;
@@ -109,28 +109,28 @@ if (isset($_POST['consultar_solicitud'])) {
                  INNER JOIN ASOCIAR A ON A.id_muestra = MM.id_muestra
                  WHERE $filtro = '$dato' ";
 
-            $result=mysqli_query($conn,$query);
+                $result = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_array($result)) {
-                $_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];
-                $_SESSION['NUM_EXPEDIENTE'] =$row['NUM_EXPEDIENTE']; 
-                $_SESSION['NIT'] =$row['NIT']; 
-                $_SESSION['TIPO_SOLICITUD'] =$row['TIPO_SOLICITUD']; 
-                $_SESSION['NOMBRE'] =$row['NOMBRE']; 
-                $_SESSION['ESTADO_SOLICITUD'] =$row['ESTADO_SOLICITUD']; 
-                $_SESSION['FECHA_SOLICITUD_INICIAL'] =$row['FECHA_SOLICITUD_INICIAL']; 
-                $_SESSION['cantidad_muestra'] =$row['cantidad_muestra'];
-                $_SESSION['cant_items'] =$row['COUNT(A.id_items)']; 
-                $_SESSION['fecha_f'] =$row['fecha_f']; 
-                //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
+                while ($row = mysqli_fetch_array($result)) {
+                    $_SESSION['COD_SOLICITUD'] = $row['COD_SOLICITUD'];
+                    $_SESSION['NUM_EXPEDIENTE'] = $row['NUM_EXPEDIENTE'];
+                    $_SESSION['NIT'] = $row['NIT'];
+                    $_SESSION['TIPO_SOLICITUD'] = $row['TIPO_SOLICITUD'];
+                    $_SESSION['NOMBRE'] = $row['NOMBRE'];
+                    $_SESSION['ESTADO_SOLICITUD'] = $row['ESTADO_SOLICITUD'];
+                    $_SESSION['FECHA_SOLICITUD_INICIAL'] = $row['FECHA_SOLICITUD_INICIAL'];
+                    $_SESSION['cantidad_muestra'] = $row['cantidad_muestra'];
+                    $_SESSION['cant_items'] = $row['COUNT(A.id_items)'];
+                    $_SESSION['fecha_f'] = $row['fecha_f'];
+                    //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
 
                 }
-              header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
+                header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             } else {
-                echo "NIT inválido, sólo se permite el ingreso de 2 a 11 caracteres alfanumérico";
-                    //$_SESSION['message'] = 'NIT inválido, sólo se permite el ingreso de 2 a 11 caracteres alfanumérico';
-                //$_SESSION['message_type'] = 'danger';
-                //header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
+                //echo "NIT inválido, sólo se permite el ingreso de 2 a 11 caracteres alfanumérico";
+                $_SESSION['message'] = 'NIT inválido, sólo se permite el ingreso de 2 a 11 caracteres alfanumérico';
+                $_SESSION['message_type'] = 'red';
+                header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             }
             break;
         case "ESTADO_SOLICITUD":
@@ -147,24 +147,24 @@ if (isset($_POST['consultar_solicitud'])) {
                  INNER JOIN ASOCIAR A ON A.id_muestra = MM.id_muestra
                  WHERE $filtro = '$dato' ";
 
-            $result=mysqli_query($conn,$query);
+                $result = mysqli_query($conn, $query);
 
-            while ($row = mysqli_fetch_array($result)) {
-                $_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];
-                $_SESSION['NUM_EXPEDIENTE'] =$row['NUM_EXPEDIENTE']; 
-                $_SESSION['NIT'] =$row['NIT']; 
-                $_SESSION['TIPO_SOLICITUD'] =$row['TIPO_SOLICITUD']; 
-                $_SESSION['NOMBRE'] =$row['NOMBRE']; 
-                $_SESSION['ESTADO_SOLICITUD'] =$row['ESTADO_SOLICITUD']; 
-                $_SESSION['FECHA_SOLICITUD_INICIAL'] =$row['FECHA_SOLICITUD_INICIAL']; 
-                $_SESSION['cantidad_muestra'] =$row['cantidad_muestra'];
-                $_SESSION['cant_items'] =$row['COUNT(A.id_items)']; 
-                $_SESSION['fecha_f'] =$row['fecha_f']; 
-                //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
+                while ($row = mysqli_fetch_array($result)) {
+                    $_SESSION['COD_SOLICITUD'] = $row['COD_SOLICITUD'];
+                    $_SESSION['NUM_EXPEDIENTE'] = $row['NUM_EXPEDIENTE'];
+                    $_SESSION['NIT'] = $row['NIT'];
+                    $_SESSION['TIPO_SOLICITUD'] = $row['TIPO_SOLICITUD'];
+                    $_SESSION['NOMBRE'] = $row['NOMBRE'];
+                    $_SESSION['ESTADO_SOLICITUD'] = $row['ESTADO_SOLICITUD'];
+                    $_SESSION['FECHA_SOLICITUD_INICIAL'] = $row['FECHA_SOLICITUD_INICIAL'];
+                    $_SESSION['cantidad_muestra'] = $row['cantidad_muestra'];
+                    $_SESSION['cant_items'] = $row['COUNT(A.id_items)'];
+                    $_SESSION['fecha_f'] = $row['fecha_f'];
+                    //$_SESSION['COD_SOLICITUD'] =$row['COD_SOLICITUD'];   
 
-            }
-              header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
-                } else {
+                }
+                header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
+            } else {
                 $_SESSION['message'] = 'Estado de Solicitud invalida, solo se permite 
                 - creado
                 - enviado 
@@ -172,28 +172,37 @@ if (isset($_POST['consultar_solicitud'])) {
                 - analisis 
                 - espera 
                 ';
-                $_SESSION['message_type'] = 'danger';
+                $_SESSION['message_type'] = 'red';
                 header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
             }
             break;
     }
 }
-if (isset($_POST['imprimir'])){
-        
+if (isset($_POST['imprimir'])) {
+
     /*$cod_muestra = $_SESSION['codigo_muestra'];
     $cod_exp = $_SESSION['num_expediente'];
     $qr = $_SESSION['QR'];
     $cod_etiqueta=  $_SESSION['cod_et'];
     $cod_solicitud=$_SESSION['COD_SOLICITUD'];*/
     $C_imprimir = new validar_consulta;
-    $C_imprimir->imprimir_consulta($_SESSION['COD_SOLICITUD'],$_SESSION['NUM_EXPEDIENTE'],$_SESSION['NIT'],$_SESSION['TIPO_SOLICITUD'],$_SESSION['ESTADO_SOLICITUD']
-    , $_SESSION['NOMBRE'],$_SESSION['FECHA_SOLICITUD_INICIAL'], $_SESSION['fecha_f'] ,$_SESSION['cantidad_muestra'],$_SESSION['cant_items']);
-
+    $C_imprimir->imprimir_consulta(
+        $_SESSION['COD_SOLICITUD'],
+        $_SESSION['NUM_EXPEDIENTE'],
+        $_SESSION['NIT'],
+        $_SESSION['TIPO_SOLICITUD'],
+        $_SESSION['ESTADO_SOLICITUD'],
+        $_SESSION['NOMBRE'],
+        $_SESSION['FECHA_SOLICITUD_INICIAL'],
+        $_SESSION['fecha_f'],
+        $_SESSION['cantidad_muestra'],
+        $_SESSION['cant_items']
+    );
 }
-if(isset($_POST['excel'])){
+if (isset($_POST['excel'])) {
     $C_excel = new validar_consulta;
     $cod_solicitud = $_SESSION['COD_SOLICITUD'];
-    $C_excel -> crear_excel($cod_solicitud); 
+    $C_excel->crear_excel($cod_solicitud);
 }
 
 if (isset($_POST['crear_mm'])) {
@@ -211,16 +220,16 @@ if (isset($_POST['crear_s'])) {
 
 
 if (isset($_POST['limpiar'])) {
-                unset ($_SESSION['COD_SOLICITUD']);
-                unset($_SESSION['NUM_EXPEDIENTE']); 
-                unset($_SESSION['NIT']); 
-                unset($_SESSION['TIPO_SOLICITUD']);
-                unset($_SESSION['NOMBRE']);
-                unset($_SESSION['ESTADO_SOLICITUD']);
-                unset($_SESSION['FECHA_SOLICITUD_INICIAL']);
-                unset($_SESSION['cantidad_muestra']);
-                unset($_SESSION['cant_items']); 
-                unset($_SESSION['fecha_f']);
+    unset($_SESSION['COD_SOLICITUD']);
+    unset($_SESSION['NUM_EXPEDIENTE']);
+    unset($_SESSION['NIT']);
+    unset($_SESSION['TIPO_SOLICITUD']);
+    unset($_SESSION['NOMBRE']);
+    unset($_SESSION['ESTADO_SOLICITUD']);
+    unset($_SESSION['FECHA_SOLICITUD_INICIAL']);
+    unset($_SESSION['cantidad_muestra']);
+    unset($_SESSION['cant_items']);
+    unset($_SESSION['fecha_f']);
 
     header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
 }
@@ -231,31 +240,28 @@ if (isset($_POST['eliminar'])) {
     $result = mysqli_query($conn, $query);
     if ($result) {
         header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
-        unset ($_SESSION['COD_SOLICITUD']);
-                unset($_SESSION['NUM_EXPEDIENTE']); 
-                unset($_SESSION['NIT']); 
-                unset($_SESSION['TIPO_SOLICITUD']);
-                unset($_SESSION['NOMBRE']);
-                unset($_SESSION['ESTADO_SOLICITUD']);
-                unset($_SESSION['FECHA_SOLICITUD_INICIAL']);
-                unset($_SESSION['cantidad_muestra']);
-                unset($_SESSION['cant_items']); 
-                unset($_SESSION['fecha_f']);
+        unset($_SESSION['COD_SOLICITUD']);
+        unset($_SESSION['NUM_EXPEDIENTE']);
+        unset($_SESSION['NIT']);
+        unset($_SESSION['TIPO_SOLICITUD']);
+        unset($_SESSION['NOMBRE']);
+        unset($_SESSION['ESTADO_SOLICITUD']);
+        unset($_SESSION['FECHA_SOLICITUD_INICIAL']);
+        unset($_SESSION['cantidad_muestra']);
+        unset($_SESSION['cant_items']);
+        unset($_SESSION['fecha_f']);
     } else {
 
         $_SESSION['message'] = 'No se ha podido eliminar';
-        $_SESSION['message_type'] = 'danger';
+        $_SESSION['message_type'] = 'red';
         header("Location: ../views/Consulta_Solicitudes/consulta_solicitud.php");
     }
-
-    
 }
-if(isset($_POST['salir'])){
+if (isset($_POST['salir'])) {
     unset($_SESSION['message']);
-    if(isset($_SESSION['usuario'])){
+    if (isset($_SESSION['usuario'])) {
         header("Location: ../views/inicio/menu_interno.php");
-    }else{
+    } else {
         header("Location: ../views/inicio/index.php");
     }
-    
 }

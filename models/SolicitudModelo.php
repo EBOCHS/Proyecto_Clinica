@@ -14,7 +14,7 @@ if (isset($_POST['Crear_Solicitud'])) {
     $val_expediente = $Model_solicitud->val_expediente($N_expediente);
     $fecha = $Model_solicitud->fecha();
 
-   if ($val_tipo_usr == true) {
+    if ($val_tipo_usr == true) {
 
 
         if ($val_tipo_solicitud == true) {
@@ -114,20 +114,13 @@ if (isset($_POST['buscar_dpi'])) {
         header("Location: ../views/solicitud/solicitud.php");
     }
 }
-<<<<<<< Updated upstream
-if(isset($_POST['cancelar'])|| isset($_POST['salir'])){
+if (isset($_POST['cancelar']) || isset($_POST['salir'])) {
     unset($_SESSION['message']);
-    if(isset($_SESSION['usuario'])){
+    if (isset($_SESSION['usuario'])) {
         header("Location: ../views/inicio/menu_interno.php");
-    }else{
+    } else {
         header("Location: ../views/inicio/index.php");
     }
-    
-=======
-if (isset($_POST['salir'])) {
-    unset($_SESSION['message']);
-    header("Location: ../views/solicitud/solicitud.php");
->>>>>>> Stashed changes
 }
 if (isset($_POST['Inicio'])) {
     header("Location: ../views/inicio/index.php");

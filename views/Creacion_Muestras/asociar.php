@@ -1,5 +1,5 @@
 <?php
-include ("../../config/databases.php");
+include("../../config/databases.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,11 +25,13 @@ include ("../../config/databases.php");
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <!--
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+-->
     <link rel="stylesheet" href="../includes/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <script src="https://kit.fontawesome.com/6d0034a111.js" crossorigin="anonymous"></script>
-    
+
     <style>
         .gradient {
             background: linear-gradient(40deg, #0354eb 0%, #fcfdff 100%);
@@ -58,195 +60,190 @@ include ("../../config/databases.php");
 
             <!--BOTON DE RETORNO -->
             <form action="../../models/AsociarModelo.php" method="POST">
-            <div class="px-3 py-3">
-                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out"><button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
-            </div>
-
-            <div>
-                <div class="text-center">
-                    <h1 >Asociar Muestra Médica</h1>
-                    <p class="text-md mt-3 font-bold">Completa la información para asociar items
-                    </p>
+                <div class="px-3 py-3">
+                    <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out"><button name="salir"><i class="fas fa-chevron-circle-left"></button></i></a>
                 </div>
-                <div class="flex justify-center mb-1">
-                        <div class="flex h-auto">                     
-                                                        <?php if (isset($_SESSION['message'])) { ?>
-                                                        <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
-                                                        <?= $_SESSION['message'] ?>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                                                        <?php unset($_SESSION['message']);
-                                                        } ?>
-                                              
-                        </div>
-                        
-                        </div>
-            </div>
-            
-            <div class="flex h-auto">
-                <div class="flex flex-col mx-auto my-4">
-                    <label for="buscar" class="text-center text-2xl text-gray-600 font-semibold">Buscar
-                        Muestra Medica</label>
-                    
-                        <div class="flex border border-gray-200 overflow-hidden px-2 rounded-xl shadow-lg items-center">
-                            <input type="text" name="cod_nuestra" id="buscar" class="py-2 px-4 bg-gray-100 border border-transparent focus:outline-none focus:ring-0 focus:ring-gray-100 focus:border-transparent">
-                            <button type="submit" class="mx-2" name="buscar"><i class="fas fa-search text-xl"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
 
-            <!--formulario para mostrar datos -->
-            <div class="flex justify-center my-14">
-                <div class="flex">
-                    <form class="" action="" method="POST">
-                        <div class="flex -mx-3">
-                            <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">TIPO DE MUESTRA</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="fas fa-vial"></i>
+                <div>
+                    <div class="text-center font-bold">
+                        <h1>Asociar Muestra Médica</h1>
+                        <p class="text-md mt-3 font-bold">Completa la información para asociar items
+                        </p>
+                    </div>
+                    <div class="flex justify-center mb-1">
+                        <div class="flex h-auto">
+                            <?php if (isset($_SESSION['message'])) { ?>
+                                <div class="alert alert-<?= $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+                                    <div class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-<?= $_SESSION['message_type'] ?>-600 text-base font-medium text-white hover:bg-<?= $_SESSION['message_type'] ?>-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
+                                        <?= $_SESSION['message'] ?>
                                     </div>
-
-                                    <input type="text" value="<?php echo $_SESSION['tipo_muestra'] ?>"
-                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"><i class="far fa-times-circle"></i></button>
+                                <?php unset($_SESSION['message']);
+                            } ?>
 
                                 </div>
-                            </div>
-                            <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">Código de Muestra</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="fas fa-vial"></i>
-                                    </div>
-
-                                    <input type="text" value="<?php echo $_SESSION['codigo_muestra']?>"
-                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex -mx-3">
-                            <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">Presentación de la Muestra</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="fas fa-vial"></i>
-                                    </div>
-
-                                    <input type="text" value="<?php echo $_SESSION['presentacion_muestra'] ?>" 
-                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-
-                                </div>
-                            </div>
-                            <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">Cantidad de Muestra</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="fas fa-vial"></i>
-                                    </div>
-
-                                    <input type="text" value="<?php echo $_SESSION['cantidad_muestra'] ?>"
-                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex -mx-3">
-                            <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">Unidad de Medida</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="fas fa-vials"></i>
-                                    </div>
-
-                                    <input type="text" value="<?php echo $_SESSION['unidad_medida'] ?>"
-                                     class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-
-                                </div>
-                            </div>
-                            <div class="w-1/2 px-3 mb-5">
-                                <label for="" class="text-xs font-semibold px-1">ESTADO</label>
-                                <div class="flex">
-                                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                                        <i class="fas fa-vial"></i>
-                                    </div>
-
-                                    <input type="text" value="<?php echo $_SESSION['estado'] ?>"
-                                    class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
-
-                                </div>
-                            </div>
-
-                        </div>
-                    </form>
-                    <div class=" w-1/2 px-3 mb-5">
-                        <label for="" class="text-xs font-semibold px-1">Opciones</label>
-                        <div class="flex">
-                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-
-                            </div>
-
-                            <form action="../../models/AsociarModelo.php" method="POST">
-
-
-                                <legend>ASIGNAR ITEMS: </legend>
-                                <input type="checkbox" name="1" <?php echo $_SESSION['item1A'];?> >ORINA<br>
-                                <input type="checkbox" name="2" <?php echo $_SESSION['item2A'];?> >HECES<br>
-                                <input type="checkbox" name="3"  <?php echo $_SESSION['item3A'];?>>PLAQUETAS<br>
-                                <input type="checkbox" name="4"  <?php echo $_SESSION['item4A'];?> >DIABETES<br>
-                                <input type="hidden" name="id" value="<?php echo $_SESSION['id_muestra'];?>">
-                                <br>
-                                <input type="submit" name="asociar" value="  Asociar  " class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-1 py-1 font-semibold">
-
-
-                            </form>
-                            <form class="px-20" action="../../models/AsociarModelo.php" method="POST">
-
-
-                                <legend>DESASOCIAR ITEMS </legend>
-                                <input type="checkbox" name="1" <?php echo  $_SESSION['item1B']; ?>>ORINA<br>
-                                <input type="checkbox" name="2"  <?php echo  $_SESSION['item2B']; ?>>HECES<br>
-                                <input type="checkbox" name="3"  <?php echo  $_SESSION['item3B']; ?>>PLAQUETAS<br>
-                                <input type="checkbox" name="4"   <?php echo  $_SESSION['item4B']; ?>>DIABETES<br>
-                                <input type="hidden" name="id" value="<?php echo $_SESSION['id_muestra'];?>">
-                                <br>
-                                <input type="submit" name="Desasociar" value="Desasociar" class="block w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-1 py-1 font-semibold">
-
-
-                            </form>
                         </div>
                     </div>
-                    <div class="">
-                        <div class="">
-                            <label for="" class="text-xs font-semibold ">Generar</label>
-                            <div class="flex flex-col justify-center">
-                            <form action="../../models/AsociarModelo.php" method="POST">
-                                <div class="mx-auto my-2">
 
-                                     <a id="ayuda" class="text-4xl cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out">
-                                     <i class="fas fa-tag"></i></a>
+                    <div class="flex h-auto">
+                        <div class="flex flex-col mx-auto my-4">
+                            <label for="buscar" class="text-center text-2xl text-gray-600 font-semibold">Buscar
+                                Muestra Medica</label>
 
-                                </div>
-                                <div class="mx-auto my-2">
-                                    <a class="text-4xl cursor-pointer hover:text-green-500 transition duration-300 ease-in-out">
-                                    <button name="excel"><i class="fas fa-file-excel"></button></i></a>
-                                </div>
-
-                                <label for="" class="text-xs font-semibold my-2 ">Eliminar</label>
-                                <div class="mx-auto my-2">
-
-                                    <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out">
-                                    <button name ="eliminar"><i class="fas fa-trash-alt"></button></i></a>
-                                </div>
-                                </form>
+                            <div class="flex border border-gray-200 overflow-hidden px-2 rounded-xl shadow-lg items-center">
+                                <input type="text" name="cod_nuestra" id="buscar" class="py-2 px-4 bg-gray-100 border border-transparent focus:outline-none focus:ring-0 focus:ring-gray-100 focus:border-transparent">
+                                <button type="submit" class="mx-2" name="buscar"><i class="fas fa-search text-xl"></i></button>
                             </div>
+            </form>
+        </div>
+    </div>
+
+    <!--formulario para mostrar datos -->
+    <div class="flex justify-center my-14">
+        <div class="flex">
+            <form class="" action="" method="POST">
+                <div class="flex -mx-3">
+                    <div class="w-1/2 px-3 mb-5">
+                        <label for="" class="text-xs font-semibold px-1">TIPO DE MUESTRA</label>
+                        <div class="flex">
+                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                <i class="fas fa-vial"></i>
+                            </div>
+
+                            <input type="text" value="<?php echo $_SESSION['tipo_muestra'] ?>" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
                         </div>
+                    </div>
+                    <div class="w-1/2 px-3 mb-5">
+                        <label for="" class="text-xs font-semibold px-1">Código de Muestra</label>
+                        <div class="flex">
+                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                <i class="fas fa-vial"></i>
+                            </div>
+
+                            <input type="text" value="<?php echo $_SESSION['codigo_muestra'] ?>" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex -mx-3">
+                    <div class="w-1/2 px-3 mb-5">
+                        <label for="" class="text-xs font-semibold px-1">Presentación de la Muestra</label>
+                        <div class="flex">
+                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                <i class="fas fa-vial"></i>
+                            </div>
+
+                            <input type="text" value="<?php echo $_SESSION['presentacion_muestra'] ?>" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+                        </div>
+                    </div>
+                    <div class="w-1/2 px-3 mb-5">
+                        <label for="" class="text-xs font-semibold px-1">Cantidad de Muestra</label>
+                        <div class="flex">
+                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                <i class="fas fa-vial"></i>
+                            </div>
+
+                            <input type="text" value="<?php echo $_SESSION['cantidad_muestra'] ?>" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="flex -mx-3">
+                    <div class="w-1/2 px-3 mb-5">
+                        <label for="" class="text-xs font-semibold px-1">Unidad de Medida</label>
+                        <div class="flex">
+                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                <i class="fas fa-vials"></i>
+                            </div>
+
+                            <input type="text" value="<?php echo $_SESSION['unidad_medida'] ?>" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+                        </div>
+                    </div>
+                    <div class="w-1/2 px-3 mb-5">
+                        <label for="" class="text-xs font-semibold px-1">ESTADO</label>
+                        <div class="flex">
+                            <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                <i class="fas fa-vial"></i>
+                            </div>
+
+                            <input type="text" value="<?php echo $_SESSION['estado'] ?>" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
+
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <div class=" w-1/2 px-3 mb-5">
+                <label for="" class="text-xs font-semibold px-1">Opciones</label>
+                <div class="flex">
+                    <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+
+                    </div>
+
+                    <form action="../../models/AsociarModelo.php" method="POST">
+
+
+                        <legend>ASIGNAR ITEMS: </legend>
+                        <input type="checkbox" name="1" <?php echo $_SESSION['item1A']; ?>>ORINA<br>
+                        <input type="checkbox" name="2" <?php echo $_SESSION['item2A']; ?>>HECES<br>
+                        <input type="checkbox" name="3" <?php echo $_SESSION['item3A']; ?>>PLAQUETAS<br>
+                        <input type="checkbox" name="4" <?php echo $_SESSION['item4A']; ?>>DIABETES<br>
+                        <input type="hidden" name="id" value="<?php echo $_SESSION['id_muestra']; ?>">
+                        <br>
+                        <input type="submit" name="asociar" value="  Asociar  " class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-1 py-1 font-semibold">
+
+
+                    </form>
+                    <form class="px-20" action="../../models/AsociarModelo.php" method="POST">
+
+
+                        <legend>DESASOCIAR ITEMS </legend>
+                        <input type="checkbox" name="1" <?php echo  $_SESSION['item1B']; ?>>ORINA<br>
+                        <input type="checkbox" name="2" <?php echo  $_SESSION['item2B']; ?>>HECES<br>
+                        <input type="checkbox" name="3" <?php echo  $_SESSION['item3B']; ?>>PLAQUETAS<br>
+                        <input type="checkbox" name="4" <?php echo  $_SESSION['item4B']; ?>>DIABETES<br>
+                        <input type="hidden" name="id" value="<?php echo $_SESSION['id_muestra']; ?>">
+                        <br>
+                        <input type="submit" name="Desasociar" value="Desasociar" class="block w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-1 py-1 font-semibold">
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="">
+                <div class="">
+                    <label for="" class="text-xs font-semibold ">Generar</label>
+                    <div class="flex flex-col justify-center">
+                        <form action="../../models/AsociarModelo.php" method="POST">
+                            <div class="mx-auto my-2">
+
+                                <a id="ayuda" class="text-4xl cursor-pointer hover:text-blue-500 transition duration-300 ease-in-out">
+                                    <i class="fas fa-tag"></i></a>
+
+                            </div>
+                            <div class="mx-auto my-2">
+                                <a class="text-4xl cursor-pointer hover:text-green-500 transition duration-300 ease-in-out">
+                                    <button name="excel"><i class="fas fa-file-excel"></button></i></a>
+                            </div>
+
+                            <label for="" class="text-xs font-semibold my-2 ">Eliminar</label>
+                            <div class="mx-auto my-2">
+
+                                <a class="text-4xl cursor-pointer hover:text-red-500 transition duration-300 ease-in-out">
+                                    <button name="eliminar"><i class="fas fa-trash-alt"></button></i></a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
 
@@ -268,17 +265,19 @@ include ("../../config/databases.php");
                     </thead>
                     <tbody class="bg-gray-300">
                         <tr>
-                            <td><?php if(isset($_SESSION['cod_et'])){
-                                $_POST['estado']="" ;
-                            } echo  $_SESSION['cod_et']?></td>
-                            <td><?php echo  $_SESSION['codigo_muestra']?></td>
-                            <td><?php echo  $_SESSION['num_expediente']?></td>
-                            <td><?php echo  $_SESSION['COD_SOLICITUD']?></td>
-                            <td><img src="../../models/<?php $qr = $_SESSION['QR']; echo $_SESSION['QR'];?>" ></td>
+                            <td><?php if (isset($_SESSION['cod_et'])) {
+                                    $_POST['estado'] = "";
+                                }
+                                echo  $_SESSION['cod_et'] ?></td>
+                            <td><?php echo  $_SESSION['codigo_muestra'] ?></td>
+                            <td><?php echo  $_SESSION['num_expediente'] ?></td>
+                            <td><?php echo  $_SESSION['COD_SOLICITUD'] ?></td>
+                            <td><img src="../../models/<?php $qr = $_SESSION['QR'];
+                                                        echo $_SESSION['QR']; ?>"></td>
                             <td>
-                            <form action="../../models/AsociarModelo.php" method="POST">
-                            <input type="submit" name="imprimir" value="IMPRIMIR" class="block w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-1 py-1 font-semibold">
-                            </form> 
+                                <form action="../../models/AsociarModelo.php" method="POST">
+                                    <input type="submit" name="imprimir" value="IMPRIMIR" class="block w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-1 py-1 font-semibold">
+                                </form>
                             </td>
                         </tr>
 
