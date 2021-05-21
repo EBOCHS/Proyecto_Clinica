@@ -33,10 +33,15 @@ if(isset($_POST['Sign_in'])){
         }else{    
   
         while( $row = mysqli_fetch_array($res)){
-            $_SESSION['usuario']= $row['NOMBRE'];//interno 
+            if($row['DESCRIPCION']=="analista"){
+                $_SESSION['usuario']= $row['NOMBRE'];
+                $_SESSION['analista']=$row['DESCRIPCION'];
+                //header ("location: ../views/inicio/menu_interno.php");
+            }{
+                $_SESSION['usuario']= $row['NOMBRE'];//interno            
+                $_SESSION['Tipo_usuario']= $row['DESCRIPCION'];
 
-           
-             $_SESSION['Tipo_usuario']= $row['DESCRIPCION'];
+            }
              }
              header ("location: ../views/inicio/menu_interno.php");
             }

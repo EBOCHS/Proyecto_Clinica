@@ -100,6 +100,7 @@ class asociar{
     public function generar_QR($contenido){
        
         require ("../config/qr/phpqrcode/qrlib.php");
+        
         $dir = 'temp/';
         if (!file_exists($dir)){
             mkdir($dir);
