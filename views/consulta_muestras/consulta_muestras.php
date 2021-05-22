@@ -16,15 +16,20 @@ include("../../config/databases.php");
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="author" content="" />
+    
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
     <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
-    <!--  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
--->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../includes/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://kit.fontawesome.com/6d0034a111.js" crossorigin="anonymous"></script>
+
     <style>
         .gradient {
             background: linear-gradient(40deg, #0354eb 0%, #fcfdff 100%);
@@ -84,10 +89,10 @@ include("../../config/databases.php");
                                     <div class="flex items-center max-w-xs pr-2 overflow-hidden border border-gray-200 shadow-lg md:max-w-lg rounded-xl">
                                         <select required name="condicion" id="Tsangre" class="w-32 px-4 py-2 text-sm bg-gray-100 border border-transparent cursor-pointer md:w-auto md:text-lg md:max-w-full hover:bg-gray-300 focus:outline-none focus:ring-0 focus:ring-gray-100 focus:border-transparent">
                                             <option value="0">Seleccione</option>
-                                            <option class="bg-gray-100" value="cod_expediente">Codigo de Expediente</option>
-                                            <option class="bg-gray-100" value="cod_muestra">Codigo de Muestra</option>
-                                            <option class="bg-gray-100" value="cod_solicitud">Codigo de Solicitud</option>
-                                            <option class="bg-gray-100" value="nit">NIT</option>
+                                            <option class="bg-gray-100" value="NUM_EXPEDIENTE">Codigo de Expediente</option>
+                                            <option class="bg-gray-100" value="codigo_muestra">Codigo de Muestra</option>
+                                            <option class="bg-gray-100" value="COD_SOLICITUD">Codigo de Solicitud</option>
+                                            <option class="bg-gray-100" value="NIT">NIT</option>
                                         </select>
                                         <input name="busqueda" ; class="w-full px-4 py-2 bg-gray-100 border border-transparent focus:outline-none focus:ring-0 focus:ring-gray-100 focus:border-transparent" type="text">
                                         <button type="submit" class="mx-2" name="buscar"><i class="text-xl fas fa-search"></i></button>
@@ -115,8 +120,6 @@ include("../../config/databases.php");
                                                     <th class="px-2 py-3 text-left md:px-6">Presentacion</th>
                                                     <th class="px-2 py-3 text-left md:px-6">Estado</th>
                                                     <th class="px-2 py-3 text-left md:px-6">Fecha creacion</th>
-
-                                                    <th class="hidden px-2 py-3 text-left md:px-6 md:block">Acciones</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -138,19 +141,7 @@ include("../../config/databases.php");
                                                         <td><?php echo $rows['presentacion_muestra']; ?></td>
                                                         <td><?php echo $rows['estado']; ?></td>
                                                         <td><?php echo $rows['FECHA_CREACION']; ?></td>
-                                                        <td class="hidden px-2 py-3 text-center md:px-6 md:block">
-                                                            <div class="flex justify-center text-xl item-center">
-                                                                <div class="w-4 mr-2 transform cursor-pointer hover:text-blue-600 hover:scale-110">
-                                                                    <a><button name="imprimir"><i class="fas fa-eye"></button></i></a>
-                                                                </div>
-                                                                <div class="w-4 mx-2 transform hover:text-blue-600 hover:scale-110">
-                                                                    <a href=""><i class="fas fa-pencil-alt"></i></a>
-                                                                </div>
-                                                                <div class="w-4 ml-2 transform hover:text-blue-600 hover:scale-110">
-                                                                    <a href=""><i class="far fa-trash-alt"></i></a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
+                                                        
                                                     </tr>
                                                 <?php } ?>
 
@@ -161,6 +152,7 @@ include("../../config/databases.php");
                             </div>
 
                             <!--OPCIONES DEL FORM-->
+                            <form action="../../models/consulta_muestras.php" method="POST">
                             <div class="flex py-2 mx-auto mt-2 rounded-lg shadow-lg lg:mt-0 bg-gray-20 lg:mx-0">
                                 <div class="px-5">
                                     <div class="flex flex-col justify-center text-center">
@@ -169,14 +161,14 @@ include("../../config/databases.php");
 
                                         <div class="mx-auto my-2">
 
-                                            <a id="ayuda" class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-blue-500"><i class="fas fa-print"></i></a>
+                                            <a id="ayuda" class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-blue-500"><button name="pdf"><i class="fas fa-print"></button></i></a>
 
                                         </div>
 
                                         <label for="" class="my-2 text-xs font-semibold">Exportar a excel</label>
 
                                         <div class="mx-auto my-2">
-                                            <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-green-500"><i class="fas fa-file-excel"></i></a>
+                                            <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-green-500"><button name="imprimir"><i class="fas fa-file-excel"></button></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -189,14 +181,14 @@ include("../../config/databases.php");
 
                                         <div class="mx-auto my-2">
 
-                                            <a id="ayuda" class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-blue-500"><i class="fas fa-notes-medical"></i></a>
+                                            <a id="ayuda" class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-blue-500"><button name="solicitud"><i class="fas fa-notes-medical"></button></i></a>
 
                                         </div>
 
                                         <label for="" class="my-2 text-xs font-semibold ">Crear Muestra</label>
                                         <div class="mx-auto my-2">
 
-                                            <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-blue-500"><i class="fas fa-syringe"></i></a>
+                                            <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-blue-500"><button name="muestra"><i class="fas fa-syringe"></button></i></a>
                                         </div>
                                     </div>
                                 </div>
@@ -206,7 +198,7 @@ include("../../config/databases.php");
                 </div>
             </div>
         </div>
-
+                                                </form>
 
 
         <!---OVERLAY-->

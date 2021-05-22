@@ -106,7 +106,7 @@ include ("../../config/databases.php");
                                         <div class="flex justify-center text-xl item-center">
                                             <div
                                                 class="cursor-pointer w-4 mx-2 transform hover:text-blue-600 hover:scale-110">
-                                                 <a onclick="mostrarForm('<?php echo $rows['COD_SOLICITUD'];?>','<?php echo $rows['TIPO_SOLICITUD'];?>','<?php echo $rows['ESTADO_SOLICITUD'];?>')"><i class="fas fa-pencil-alt"></i></a>
+                                                 <a onclick="mostrarForm()"><i class="fas fa-pencil-alt"></i></a>
                                             </div>
                                         </div>
                                         <div class="flex justify-center text-xl item-center">
