@@ -41,7 +41,7 @@ include("../../config/databases.php");
             <div class="circle"></div>
         </div>
     </div>
-    <form action="../../models/SolicitudModelo.php" method="POST">
+    <form action="../../models/SolicitudModelo.php" method="POST"  method="POST" enctype="multipart/form-data">
         <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
             <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
                 <div class="px-3 py-3">
@@ -161,6 +161,7 @@ include("../../config/databases.php");
                                     </div>
                                 </div>
                             </div>
+                          
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mb-4">
                                     <label for="" class="text-xs font-semibold px-1">Descripcion</label>

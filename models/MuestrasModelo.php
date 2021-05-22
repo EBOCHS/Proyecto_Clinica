@@ -18,7 +18,7 @@
         $presentacion = $_POST['Presentacion'];
         $cantidad = $_POST['cantidad'];
         $Umedida = $_POST['Umedida'];
-        $adjunto = $_POST['adjunto'];
+        //$adjunto = $_POST['adjunto'];
         $cod_solicitud = $_POST['cod_solicitud'];
         /*antes de guardar los datos validamos que esten correctos
         para eso se crea una funcion para validar cada uno de los datos 
@@ -53,23 +53,59 @@
                                 header("Location: ../views/Creacion_Muestras/muestra.php");
                                 
                             }
-                            $id_COD = $rows['ID_SOLICITUD'];
-                            //$num_exp = $rows ['COD_SOLICITUD'];
-                            //echo ("id: ".$id_exp." numero expediente: ".$num_exp);
+                            $id_COD = $rows['ID_SOLICITUD'];//codigo de solicitud
+                
 
-                            //insetando muestra medica a la base de datos 
-                            $insert = "INSERT  into MUESTRAS_MEDICAS (codigo_muestra,tipo_muestra,presentacion_muestra,cantidad_muestra,unidad_medida,adjunto,id_solicitud,estado,FECHA_CREACION,FECHA_FINAL)
-                             VALUES ('$COD_MUESTRA','$Tmuestra1','$presentacion1','$cantidad1','$Umedida1','$adjunto','$id_COD','creado',sysdate(),sysdate())";
-                            $respons = mysqli_query($conn,$insert);
-                            if(!$respons){
-                                die (mysqli_error($conn));
-                            }
+                            //validamos el archivo adjunto
+                            $archivo_tmp=$_FILES['adjunto']['tmp_name'];
+                            $name_file= $_FILES['adjunto']['name'];
+                            $tamanio= $_FILES['adjunto']['size'];
+                            $tipo = $_FILES['adjunto']['type'];
+                            $permitidos = array("application/pdf","image/png","image/jpeg");
+                            if(in_array($tipo,$permitidos) && $tamanio<=5000000){
+                                //$ruta = "prueba/";
+                                $ruta = 'files/'.$id_COD.'/';
+                                $archivo = $ruta.$name_file;
+                                if(!file_exists($ruta)){
+                                    mkdir($ruta);
+                                }else{
+                                    if (!file_exists($archivo)) {
+                                        $resultado = @move_uploaded_file($archivo_tmp,$archivo);
+                                        if($resultado){
+                                            //insetando muestra medica a la base de datos 
+                                            $insert = "INSERT  into MUESTRAS_MEDICAS (codigo_muestra,tipo_muestra,presentacion_muestra,cantidad_muestra,unidad_medida,adjunto,id_solicitud,estado,FECHA_CREACION,FECHA_FINAL)
+                                            VALUES ('$COD_MUESTRA','$Tmuestra1','$presentacion1','$cantidad1','$Umedida1','$archivo','$id_COD','creado',sysdate(),date_sub(sysdate(), interval 30 day) )";
+                                             $respons = mysqli_query($conn,$insert);
+                                            if(!$respons){
+                                                 die (mysqli_error($conn));
+                                                 $_SESSION['message']= "Error al subir reguistro a la base de datos: ";
+                                                 $_SESSION['message_type']='danger';
+                                                header("Location: ../views/Creacion_Muestras/muestra.php");
+                                                }
                             
-                            $_SESSION['message']= "Muestra medica creada con exito\n
-                                 Codigo de la muestra \n".$COD_MUESTRA;
-                            $_SESSION['message_type']='success';
-                            header("Location: ../views/Creacion_Muestras/muestra.php");
+                                                $_SESSION['message']= "Muestra medica creada con exito\n
+                                                Codigo de la muestra \n".$COD_MUESTRA;
+                                                $_SESSION['message_type']='success';
+                                                  header("Location: ../views/Creacion_Muestras/muestra.php");
+                                        }else{
+                                            $_SESSION['message']= "error al acrgar el archivo";
+                                            $_SESSION['message_type']='danger';
+                                            header("Location: ../views/Creacion_Muestras/muestra.php");
+                                        }
+                                    }else{
+                                        $_SESSION['message']= "archivo ya existe";
+                                        $_SESSION['message_type']='danger';
+                                        header("Location: ../views/Creacion_Muestras/muestra.php");
+                                    }
+                                }
+                                
+                            }else{
+                                $_SESSION['message']= "archivo no permitido o tamaño mayor a 5M";
+                                $_SESSION['message_type']='danger';
+                                header("Location: ../views/Creacion_Muestras/muestra.php");
+                            }
                         
+                            
                         }else{
                             $_SESSION['message']= "CODIGO DE SOLICITUD NO VALIDO";
                             $_SESSION['message_type']='danger';
