@@ -48,12 +48,13 @@ include("../../config/databases.php");
             <div class="circle"></div>
         </div>
     </div>
+<form action="../../models/consulta_muestras.php" method="POST">
 
     <div class="flex items-center justify-center min-h-screen min-w-screen">
         <div class="w-full overflow-hidden text-gray-700 bg-gray-100 shadow-xl rounded-3xl" style="max-width:2000px">
             <!--BOTON DE RETORNO -->
             <div class="px-3 py-3">
-                <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-red-500" href=""><i class="fas fa-chevron-circle-left"></i></a>
+                <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-red-500"><button name="salir"><i class="fas fa-chevron-circle-left"></i></button></a>
             </div>
 
             <div class="flex justify-center mb-1">
@@ -85,8 +86,7 @@ include("../../config/databases.php");
                                 <label for="buscar" class="mb-2 text-2xl font-semibold text-center text-gray-500">Filtro de
                                     Busqueda</label>
 
-                                <form action="../../models/consulta_muestras.php" method="POST">
-                                    <div class="flex items-center max-w-xs pr-2 overflow-hidden border border-gray-200 shadow-lg md:max-w-lg rounded-xl">
+                                                                    <div class="flex items-center max-w-xs pr-2 overflow-hidden border border-gray-200 shadow-lg md:max-w-lg rounded-xl">
                                         <select required name="condicion" id="Tsangre" class="w-32 px-4 py-2 text-sm bg-gray-100 border border-transparent cursor-pointer md:w-auto md:text-lg md:max-w-full hover:bg-gray-300 focus:outline-none focus:ring-0 focus:ring-gray-100 focus:border-transparent">
                                             <option value="0">Seleccione</option>
                                             <option class="bg-gray-100" value="NUM_EXPEDIENTE">Codigo de Expediente</option>

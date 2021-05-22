@@ -54,5 +54,9 @@ if(isset($_POST['muestra'])){
     header("Location: ../views/Creacion_Muestras/muestra.php");
 }
 
+if(isset($_POST['salir'])){
+    unset($_SESSION['message']);
+    header("Location: ../views/inicio/menu_interno.php");
+}
 
 ?>
