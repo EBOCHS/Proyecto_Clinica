@@ -78,7 +78,7 @@ include ("../../config/databases.php");
                                 <ul class="flex text-center flex-col justify-center items-center">
                                     <li
                                         class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">
-                                        <a class="p-2" href="">Submenu1</a>
+                                        <a class="p-2" href="../Asignar_solicitudes/asignar_solicitud.php">Analisis de Muestra Medica </a>
                                     </li>
                                     <li
                                         class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">
@@ -93,15 +93,19 @@ include ("../../config/databases.php");
                         </li>
                         <li>
                             <a id="drop-down2"
-                                class="cursor-pointer mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow 
-                            focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Clasificación
+                                class=" <?php if (isset($_SESSION['admin'])){
+                                    echo '';
+                                }else{
+                                    echo 'hidden ';
+                                }?> cursor-pointer mr-3 bg-white hover:bg-blue-300 text-gray-900 font-bold rounded-full mt-4 lg:mt-0 py-2 px-5 shadow 
+                            focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out">Mantenimiento De Analisatas
                                 <i class="fas fa-chevron-down"></i></a>
-                            <div id="drop-menu2"
+                            <div id="drop-menu2" 
                                 class="absolute my-3 flex bg-white h-auto rounded-lg overflow-hidden hidden">
                                 <ul class="flex text-center flex-col justify-center items-center">
                                     <li
                                         class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">
-                                        <a class="p-2" href="">Submenu1</a>
+                                        <a class="p-2" href="">Mantenimiento De Analisatas </a>
                                     </li>
                                     <li
                                         class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">

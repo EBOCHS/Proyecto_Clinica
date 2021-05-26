@@ -21,7 +21,7 @@ if(isset($_POST['Sign_in'])){
     //FUNCIONES PARA VALIDAR DATOS INGRESADOS 
     if($c_login->val_usuario($User)!=true){
         if($c_login->val_password($Pass)!=true){
-            $queri ="SELECT PS.NOMBRE, US.PASSWD, RL.DESCRIPCION  FROM USUARIO US
+            $queri ="SELECT PS.NOMBRE, US.PASSWD, RL.DESCRIPCION,US.ID_USUARIO  FROM USUARIO US
             INNER JOIN PACIENTE PS ON US.ID_PACIENTE = PS.ID_PACIENTE 
             INNER  JOIN ROL_USUARIO RL ON  US.ID_ROL_USUARIO = RL.ID_ROL_USUARIO WHERE PS.NOMBRE = '$User' AND US.PASSWD = '$Pass'";
             $res=mysqli_query($conn,$queri);
@@ -33,15 +33,23 @@ if(isset($_POST['Sign_in'])){
         }else{    
   
         while( $row = mysqli_fetch_array($res)){
-            if($row['DESCRIPCION']=="analista"){
-                $_SESSION['usuario']= $row['NOMBRE'];
-                $_SESSION['analista']=$row['DESCRIPCION'];
-                //header ("location: ../views/inicio/menu_interno.php");
-            }{
-                $_SESSION['usuario']= $row['NOMBRE'];//interno            
-                $_SESSION['Tipo_usuario']= $row['DESCRIPCION'];
+                if($row['DESCRIPCION']=="analista"){
+                    $_SESSION['usuario']= $row['NOMBRE'];
+                    $_SESSION['analista']=$row['DESCRIPCION'];
+                    $_SESSION['ID']= $row['ID_USUARIO'];
+                    //header ("location: ../views/inicio/menu_interno.php");
+                }
+                if($row['DESCRIPCION']=="INTERNO")
+                {
+                    $_SESSION['usuario']= $row['NOMBRE'];//interno            
+                    $_SESSION['Tipo_usuario']= $row['DESCRIPCION'];
 
-            }
+                }
+                if($row['DESCRIPCION']=="ADMIN"){
+                    $_SESSION['usuario']= $row['NOMBRE'];
+                    $_SESSION['admin']=$row['DESCRIPCION'];
+                    $_SESSION['ID']= $row['ID_USUARIO'];
+                }
              }
              header ("location: ../views/inicio/menu_interno.php");
             }

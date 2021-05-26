@@ -1,5 +1,5 @@
 <?php
-include ("../../config/databases.php");
+include("../../config/databases.php");
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -18,11 +18,10 @@ include ("../../config/databases.php");
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
     <link rel="stylesheet" href="style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
-        integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
     <!--Replace with your tailwind.css once created-->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet" />
-    <!-- Define your gradient here - use online tools to find a gradient matching your branding-->
+    <!-- Define your gradient here - use online tools to find a gradient matching your branding--> 
     <style>
         .gradient {
             background: linear-gradient(40deg, #0354eb 0%, #fcfdff 100%);
@@ -30,7 +29,7 @@ include ("../../config/databases.php");
     </style>
 </head>
 
-<body class="gradient min-h-screen pt-10 md:pt-4 pb-6 px-2 md:px-0 overflow-hidden">
+<body class="gradient min-h-screen pt-10 md:pt-4 pb-6 px-2 md:px-0 ">
     <div id="loader" class="mesh-loader">
         <div class="set-one">
             <div class="circle"></div>
@@ -43,13 +42,12 @@ include ("../../config/databases.php");
     </div>
 
     <div class="min-w-screen min-h-screen flex items-center justify-center px-5 py-5">
-        <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl  overflow-hidden py-4 w-auto">
+        <div class="bg-gray-100 text-gray-700 rounded-3xl shadow-xl   py-4 w-auto">
 
             <!--Boton de retorno-->
 
             <div class="px-4 py-1">
-                <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-red-500" href=""><i
-                        class="fas fa-chevron-circle-left"></i></a>
+                <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-red-500" href="../inicio/menu_interno.php"><i class="fas fa-chevron-circle-left"></i></a>
             </div>
 
             <!---->
@@ -63,11 +61,9 @@ include ("../../config/databases.php");
                 <div class="flex flex-col w-full py-2 px-5 md:px-10">
                     <div class="text-center mb-4">
                         <h1 class="font-bold text-2xl text-black mt-3"> Listado de Solicitudes de Muestra Médica</h1>
-
+                        
                     </div>
-
-
-                
+                    
                     <div class="flex w-auto px-3 mb-5">
                         <table class="mx-auto max-w-sm bg-white table-auto lg:w-full ">
                             <thead>
@@ -80,46 +76,87 @@ include ("../../config/databases.php");
                                 </tr>
                             </thead>
                             <tbody class="text-xs font-light text-gray-600 md:text-sm">
-                                
-                                <?php 
-                                    if (isset($_SESSION['analista'])){
-                                    }else{
-                                    $query= "SELECT COD_SOLICITUD,TIPO_SOLICITUD,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD from SOLICITUD s ;";
-                                    $res = mysqli_query($conn,$query);
-                                    while($rows= mysqli_fetch_array($res)){
+
+                                <?php
+                                if (isset($_SESSION['analista'])) {
+                                    $id_usuario=$_SESSION['ID'];
+                                    $query = "SELECT  * FROM SOLICITUDES_ASIGNADAS sa 
+                                    INNER JOIN USUARIO U ON sa.ID_USUARIO = U.ID_USUARIO
+                                    INNER JOIN SOLICITUD S ON sa.ID_SOLICITUD = S.ID_SOLICITUD 
+                                    WHERE  U.ID_USUARIO ='$id_usuario'";
+                                    $res = mysqli_query($conn, $query);
+                                    while ($rows = mysqli_fetch_array($res)) { ?>
+                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                            <td class="py-3 text-left md:px-6 whitespace-nowrap">
+                                                <span class="font-medium"><?php echo $rows['COD_SOLICITUD']; ?></span>
+                                            </td>
+                                            <td class="py-3 text-left md:px-6">
+                                                <span><?php echo $rows['TIPO_SOLICITUD']; ?></span>
+                                            </td>
+                                            <td class="py-3 text-left md:px-6">
+                                                <p><?php echo $rows['FECHA_SOLICITUD_INICIAL']; ?></p>
+                                            </td>
+                                            <td class="py-3 text-left md:px-6">
+                                                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full"><?php echo $rows['ESTADO_SOLICITUD']; ?></span>
+                                            </td>
+                                            <td class="hidden px-2 py-3 text-center md:px-6 md:block">
+                                                <div class="flex justify-center text-xl item-center">
+
+                                                    <div class="cursor-pointer w-4 mx-2 transform hover:text-blue-600 hover:scale-110">
+                                                        <a onclick="mostrarForm('<?php echo $rows['COD_SOLICITUD']; ?>','<?php echo $rows['ESTADO_SOLICITUD']; ?>');"><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-center text-xl item-center">
+                                                    <div class="cursor-pointer w-4 ml-2 transform hover:text-blue-600 hover:scale-110">
+
+                                                        <a href=""><i class="far fa-trash-alt"></i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                    }
+
+                                    ?>
+                                     
+                
+                               <?php }
+                                 else {
+                                    $query = "SELECT COD_SOLICITUD,TIPO_SOLICITUD,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD from SOLICITUD s 
+                                    where ESTADO_SOLICITUD='creado';";
+                                    $res = mysqli_query($conn, $query);
+                                    while ($rows = mysqli_fetch_array($res)) {
                                 ?>
-                                <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                <td class="py-3 text-left md:px-6 whitespace-nowrap">
-                                        <span class="font-medium"><?php echo $rows['COD_SOLICITUD'];?></span>
-                                </td>
-                                    <td class="py-3 text-left md:px-6">
-                                        <span><?php echo $rows['TIPO_SOLICITUD'];?></span>
-                                    </td>
-                                    <td class="py-3 text-left md:px-6">
-                                        <p><?php echo $rows['FECHA_SOLICITUD_INICIAL'];?></p>
-                                    </td>
-                                    <td class="py-3 text-left md:px-6">
-                                        <span
-                                            class="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full"><?php echo $rows['ESTADO_SOLICITUD'];?></span>
-                                    </td>
-                                    <td class="hidden px-2 py-3 text-center md:px-6 md:block">
-                                        <div class="flex justify-center text-xl item-center">
-                                            <div
-                                                class="cursor-pointer w-4 mx-2 transform hover:text-blue-600 hover:scale-110">
-                                                 <a onclick="mostrarForm()"><i class="fas fa-pencil-alt"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="flex justify-center text-xl item-center">
-                                        <div
-                                                class="cursor-pointer w-4 ml-2 transform hover:text-blue-600 hover:scale-110">
-                                                
-                                                <a href=""><i class="far fa-trash-alt"></i></a>
-                                            </div>
-                                    </div>
-                                    </td>
-                                </tr>
-                                <?php }}?>
-                                
+                                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                            <td class="py-3 text-left md:px-6 whitespace-nowrap">
+                                                <span class="font-medium"><?php echo $rows['COD_SOLICITUD']; ?></span>
+                                            </td>
+                                            <td class="py-3 text-left md:px-6">
+                                                <span><?php echo $rows['TIPO_SOLICITUD']; ?></span>
+                                            </td>
+                                            <td class="py-3 text-left md:px-6">
+                                                <p><?php echo $rows['FECHA_SOLICITUD_INICIAL']; ?></p>
+                                            </td>
+                                            <td class="py-3 text-left md:px-6">
+                                                <span class="px-3 py-1 text-xs text-blue-600 bg-blue-200 rounded-full"><?php echo $rows['ESTADO_SOLICITUD']; ?></span>
+                                            </td>
+                                            <td class="hidden px-2 py-3 text-center md:px-6 md:block">
+                                                <div class="flex justify-center text-xl item-center">
+
+                                                    <div class="cursor-pointer w-4 mx-2 transform hover:text-blue-600 hover:scale-110">
+                                                        <a onclick="mostrarForm('<?php echo $rows['COD_SOLICITUD']; ?>','<?php echo $rows['ESTADO_SOLICITUD']; ?>');"><i class="fas fa-pencil-alt"></i></a>
+                                                    </div>
+                                                </div>
+                                                <div class="flex justify-center text-xl item-center">
+                                                    <div class="cursor-pointer w-4 ml-2 transform hover:text-blue-600 hover:scale-110">
+
+                                                        <a href=""><i class="far fa-trash-alt"></i></a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                <?php }
+                                } ?>
                             </tbody>
                         </table>
                     </div>
@@ -132,32 +169,26 @@ include ("../../config/databases.php");
                         <p class="text-md mt-2 font-bold">Completa la información para realizar el cambio</p>
                     </div>
                     <div>
-                        <form action="" method="POST">
+                        <form action="../../models/asignar_solicitud_M.php" method="POST">
                             <div class="flex -mx-3">
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-xs font-semibold px-1">Codigo de Solicitud</label>
                                     <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
 
-                                        <input id="cambiarCodigo" type="text"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                            placeholder="0000-00-00-00-0000000000">
+                                        <input name="CODIGO" id="cambiarCodigo" type="text" class="text-xs w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500" placeholder="0000-00-00-00-0000000000">
                                     </div>
                                 </div>
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="" class="text-xs font-semibold px-1">Estado Actual</label>
                                     <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
 
-                                        <input id="cambiarEstado" type="text"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                            placeholder="0000-00-00-00-0000000000">
+                                        <input name="ESTADO_OLD" id="cambiarEstado" type="text" class="text-xs w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500">
 
                                     </div>
                                 </div>
@@ -167,22 +198,15 @@ include ("../../config/databases.php");
                                 <div class="w-full px-3 mb-2">
                                     <label for="" class="text-xs font-semibold px-1">Nuevo Estado</label>
                                     <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-id-card"></i>
                                         </div>
-                                        <select required name="Tsolicitud" id="Tsolicitud"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500">
-                                            <option name="">Elija</option>
-                                            <option name="MM">Asignado</option>
-                                            <option name="LQ">Revision</option>
-                                            <option name="LQ">Espera</option>
-                                            <option name="LQ">Enviado</option>
-                                            <option name="LQ">Analisis</option>
-                                            <option name="LQ">Rechazado</option>
-                                            <option name="LQ">Autorizado</option>
-                                            <option name="LQ">Finalizado</option>
-
+                                        <select required name="NEW_ESTADO" id="NEW_ESTADO" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-blue-500">
+                                            <option value="">Elija</option>
+                                           
+                                            <option value="REVISION">Revision</option>
+                                            <option value="ANALISIS">Analisis</option>
+                                            <option value="FINALIZADO">Finalizado</option>
                                         </select>
                                     </div>
                                 </div>
@@ -193,24 +217,32 @@ include ("../../config/databases.php");
                                 <div class="w-full px-3 mb-4">
                                     <label for="" class="text-xs font-semibold px-1">Descripcion</label>
                                     <div class="flex">
-                                        <div
-                                            class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                             <i class="fas fa-text-height"></i>
                                         </div>
-                                        <textarea name="descripcion" id="descripcion" cols="30" rows="1"
-                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"></textarea>
+                                        <textarea name="DESC" id="descripcion" cols="30" rows="1" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"></textarea>
                                     </div>
                                 </div>
                             </div>
                             <div class="flex -mx-3">
+                                <div class="w-full px-3 mb-4">
+                                    <label for="" class="text-xs font-semibold px-1">Observaciones</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="fas fa-text-height"></i>
+                                        </div>
+                                        <textarea name="observaciones" id="descripcion" cols="30" rows="1" class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex -mx-3">
                                 <div class="w-full px-3 mt-2">
                                     <!--validacion de formularios en el documento de javascript-->
-                                    <input type="submit" value="Cambiar" onclick="return confirmar()" name="registrar"
-                                        class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                                    <input type="submit" value="Asignar" name="asignar" class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                                 </div>
                                 <div class="w-full px-3 mb-5">
-                                    <a href="./index.html"
-                                        class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Cancelar</a>
+                                    <a onclick="mostrarForm('<?php echo $rows['COD_SOLICITUD']; ?>','<?php echo $rows['ESTADO_SOLICITUD']; ?>');" class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Cancelar</a>
                                 </div>
                             </div>
                         </form>
@@ -221,7 +253,14 @@ include ("../../config/databases.php");
     </div>
 
 
-    <script src="../script.js"></script>
+    <script>
+        function mostrarForm(codigoSolicitud, estadoSolicitud) {
+            $("#cambiarCodigo").val(codigoSolicitud);
+            $("#cambiarEstado").val(estadoSolicitud);
+
+            $("#opciones").slideToggle("slow");
+        }
+    </script>
 </body>
 
 </html>
