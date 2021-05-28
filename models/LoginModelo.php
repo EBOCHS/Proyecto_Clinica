@@ -55,7 +55,6 @@ if(isset($_POST['Sign_in'])){
             }
         }else{
           
-            //echo "Contraseña incorrecta";
             $_SESSION['message']='contraseña incorrecta ';
             $_SESSION['message_type']='danger';
             header("Location: ../views/Login/login.php");
