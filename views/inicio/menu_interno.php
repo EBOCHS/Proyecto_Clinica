@@ -82,12 +82,9 @@ include ("../../config/databases.php");
                                     </li>
                                     <li
                                         class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">
-                                        <a class="p-2" href="">Submenu2</a>
+                                        <a class="p-2" href="../Documentos_Analisis/documentos_de_analisis.php">Documentos De Analisis</a>
                                     </li>
-                                    <li
-                                        class="hover:bg-blue-300 transition hover:scale-105 duration-300 ease-in-out text-xl p-1">
-                                        <a class="p-2" href="">Submenu3</a>
-                                    </li>
+                                    
                                 </ul>
                             </div>
                         </li>

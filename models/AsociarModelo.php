@@ -56,7 +56,7 @@ if (isset($_POST['buscar'])) {
             $E_ITEMS = mysqli_query($conn, $ITEMS);
 
                 $C_asociar->val_items($E_ITEMS);
-                $codigo = "Codigo de Solicitud: " .$_SESSION['COD_SOLICITUD']. " Codigo de MUestra: " .$num_muestra;
+                $codigo = "Codigo de Muestra: " .$num_muestra." Codigo de Solicitud: " .$_SESSION['COD_SOLICITUD'] ;
                 $QR = $C_asociar->generar_QR($codigo);
 
                 $fecha = "SELECT CURDATE() FROM DUAL";

@@ -3,6 +3,32 @@ include ("../config/databases.php");
 
 if (isset($_POST['asignar'])) {
     //modelado de datos para la asignacion solicitudes 
+    if(isset($_SESSION['analista'])){
+       
+        $codigo_solicitud = $_POST['CODIGO'];
+        $estado_old = $_POST['ESTADO_OLD'];
+        $new_estado = $_POST['NEW_ESTADO'];
+        $desc = $_POST['DESC'];
+        $observaciones = $_POST['observaciones'];
+        
+        $id_solicitud = "SELECT ID_SOLICITUD  FROM SOLICITUD s WHERE COD_SOLICITUD ='$codigo_solicitud' ";
+        $ID = mysqli_query($conn,$id_solicitud);
+        $I = mysqli_fetch_array($ID);
+        $idsolicitud = $I['ID_SOLICITUD'];
+        
+        $query_S = "UPDATE SOLICITUD SET ESTADO_SOLICITUD='$new_estado' where COD_SOLICITUD='$codigo_solicitud' ";
+        $res = mysqli_query($conn, $query_S);
+        $query_SA = "UPDATE SOLICITUDES_ASIGNADAS SET ESTADO='$new_estado',ESTADO_OLD='$estado_old' where ID_SOLICITUD = '$idsolicitud '";
+        $resp = mysqli_query($conn, $query_SA);
+        if(!$res||!$resp){
+            die(mysqli_error($conn)); 
+        }
+        $_SESSION['message'] = 'Cambio de Estado Exitosa';
+        $_SESSION['message_type'] = 'success';
+        header("Location: ../views/Asignar_solicitudes/asignar_solicitud.php");
+
+        
+    }else{
     $codigo_solicitud = $_POST['CODIGO'];
     $estado_old = $_POST['ESTADO_OLD'];
     $new_estado = $_POST['NEW_ESTADO'];
@@ -65,4 +91,15 @@ if (isset($_POST['asignar'])) {
         default:
             echo $new_estado;
     }
+}
+}
+if(isset($_POST['eliminar'])){
+    $id_solicitud=$_POST['id'];
+    $query = "UPDATE  SOLICITUD set ESTADO_SOLICITUD='Eliminado' WHERE  ID_SOLICITUD ='$id_solicitud' ";
+    $res = mysqli_query($conn,$query);
+    if(!$res){
+        die(mysqli_error($conn)); 
+    }
+  header("Location: ../views/Asignar_solicitudes/asignar_solicitud.php"); 
+  
 }

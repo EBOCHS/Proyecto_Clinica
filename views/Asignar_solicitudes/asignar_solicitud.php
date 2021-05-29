@@ -83,7 +83,7 @@ include("../../config/databases.php");
                                     $query = "SELECT  * FROM SOLICITUDES_ASIGNADAS sa 
                                     INNER JOIN USUARIO U ON sa.ID_USUARIO = U.ID_USUARIO
                                     INNER JOIN SOLICITUD S ON sa.ID_SOLICITUD = S.ID_SOLICITUD 
-                                    WHERE  U.ID_USUARIO ='$id_usuario'";
+                                    WHERE  U.ID_USUARIO ='$id_usuario' AND S.ESTADO_SOLICITUD='ANALISIS' OR S.ESTADO_SOLICITUD='REVISION' OR S.ESTADO_SOLICITUD='FINALIZADO' " ;
                                     $res = mysqli_query($conn, $query);
                                     while ($rows = mysqli_fetch_array($res)) { ?>
                                      <tr class="border-b border-gray-200 hover:bg-gray-100">
@@ -109,7 +109,10 @@ include("../../config/databases.php");
                                                 <div class="flex justify-center text-xl item-center">
                                                     <div class="cursor-pointer w-4 ml-2 transform hover:text-blue-600 hover:scale-110">
 
-                                                        <a href=""><i class="far fa-trash-alt"></i></a>
+                                                    <form action="../../models/asignar_solicitud_M.php" method="POST">
+                                                        <a onclick="return alerta()" id="eliminar"><button name= "eliminar" ><i class="far fa-trash-alt"></i></button></a>
+                                                        <input type="hidden" name="id" value="<?php echo $rows['ID_SOLICITUD'];?> ">
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -122,8 +125,8 @@ include("../../config/databases.php");
                 
                                <?php }
                                  else {
-                                    $query = "SELECT COD_SOLICITUD,TIPO_SOLICITUD,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD from SOLICITUD s 
-                                    where ESTADO_SOLICITUD='creado';";
+                                    $query = "SELECT ID_SOLICITUD,COD_SOLICITUD,TIPO_SOLICITUD,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD from SOLICITUD s 
+                                    where ESTADO_SOLICITUD='creado'";
                                     $res = mysqli_query($conn, $query);
                                     while ($rows = mysqli_fetch_array($res)) {
                                 ?>
@@ -149,8 +152,10 @@ include("../../config/databases.php");
                                                 </div>
                                                 <div class="flex justify-center text-xl item-center">
                                                     <div class="cursor-pointer w-4 ml-2 transform hover:text-blue-600 hover:scale-110">
-
-                                                        <a href=""><i class="far fa-trash-alt"></i></a>
+                                                    <form action="../../models/asignar_solicitud_M.php" method="POST">
+                                                        <a onclick="return alerta()" id="eliminar"><button name= "eliminar" ><i class="far fa-trash-alt"></i></button></a>
+                                                        <input type="hidden" name="id" value="<?php echo $rows['ID_SOLICITUD'];?> ">
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -239,7 +244,7 @@ include("../../config/databases.php");
                             <div class="flex -mx-3">
                                 <div class="w-full px-3 mt-2">
                                     <!--validacion de formularios en el documento de javascript-->
-                                    <input type="submit" value="Asignar" name="asignar" class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                                    <input type="submit" onclick="return cambio()" value="Asignar" name="asignar" class="block w-full max-w-xs mx-auto bg-blue-500 hover:bg-blue-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
                                 </div>
                                 <div class="w-full px-3 mb-5">
                                     <a onclick="mostrarForm('<?php echo $rows['COD_SOLICITUD']; ?>','<?php echo $rows['ESTADO_SOLICITUD']; ?>');" class="block text-center my-2 w-full max-w-xs mx-auto bg-gray-400 hover:bg-red-400 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Cancelar</a>
@@ -260,6 +265,22 @@ include("../../config/databases.php");
 
             $("#opciones").slideToggle("slow");
         }
+    function alerta(){
+       var opcion = confirm("¿Está Seguro de Eliminar La solicitud?");
+       if (opcion == true) {
+         alert('Solicitud eliminado');
+       } else {
+           return false; 
+       }
+    }
+    function cambio(){
+       var opcion = confirm("¿Está Seguro de Cambiar el estado de la solicitud?");
+       if (opcion == true) {
+         alert('Estado Actualizado');
+       } else {
+           return false; 
+       }
+    }
     </script>
 </body>
 
