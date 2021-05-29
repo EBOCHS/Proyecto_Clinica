@@ -25,8 +25,7 @@ require ('../config/databases.php');
                     if ($C_analistas->val_Cui($cui)){
                         if($rol_us!=""){
                             if(isset($_POST['Crear'])){
-                               echo "creando";
-                                /*$query ="INSERT INTO PACIENTE (NOMBRE,APELLIDO,CUI,SEXO,DERECCION,EDAD,NIT,ESTADO_CIVIL,TELEFONO,EMAIL,TIPO_SANGRE) 
+                                $query ="INSERT INTO PACIENTE (NOMBRE,APELLIDO,CUI,SEXO,DERECCION,EDAD,NIT,ESTADO_CIVIL,TELEFONO,EMAIL,TIPO_SANGRE) 
                                 VALUES ('$nombre_us','$apellido','$cui','NA','NA',0,'NA','NA','$telefono','$correo','NA') ";
                                 $res = mysqli_query($conn,$query);
                                 if(!$res){
@@ -45,7 +44,11 @@ require ('../config/databases.php');
                                $re = mysqli_query($conn,$insert_user);
                                if(!$re){
                                 die(mysqli_error($conn));
-                                }*/
+                                }
+                                $_SESSION['message'] = 'Usuario Creado Correctamente';
+                                $_SESSION['message_type'] = 'green';
+                                header("Location: ../views/mantenimiento_analistas/crud.php");
+
                             }
 
                             if(isset($_POST['Editar'])){
@@ -66,16 +69,28 @@ require ('../config/databases.php');
 
                             }
                         }else {
-                            echo "Ingrese El Rol De Usuario";
+                            $_SESSION['message'] = 'Elija un Rol para el usuario';
+                            $_SESSION['message_type'] = 'green';
+                            header("Location: ../views/mantenimiento_analistas/crud.php");
+        
                         }
                     }else{
-                        echo "cui no valido";
+                        $_SESSION['message'] = 'Numero Cui no valido';
+                        $_SESSION['message_type'] = 'green';
+                        header("Location: ../views/mantenimiento_analistas/crud.php");
+    
                     }
                 }else{
-                    echo "telefono no valido";
+                    $_SESSION['message'] = 'Numero de telefono no valido';
+                    $_SESSION['message_type'] = 'green';
+                    header("Location: ../views/mantenimiento_analistas/crud.php");
+
                 }
             }else{
-                echo "Contraseña no valida";
+                $_SESSION['message'] = 'Contraseña no valida';
+                $_SESSION['message_type'] = 'green';
+                header("Location: ../views/mantenimiento_analistas/crud.php");
+
             }
         }
     }else{

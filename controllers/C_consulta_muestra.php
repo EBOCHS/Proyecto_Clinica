@@ -1,5 +1,6 @@
 <?php
  class consulta_muestra{
+     //funcion para ver que tipo de consilta se hace en la vista consulta de muestras medicas
    public function val_dato_condicion($condicion,$dato_busqueda){
         switch($condicion){
             case "NUM_EXPEDIENTE":
@@ -66,6 +67,7 @@
             return false ;  
         }
    }
+   //funcion que genera el reporte de la informacion en pdf
    public function pdf($condicion,$dato_busqueda){
     require ('../config/fpdf183/fpdf.php');
     require ("../config/databases.php");
@@ -97,6 +99,7 @@
     
     $pdf->Output();
    }
+   //funcion que genera el un exel con la informacion que es solicitada 
    public function exel ($condicion,$dato_busqueda){
     require ("../config/databases.php");
         header('Content-Type: application/vnd.ms-excel');

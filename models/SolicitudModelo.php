@@ -4,6 +4,7 @@ include("../config/databases.php");
 $Model_solicitud = new validar_solicitud;
 
 if (isset($_POST['Crear_Solicitud'])) {
+    //creamos el modela de la solicitud
     $tipo_usuario = $_POST['tipo_usu'];
     $val_tipo_usr = $Model_solicitud->val_tipo_usr($tipo_usuario);
     $tipo_solicitud = $_POST['tipo_solicitud'];
@@ -13,7 +14,7 @@ if (isset($_POST['Crear_Solicitud'])) {
     $N_expediente = $_POST['expediente'];
     $val_expediente = $Model_solicitud->val_expediente($N_expediente);
     $fecha = $Model_solicitud->fecha();
-
+//validamos la informacion ingresada en la solicitud
     if ($val_tipo_usr == true) {
 
 
@@ -26,23 +27,23 @@ if (isset($_POST['Crear_Solicitud'])) {
 
 
                     if ($val_descripcion == true) {
-
+                        //consultamos el numero de expediente que es ingresado en el formulario 
                         $query = "SELECT NUM_EXPEDIENTE,ID_EXPEDIENTE FROM EXPEDIENTE WHERE EXPEDIENTE.NUM_EXPEDIENTE ='$N_expediente'";
                         $result = mysqli_query($conn, $query);
                         $row = mysqli_fetch_array($result);
-                        $id_exp = $row['ID_EXPEDIENTE'];
+                        $id_exp = $row['ID_EXPEDIENTE'];//obtenemos el numero de expedeiente de la base de datos
 
-                        if ($row['NUM_EXPEDIENTE'] == $N_expediente) {
+                        if ($row['NUM_EXPEDIENTE'] == $N_expediente) {//comparamos el numero de expediente ingresado por el usuario con el numero de expediente de la base de tados 
 
+                            //obtenemos el eltimo Codigo de solicitud generado en la base de datos
                             $peticion = "SELECT COD_SOLICITUD from SOLICITUD order by COD_SOLICITUD desc limit 1";
                             $res = mysqli_query($conn, $peticion);
-
+                            //obtenemos el nuevo codigo de solicitud
                             $codgio = $Model_solicitud->get_numero_solicitud($res);
-                            echo ($codgio);
 
                             $num_solicitud = $tipo_usuario . '-' . $fecha . '-' . $codgio;
 
-                            //validamos el archivo adjunto
+                            //insertamos a la base de datos la nueva solicitud 
                            
                                                 $query_in = "INSERT  INTO SOLICITUD (TIPO_SOLICITANTE,TIPO_SOLICITUD,DESCRIPCION,COD_SOLICITUD,ID_EXPEDIENTE,NUM_FACTURA,FECHA_SOLICITUD_FINAL,FECHA_SOLICITUD_INICIAL,ESTADO_SOLICITUD) 
                                                 VALUES('$tipo_usuario','$tipo_solicitud','$descripcion','$num_solicitud','$id_exp',null,null,sysdate(),'creado')";

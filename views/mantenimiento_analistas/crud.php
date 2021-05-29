@@ -52,9 +52,11 @@ include("../../config/databases.php");
     <div class="flex items-center justify-center min-h-screen min-w-screen">
         <div class="  w-full overflow-hidden text-gray-700 bg-gray-100 shadow-xl rounded-3xl" style="max-width:1300px">
             <!--BOTON DE RETORNO -->
+            <form  action="../../models/eliminar_usuario.php" method="POST"> 
             <div class="px-3 py-3">
                 <a class="text-4xl transition duration-300 ease-in-out cursor-pointer hover:text-red-500"><button name="salir"><i class="fas fa-chevron-circle-left"></i></button></a>
             </div>
+            </form>
 
             <div class="flex justify-center mb-1">
                 <div class="min-w-full pb-10">

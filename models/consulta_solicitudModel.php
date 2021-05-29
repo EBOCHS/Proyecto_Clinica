@@ -178,13 +178,9 @@ if (isset($_POST['consultar_solicitud'])) {
             break;
     }
 }
+//genera un pdf con la informacion 
 if (isset($_POST['imprimir'])) {
 
-    /*$cod_muestra = $_SESSION['codigo_muestra'];
-    $cod_exp = $_SESSION['num_expediente'];
-    $qr = $_SESSION['QR'];
-    $cod_etiqueta=  $_SESSION['cod_et'];
-    $cod_solicitud=$_SESSION['COD_SOLICITUD'];*/
     $C_imprimir = new validar_consulta;
     $C_imprimir->imprimir_consulta(
         $_SESSION['COD_SOLICITUD'],
@@ -199,12 +195,13 @@ if (isset($_POST['imprimir'])) {
         $_SESSION['cant_items']
     );
 }
+//genera un archivo exel con la informacion
 if (isset($_POST['excel'])) {
     $C_excel = new validar_consulta;
     $cod_solicitud = $_SESSION['COD_SOLICITUD'];
     $C_excel->crear_excel($cod_solicitud);
 }
-
+//boton crear muestra medica 
 if (isset($_POST['crear_mm'])) {
 
     if (isset($_SESSION['usuario'])) {
@@ -213,12 +210,12 @@ if (isset($_POST['crear_mm'])) {
         header("Location: ../views/Login/Vista_Login.php");
     }
 }
-
+//boton crear solicitudes medicas
 if (isset($_POST['crear_s'])) {
     header("Location: ../views/solicitud/formulario_solicitud.php");
 }
 
-
+//boton limpiar informacion del formulario de consulta
 if (isset($_POST['limpiar'])) {
     unset($_SESSION['COD_SOLICITUD']);
     unset($_SESSION['NUM_EXPEDIENTE']);
@@ -233,7 +230,7 @@ if (isset($_POST['limpiar'])) {
 
     header("Location: ../views/Consulta_Solicitudes/consulta_solicitudes.php");
 }
-
+//funcion eliminar muestra medica 
 if (isset($_POST['eliminar'])) {
     $dato = $_SESSION['COD_SOLICITUD'];
     $query = "UPDATE SOLICITUD s SET s.ESTADO_SOLICITUD = 'Eliminado' WHERE s.COD_SOLICITUD='$dato'";
@@ -257,6 +254,7 @@ if (isset($_POST['eliminar'])) {
         header("Location: ../views/Consulta_Solicitudes/consulta_solicitud.php");
     }
 }
+//boton salir 
 if (isset($_POST['salir'])) {
     unset($_SESSION['message']);
     if (isset($_SESSION['usuario'])) {

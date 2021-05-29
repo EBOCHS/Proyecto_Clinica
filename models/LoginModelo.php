@@ -2,16 +2,6 @@
 include ("../config/databases.php");
 include ("../controllers/C_Login.php");
 
-/*if(!isset ($_SESSION['usuario'])){
-    header ("location: ../views/Login/Vista_Login.php");
-}
-else{
-    if(isset($_POST['Interno'])){
-        header ("location: ../views/Expedientes/expedientes.php");
-    }else{
-    header ("location: ../views/inicio/index.php");
-    }
-}*/
 
 if(isset($_POST['Sign_in'])){
     $c_login = new Validar_login;
@@ -33,7 +23,7 @@ if(isset($_POST['Sign_in'])){
         }else{    
   
         while( $row = mysqli_fetch_array($res)){
-                if($row['DESCRIPCION']=="analista"){
+                if($row['DESCRIPCION']=="ANALISTA"){
                     $_SESSION['usuario']= $row['NOMBRE'];
                     $_SESSION['analista']=$row['DESCRIPCION'];
                     $_SESSION['ID']= $row['ID_USUARIO'];

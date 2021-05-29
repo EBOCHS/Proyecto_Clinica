@@ -2,7 +2,7 @@
 
 class validar_consulta
 {
-
+    //funcion que validad que el codigo de solicitud ingresada por el usuario en la vista consulta de solicitudes
     public function v_Codigo_solicitud($dato)
     {
 
@@ -19,6 +19,7 @@ class validar_consulta
             }
         }
     }
+    //funcion que valida que el numero de expediente  expediente tenga la logitud correcta
     public function v_num_exp($dato)
     {
         $long = strlen($dato);
@@ -29,7 +30,7 @@ class validar_consulta
             return true;
         }
     }
-
+    //funcion que valida la longitud de numero del nit 
     public function v_num_nit($dato)
     {  
         if ($dato != "") {
@@ -43,6 +44,7 @@ class validar_consulta
             return false;
         }
     }
+    //funcion que valida es estado de la solicitud 
     public function v_estado_solicitud($dato)
     {
         if ($dato != "") {
@@ -55,6 +57,7 @@ class validar_consulta
             return false;
         }
     }
+    //funcion que genera un pdf listo para imprimier la informacion 
     public function imprimir_consulta($cod_solicitud,$num_expediente,$num_nit,$tipo_solcitud,$estado_sol
     ,$usuario_asig,$fecha_creacion,$fecha_final,$cant_muestra,$cant_items){
         require ('../config/fpdf183/fpdf.php');//requiere la libreria fpdf.php para su funcionamiento
@@ -84,6 +87,7 @@ class validar_consulta
         $pdf->Cell(40,10,'Cantidad de items asociados: '.$cant_items);
         $pdf->Output();
     }
+    //funcion que genera un archivo exel con la informacion solicitada
     public function crear_excel($cod_solicitud){    
         require ("../config/databases.php");
           header('Content-Type: application/vnd.ms-excel');

@@ -5,9 +5,10 @@ $consulta_mm = new consulta_muestra;
 if (isset($_POST['buscar'])){
     $condicion_de_busqueda = $_POST['condicion'];
     $dato_de_busqueda = $_POST['busqueda'];
-    //echo $condicion_de_busqueda." ".$dato_de_busqueda;
     $estado= $consulta_mm->val_dato_condicion($condicion_de_busqueda,$dato_de_busqueda);
+    
     if($estado!=false){
+        //verificamos que existan datos con la consulta que se esta realizando
         $q=" SELECT count(*) FROM EXPEDIENTE e 
         INNER JOIN SOLICITUD so ON e.ID_EXPEDIENTE = so.ID_EXPEDIENTE 
         INNER  join MUESTRAS_MEDICAS  mm on mm.id_solicitud = so.ID_SOLICITUD
@@ -33,27 +34,28 @@ if (isset($_POST['buscar'])){
     
     }
 }
-
+//para generar en archivo PDF 
 if(isset($_POST['pdf'])){
     
     $condicion =$_SESSION['condicion'];
     $dato=$_SESSION['dato'];
     $consulta_mm->pdf($condicion,$dato);
 }
-
+//para generar un archivo exel 
 if ( isset($_POST['imprimir']) ) {
     $condicion =$_SESSION['condicion'];
     $dato=$_SESSION['dato'];
     $consulta_mm-> exel($condicion,$dato);
 }
-
+//boton crear solisitudes
 if(isset($_POST['solicitud'])){
     header("Location: ../views/solicitud/solicitud.php");
 }
+//boton crear muestras medias 
 if(isset($_POST['muestra'])){
     header("Location: ../views/Creacion_Muestras/muestra.php");
 }
-
+//boton salir 
 if(isset($_POST['salir'])){
     unset($_SESSION['message']);
     header("Location: ../views/inicio/menu_interno.php");

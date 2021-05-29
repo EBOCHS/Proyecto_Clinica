@@ -1,5 +1,6 @@
 <?php
 require ('../config/databases.php');
+//boton eliminar usuario 
 if(isset($_POST['eliminar'])){
     $id_us = $_POST['id'];
    
@@ -8,10 +9,12 @@ if(isset($_POST['eliminar'])){
     if(!$res){
         die(mysqli_error($conn)); 
     }
-   /*
-    $_SESSION['message'] = 'Se Ha Eliminado Correcta Mente El Usuario';
-    $_SESSION['message_type'] = 'green';
-   */ header("Location: ../views/mantenimiento_analistas/crud.php"); 
+  header("Location: ../views/mantenimiento_analistas/crud.php"); 
    
+}
+//boton salir 
+if (isset($_POST['salir'])){
+    unset($_SESSION['message']);
+    header("Location: ../views/inicio/menu_interno.php"); 
 }
 ?>

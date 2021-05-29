@@ -7,12 +7,11 @@ $_SESSION['item2B'] = "disabled";
 $_SESSION['item3B'] = "disabled";
 $_SESSION['item4B'] = "disabled";
 if (isset($_POST['buscar'])) {
-
+    //eliminamanos la variables de session
     unset($_SESSION['item1A']);
     unset($_SESSION['item2A']);
     unset($_SESSION['item3A']);
     unset($_SESSION['item4A']);
-
     unset($_SESSION['id_muestra']);
     unset($_SESSION['codigo_muestra']);
     unset($_SESSION['presentacion_muestra']);
@@ -22,16 +21,17 @@ if (isset($_POST['buscar'])) {
     unset($_SESSION['num_expediente']);
     unset($_SESSION['COD_SOLICITUD']);
     unset($_SESSION['tipo_muestra']);
+
     $get_codigo_muestra = $_POST['cod_nuestra'];
     $C_asociar = new asociar;
     $num_muestra = $get_codigo_muestra;
     $estado = $C_asociar->val_codigo_muestra($num_muestra);
     if ($estado != 0) {
+        //consultamos a la base de datos si existe un codigo de muestra 
         $queri = "SELECT  COUNT(codigo_muestra) from MUESTRAS_MEDICAS  WHERE  codigo_muestra= '$num_muestra' AND estado='creado'";
         $res = mysqli_query($conn, $queri);
         $rows = mysqli_fetch_array($res);
         if ($rows['COUNT(codigo_muestra)'] == 1) {
-            //echo('codigo valido');
             $query = "SELECT MM.tipo_muestra,MM.estado,MM.FECHA_CREACION,EX.NUM_EXPEDIENTE,SO.COD_SOLICITUD  ,MM.id_muestra ,MM.codigo_muestra,MM.tipo_muestra,MM.presentacion_muestra,MM.cantidad_muestra,MM.unidad_medida,MM.adjunto 
                 FROM  MUESTRAS_MEDICAS MM 
                 INNER JOIN SOLICITUD SO ON SO.ID_SOLICITUD = MM.id_solicitud 
@@ -68,10 +68,7 @@ if (isset($_POST['buscar'])) {
                 $_SESSION['QR'] = $QR;
                 header("Location: ../views/Creacion_Muestras/asociar.php");
 
-            //$_SESSION['num_muestra']=$num_muestra;
-            //echo $_SESSION['num_muestra'];
-            //header("Location: ../views/Creacion_Muestras/asociar.php");
-        } else {
+                } else {
 
             $_SESSION['message'] = 'Codigo  de muestra no existe en la base de datos ';
             $_SESSION['message_type'] = 'red';
@@ -137,29 +134,7 @@ if (isset($_POST['Desasociar'])) {
     $_SESSION['message_type'] = 'green';
     header("Location: ../views/Creacion_Muestras/asociar.php");
 }
-//codigo para generar etiqueta de la muestra medica 
-/*if (isset($_POST['buscar'])) {
-    //echo "hola";        
-    $C_asociar = new asociar;
-    $id = $_SESSION['id_muestra'];
-    $cod_muestra =  $_SESSION['codigo_muestra'];
-    $cod_exp = $_SESSION['num_expediente'];
 
-    //echo ("id: ".$id." dato1: ".$dato1." dato2: ".$dato2);
-    $codigo = "Codigo de muestra: " . $cod_muestra . " Codigo de Expediente: " . $cod_exp;
-    $QR = $C_asociar->generar_QR($codigo);
-
-    $fecha = "SELECT CURDATE() FROM DUAL";
-    $TIME = mysqli_query($conn, $fecha);
-    $rows = mysqli_fetch_array($TIME);
-    $fecha = $rows['CURDATE()'];
-    $cod_etiqueta = $C_asociar->get_cod_etiqueta($fecha);
-    $_SESSION['cod_et'] = $cod_etiqueta;
-    $_SESSION['QR'] = $QR;
-    header("Location: ../views/Creacion_Muestras/asociar.php");
-}*/
-
-//
 
 if (isset($_POST['imprimir'])) {
 

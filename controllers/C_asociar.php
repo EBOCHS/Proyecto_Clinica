@@ -94,7 +94,6 @@ class asociar{
         }else if($item4=="on"){
             return  "DELETE FROM ASOCIAR  WHERE  id_muestra = '$id_muestra'  AND id_items = '4'";
         }
-
     }
     //esta funcion genera un codigo QR con el parametro que se le ingresa.
     public function generar_QR($contenido){
